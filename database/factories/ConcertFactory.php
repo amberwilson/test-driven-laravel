@@ -18,7 +18,10 @@ $factory->define(
                 'city'                   => $faker->city,
                 'state'                  => $faker->state,
                 'zip'                    => $faker->postcode,
-                'additional_information' => "For tickets, call {$faker->phoneNumber}.",
-                'published_at'           => Carbon::parse('+1 day')];
+                'additional_information' => "For tickets, call {$faker->phoneNumber}."];
     }
 );
+
+$factory->state(Concert::class, 'published', ['published_at' => Carbon::parse('-1 day')]);
+
+$factory->state(Concert::class, 'unpublished', ['published_at' => null]);

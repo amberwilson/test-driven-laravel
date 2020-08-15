@@ -33,9 +33,9 @@ class ConcertTest extends TestCase {
 
     /** @test */
     public function concerts_with_a_published_at_date_are_published(): void {
-        $publishedConcertA  = factory(Concert::class)->create(['published_at' => Carbon::parse('-1 day')]);
-        $publishedConcertB  = factory(Concert::class)->create(['published_at' => Carbon::parse('-1 day')]);
-        $unpublishedConcert = factory(Concert::class)->create(['published_at' => null]);
+        $publishedConcertA  = factory(Concert::class)->states('published')->create();
+        $publishedConcertB  = factory(Concert::class)->states('published')->create();
+        $unpublishedConcert = factory(Concert::class)->states('unpublished')->create();
 
         $publishedConcerts = Concert::published()->get();
 

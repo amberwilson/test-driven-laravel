@@ -13,7 +13,7 @@ class ViewConcertListingTest extends TestCase {
 
     /** @test */
     public function user_can_view_a_published_concert_listing(): void {
-        $concert = Concert::create(
+        $concert = factory(Concert::class)->state('published')->create(
             ['title'                  => 'The Red Chord',
              'subtitle'               => 'with Animosity and Lethargy',
              'date'                   => Carbon::parse('August 15, 2020 8:00pm'),
@@ -23,8 +23,7 @@ class ViewConcertListingTest extends TestCase {
              'city'                   => 'Laraville',
              'state'                  => 'NS',
              'zip'                    => '17916',
-             'additional_information' => 'For tickets, call (555) 555-5555.',
-             'published_at'           => Carbon::parse('August 12, 2020 2:00pm'),]
+             'additional_information' => 'For tickets, call (555) 555-5555.',]
         );
 
         $response = $this->get("/concerts/{$concert->id}");
@@ -42,7 +41,7 @@ class ViewConcertListingTest extends TestCase {
 
     /** @test */
     public function user_cannot_view_unpublished_concert_listings(): void {
-        $concert = factory(Concert::class)->create(['published_at' => null]);
+        $concert = factory(Concert::class)->states('unpublished')->create();
 
         $this->withExceptionHandling();
         $response = $this->get("/concerts/{$concert->id}");
