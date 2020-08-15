@@ -14,6 +14,7 @@ class Concert extends Model {
 
     protected $casts = ['date' => 'datetime'];
 
+    // region Accessors & Mutators
     public function getFormattedDateAttribute(): string {
         return $this->date->format('F j, Y');
     }
@@ -25,4 +26,11 @@ class Concert extends Model {
     public function getTicketPriceInDollarsAttribute(): string {
         return number_format($this->ticket_price / 100, 2);
     }
+    // endregion Accessors & Mutators
+
+    // region Scopes
+    public function scopePublished($query) {
+        return $query->whereNotNull('published_at');
+    }
+    // endregion Scopes
 }

@@ -2,17 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e45b24a6-fe77-419e-8387-2261bb5f09e9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/test-driven-laravel.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/test-driven-laravel.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Concert.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Concert.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ConcertsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ConcertsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/ConcertFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/ConcertFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_08_15_150712_create_concerts_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_08_15_150712_create_concerts_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/Feature/ViewConcertListingTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/ViewConcertListingTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Unit/ConcertTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/ConcertTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -189,7 +183,7 @@
       <option name="presentableId" value="Default" />
       <updated>1597501899651</updated>
       <workItem from="1597501900723" duration="1009000" />
-      <workItem from="1597502930879" duration="9373000" />
+      <workItem from="1597502930879" duration="10459000" />
     </task>
     <servers />
   </component>
@@ -217,22 +211,22 @@
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
     <state x="1018" y="493" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597508404441" />
-    <state width="2518" height="385" key="GridCell.Tab.0.bottom" timestamp="1597515597972">
+    <state width="2518" height="385" key="GridCell.Tab.0.bottom" timestamp="1597517521815">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state width="2518" height="385" key="GridCell.Tab.0.bottom/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597515597972" />
-    <state width="2518" height="385" key="GridCell.Tab.0.center" timestamp="1597515597972">
+    <state width="2518" height="385" key="GridCell.Tab.0.bottom/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597517521815" />
+    <state width="2518" height="385" key="GridCell.Tab.0.center" timestamp="1597517521814">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state width="2518" height="385" key="GridCell.Tab.0.center/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597515597972" />
-    <state width="2518" height="385" key="GridCell.Tab.0.left" timestamp="1597515597971">
+    <state width="2518" height="385" key="GridCell.Tab.0.center/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597517521814" />
+    <state width="2518" height="385" key="GridCell.Tab.0.left" timestamp="1597517521814">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state width="2518" height="385" key="GridCell.Tab.0.left/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597515597971" />
-    <state width="2518" height="385" key="GridCell.Tab.0.right" timestamp="1597515597972">
+    <state width="2518" height="385" key="GridCell.Tab.0.left/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597517521814" />
+    <state width="2518" height="385" key="GridCell.Tab.0.right" timestamp="1597517521815">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state width="2518" height="385" key="GridCell.Tab.0.right/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597515597972" />
+    <state width="2518" height="385" key="GridCell.Tab.0.right/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597517521815" />
     <state x="1099" y="663" key="NewPhpFileDialog" timestamp="1597505501843">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
@@ -249,13 +243,13 @@
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
     <state x="958" y="488" key="com.jetbrains.php.test.PhpNewTestDialog/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597507876149" />
-    <state x="763" y="351" width="990" height="668" key="find.popup" timestamp="1597515377662">
+    <state x="763" y="351" width="990" height="668" key="find.popup" timestamp="1597516976862">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state x="763" y="351" width="990" height="668" key="find.popup/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597515377662" />
-    <state x="945" y="348" width="670" height="676" key="search.everywhere.popup" timestamp="1597516021907">
+    <state x="763" y="351" width="990" height="668" key="find.popup/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597516976862" />
+    <state x="945" y="348" width="670" height="676" key="search.everywhere.popup" timestamp="1597517515880">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state x="945" y="348" width="670" height="676" key="search.everywhere.popup/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597516021907" />
+    <state x="945" y="348" width="670" height="676" key="search.everywhere.popup/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597517515880" />
   </component>
 </project>

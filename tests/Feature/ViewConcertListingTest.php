@@ -12,7 +12,7 @@ class ViewConcertListingTest extends TestCase {
     use DatabaseMigrations;
 
     /** @test */
-    public function user_can_view_a_concert_listing(): void {
+    public function user_can_view_a_published_concert_listing(): void {
         $concert = Concert::create(
             ['title'                  => 'The Red Chord',
              'subtitle'               => 'with Animosity and Lethargy',
