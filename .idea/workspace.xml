@@ -2,16 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e45b24a6-fe77-419e-8387-2261bb5f09e9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.php_cs.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Concert.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/ConcertsController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_08_15_150712_create_concerts_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/concerts/show.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Feature/ViewConcertListingTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/phpunit.xml" beforeDir="false" afterPath="$PROJECT_DIR$/phpunit.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/ExampleTest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/TestCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/TestCase.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Concert.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Concert.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/concerts/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/concerts/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Unit/ExampleTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/ConcertTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,11 +132,12 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="com.jetbrains.php.phpunit.codeGeneration.PhpNewTestDialog.defaultLibrary" value="PHPUnit" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.externalTools" />
+    <property name="settings.editor.selected.configurable" value="preferences.general" />
   </component>
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -159,7 +154,7 @@
       <option name="presentableId" value="Default" />
       <updated>1597501899651</updated>
       <workItem from="1597501900723" duration="1009000" />
-      <workItem from="1597502930879" duration="4516000" />
+      <workItem from="1597502930879" duration="6147000" />
     </task>
     <servers />
   </component>
@@ -183,38 +178,46 @@
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
     <state x="1221" y="473" width="694" height="548" key="#com.intellij.tools.ToolEditorDialog/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597504470563" />
-    <state x="1018" y="493" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1597504056992">
+    <state x="1018" y="493" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1597508404442">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state x="1018" y="493" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597504056992" />
-    <state width="2518" height="464" key="GridCell.Tab.0.bottom" timestamp="1597506936900">
+    <state x="1018" y="493" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597508404441" />
+    <state width="2518" height="464" key="GridCell.Tab.0.bottom" timestamp="1597509040663">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state width="2518" height="464" key="GridCell.Tab.0.bottom/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597506936900" />
-    <state width="2518" height="464" key="GridCell.Tab.0.center" timestamp="1597506936899">
+    <state width="2518" height="464" key="GridCell.Tab.0.bottom/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597509040663" />
+    <state width="2518" height="464" key="GridCell.Tab.0.center" timestamp="1597509040662">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state width="2518" height="464" key="GridCell.Tab.0.center/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597506936899" />
-    <state width="2518" height="464" key="GridCell.Tab.0.left" timestamp="1597506936899">
+    <state width="2518" height="464" key="GridCell.Tab.0.center/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597509040662" />
+    <state width="2518" height="464" key="GridCell.Tab.0.left" timestamp="1597509040661">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state width="2518" height="464" key="GridCell.Tab.0.left/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597506936899" />
-    <state width="2518" height="464" key="GridCell.Tab.0.right" timestamp="1597506936900">
+    <state width="2518" height="464" key="GridCell.Tab.0.left/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597509040661" />
+    <state width="2518" height="464" key="GridCell.Tab.0.right" timestamp="1597509040662">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state width="2518" height="464" key="GridCell.Tab.0.right/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597506936900" />
+    <state width="2518" height="464" key="GridCell.Tab.0.right/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597509040662" />
     <state x="1099" y="663" key="NewPhpFileDialog" timestamp="1597505501843">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
     <state x="1099" y="663" key="NewPhpFileDialog/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597505501843" />
-    <state x="1001" y="297" width="997" height="828" key="SettingsEditor" timestamp="1597504471114">
+    <state x="1001" y="297" width="997" height="828" key="SettingsEditor" timestamp="1597508395359">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state x="1001" y="297" width="997" height="828" key="SettingsEditor/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597504471114" />
-    <state x="763" y="351" width="990" height="668" key="find.popup" timestamp="1597505194721">
+    <state x="1001" y="297" width="997" height="828" key="SettingsEditor/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597508395359" />
+    <state x="1010" y="470" width="540" height="540" key="StructurePopup" timestamp="1597508874273">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state x="763" y="351" width="990" height="668" key="find.popup/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597505194721" />
+    <state x="1010" y="470" width="540" height="540" key="StructurePopup/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597508874273" />
+    <state x="958" y="488" key="com.jetbrains.php.test.PhpNewTestDialog" timestamp="1597507876149">
+      <screen x="0" y="23" width="2560" height="1417" />
+    </state>
+    <state x="958" y="488" key="com.jetbrains.php.test.PhpNewTestDialog/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597507876149" />
+    <state x="763" y="351" width="990" height="668" key="find.popup" timestamp="1597508050692">
+      <screen x="0" y="23" width="2560" height="1417" />
+    </state>
+    <state x="763" y="351" width="990" height="668" key="find.popup/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597508050692" />
     <state x="945" y="348" width="670" height="676" key="search.everywhere.popup" timestamp="1597505408961">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
