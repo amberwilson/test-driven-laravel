@@ -18,6 +18,7 @@ $factory->define(
                 'city'                   => $faker->city,
                 'state'                  => $faker->state,
                 'zip'                    => $faker->postcode,
-                'additional_information' => "For tickets, call {$faker->phoneNumber}.",];
+                'additional_information' => "For tickets, call {$faker->phoneNumber}.",
+                'published_at'           => Carbon::parse('+1 day')];
     }
 );
