@@ -9,8 +9,5 @@ abstract class TestCase extends BaseTestCase {
 
     public function setUp(): void {
         parent::setUp();
-
-        // Uncomment this to see all exceptions that arise during test runs
-        // $this->withoutExceptionHandling();
     }
 }
