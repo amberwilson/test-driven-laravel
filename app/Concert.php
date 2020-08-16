@@ -38,6 +38,7 @@ class Concert extends Model {
     public function scopePublished($query) {
         return $query->whereNotNull('published_at');
     }
+
     // endregion Scopes
 
     public function orderTickets(string $email, int $ticketQuantity) {
