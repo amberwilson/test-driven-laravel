@@ -28,6 +28,6 @@ class FakePaymentGatewayTest extends TestCase {
             return;
         }
 
-        self::fail('PaymentFailedException not thrown');
+        self::fail('Charge succeeded even thought the payment token was invalid.');
     }
 }

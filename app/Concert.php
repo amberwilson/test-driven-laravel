@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Billing\NotEnoughTicketsException;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
 
@@ -46,8 +47,13 @@ class Concert extends Model {
     // endregion Scopes
 
     public function orderTickets(string $email, int $ticketQuantity) {
-        $order   = $this->orders()->create(['email' => $email]);
-        $tickets = $this->tickets()->take($ticketQuantity)->get();
+        $tickets = $this->tickets()->available()->take($ticketQuantity)->get();
+
+        if ($tickets->count() < $ticketQuantity) {
+            throw new NotEnoughTicketsException("A requested ticket quantity ({$ticketQuantity}) was for more than there are tickets remaining ({$tickets->count()}).");
+        }
+
+        $order = $this->orders()->create(['email' => $email]);
 
         foreach ($tickets as $ticket) {
             $order->tickets()->save($ticket);
@@ -63,6 +69,6 @@ class Concert extends Model {
     }
 
     public function ticketsRemaining() {
-        return $this->tickets()->whereNull('order_id')->count();
+        return $this->tickets()->available()->count();
     }
 }

@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e45b24a6-fe77-419e-8387-2261bb5f09e9" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Billing/NotEnoughTicketsException.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Concert.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Concert.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_08_16_150800_create_tickets_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_08_16_150800_create_tickets_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Ticket.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Ticket.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/Feature/PurchaseTicketsTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/PurchaseTicketsTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Unit/Billing/FakePaymentGatewayTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/Billing/FakePaymentGatewayTest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/Unit/ConcertTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/ConcertTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -144,7 +146,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.jetbrains.php.phpunit.codeGeneration.PhpNewTestDialog.defaultLibrary" value="PHPUnit" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/tests/Feature" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Billing" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -155,29 +157,30 @@
       <recent name="$PROJECT_DIR$/public/img" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/Billing" />
       <recent name="$PROJECT_DIR$/tests/Feature" />
       <recent name="$PROJECT_DIR$/resources/js/components" />
     </key>
   </component>
-  <component name="RunManager" selected="PHPUnit.phpunit.xml">
-    <configuration name="ConcertTest.can_add_tickets" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Unit\ConcertTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Unit/ConcertTest.php" method="can_add_tickets" scope="Method" />
+  <component name="RunManager" selected="PHPUnit.ConcertTest">
+    <configuration name="ConcertTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Unit\ConcertTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Unit/ConcertTest.php" scope="Class" />
       <method v="2" />
     </configuration>
-    <configuration name="ConcertTest.tickets_remaining_does_not_include_tickets_associated_with_an_order" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Unit\ConcertTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Unit/ConcertTest.php" method="tickets_remaining_does_not_include_tickets_associated_with_an_order" scope="Method" />
+    <configuration name="ConcertTest.cannot_order_tickets_that_have_already_been_purchased" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Unit\ConcertTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Unit/ConcertTest.php" method="cannot_order_tickets_that_have_already_been_purchased" scope="Method" />
+      <method v="2" />
+    </configuration>
+    <configuration name="ConcertTest.trying_to_purchase_more_tickets_than_remain_throws_an_exception" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Unit\ConcertTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Unit/ConcertTest.php" method="trying_to_purchase_more_tickets_than_remain_throws_an_exception" scope="Method" />
       <method v="2" />
     </configuration>
     <configuration name="PurchaseTicketsTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="Tests\Feature\PurchaseTicketsTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/PurchaseTicketsTest.php" scope="Class" />
       <method v="2" />
     </configuration>
-    <configuration name="PurchaseTicketsTest.cannot_purchase_more_tickets_than_remain" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\PurchaseTicketsTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/PurchaseTicketsTest.php" method="cannot_purchase_more_tickets_than_remain" scope="Method" />
-      <method v="2" />
-    </configuration>
-    <configuration name="PurchaseTicketsTest.cannot_purchase_to_an_unpublished_concert" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\PurchaseTicketsTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/PurchaseTicketsTest.php" method="cannot_purchase_to_an_unpublished_concert" scope="Method" />
+    <configuration name="PurchaseTicketsTest.customer_can_purchase_tickets_to_a_published_concert" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\PurchaseTicketsTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/PurchaseTicketsTest.php" method="customer_can_purchase_tickets_to_a_published_concert" scope="Method" />
       <method v="2" />
     </configuration>
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -186,11 +189,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="PHPUnit.ConcertTest.tickets_remaining_does_not_include_tickets_associated_with_an_order" />
-        <item itemvalue="PHPUnit.ConcertTest.can_add_tickets" />
-        <item itemvalue="PHPUnit.PurchaseTicketsTest.cannot_purchase_more_tickets_than_remain" />
+        <item itemvalue="PHPUnit.ConcertTest" />
+        <item itemvalue="PHPUnit.PurchaseTicketsTest.customer_can_purchase_tickets_to_a_published_concert" />
+        <item itemvalue="PHPUnit.ConcertTest.cannot_order_tickets_that_have_already_been_purchased" />
+        <item itemvalue="PHPUnit.ConcertTest.trying_to_purchase_more_tickets_than_remain_throws_an_exception" />
         <item itemvalue="PHPUnit.PurchaseTicketsTest" />
-        <item itemvalue="PHPUnit.PurchaseTicketsTest.cannot_purchase_to_an_unpublished_concert" />
       </list>
     </recent_temporary>
   </component>
@@ -227,26 +230,26 @@
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
     <state x="1221" y="473" width="694" height="548" key="#com.intellij.tools.ToolEditorDialog/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597504470563" />
-    <state x="1018" y="493" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1597508404442">
+    <state x="1018" y="493" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1597619444305">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state x="1018" y="493" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597508404441" />
-    <state width="2518" height="385" key="GridCell.Tab.0.bottom" timestamp="1597608130009">
+    <state x="1018" y="493" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597619444305" />
+    <state width="2518" height="385" key="GridCell.Tab.0.bottom" timestamp="1597620844722">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state width="2518" height="385" key="GridCell.Tab.0.bottom/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597608130009" />
-    <state width="2518" height="385" key="GridCell.Tab.0.center" timestamp="1597608130008">
+    <state width="2518" height="385" key="GridCell.Tab.0.bottom/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597620844722" />
+    <state width="2518" height="385" key="GridCell.Tab.0.center" timestamp="1597620844722">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state width="2518" height="385" key="GridCell.Tab.0.center/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597608130008" />
-    <state width="2518" height="385" key="GridCell.Tab.0.left" timestamp="1597608130008">
+    <state width="2518" height="385" key="GridCell.Tab.0.center/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597620844722" />
+    <state width="2518" height="385" key="GridCell.Tab.0.left" timestamp="1597620844721">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state width="2518" height="385" key="GridCell.Tab.0.left/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597608130008" />
-    <state width="2518" height="385" key="GridCell.Tab.0.right" timestamp="1597608130008">
+    <state width="2518" height="385" key="GridCell.Tab.0.left/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597620844721" />
+    <state width="2518" height="385" key="GridCell.Tab.0.right" timestamp="1597620844722">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state width="2518" height="385" key="GridCell.Tab.0.right/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597608130008" />
+    <state width="2518" height="385" key="GridCell.Tab.0.right/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597620844722" />
     <state width="2518" height="499" key="GridCell.Tab.1.bottom" timestamp="1597596883601">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
@@ -263,10 +266,10 @@
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
     <state width="2518" height="499" key="GridCell.Tab.1.right/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597596883601" />
-    <state x="972" y="468" key="NewPhpClassDialog" timestamp="1597598307494">
+    <state x="972" y="468" key="NewPhpClassDialog" timestamp="1597619788060">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state x="972" y="468" key="NewPhpClassDialog/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597598307494" />
+    <state x="972" y="468" key="NewPhpClassDialog/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597619788060" />
     <state x="1099" y="663" key="NewPhpFileDialog" timestamp="1597589277801">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
@@ -287,14 +290,14 @@
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
     <state x="958" y="488" key="com.jetbrains.php.test.PhpNewTestDialog/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597507876149" />
-    <state x="763" y="351" width="990" height="668" key="find.popup" timestamp="1597589794269">
+    <state x="763" y="351" width="990" height="668" key="find.popup" timestamp="1597620563383">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state x="763" y="351" width="990" height="668" key="find.popup/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597589794269" />
-    <state x="945" y="348" width="670" height="676" key="search.everywhere.popup" timestamp="1597607098369">
+    <state x="763" y="351" width="990" height="668" key="find.popup/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597620563383" />
+    <state x="945" y="348" width="670" height="676" key="search.everywhere.popup" timestamp="1597620822795">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state x="945" y="348" width="670" height="676" key="search.everywhere.popup/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597607098369" />
+    <state x="945" y="348" width="670" height="676" key="search.everywhere.popup/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597620822795" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/test_driven_laravel@PurchaseTicketsTest.xml" NAME="PurchaseTicketsTest Coverage Results" MODIFIED="1597596883579" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="PhpCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
