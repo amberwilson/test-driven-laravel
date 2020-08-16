@@ -39,4 +39,14 @@ class Concert extends Model {
         return $query->whereNotNull('published_at');
     }
     // endregion Scopes
+
+    public function orderTickets(string $email, int $ticketQuantity) {
+        $order = $this->orders()->create(['email' => $email]);
+
+        for ($i = 0; $i < $ticketQuantity; $i++) {
+            $order->tickets()->create([]);
+        }
+
+        return $order;
+    }
 }
