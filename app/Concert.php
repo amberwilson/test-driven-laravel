@@ -32,6 +32,10 @@ class Concert extends Model {
     public function orders() {
         return $this->hasMany(Order::class);
     }
+
+    public function tickets() {
+        return $this->hasMany(Ticket::class);
+    }
     // endregion Relationships
 
     // region Scopes
@@ -42,12 +46,23 @@ class Concert extends Model {
     // endregion Scopes
 
     public function orderTickets(string $email, int $ticketQuantity) {
-        $order = $this->orders()->create(['email' => $email]);
+        $order   = $this->orders()->create(['email' => $email]);
+        $tickets = $this->tickets()->take($ticketQuantity)->get();
 
-        for ($i = 0; $i < $ticketQuantity; $i++) {
-            $order->tickets()->create([]);
+        foreach ($tickets as $ticket) {
+            $order->tickets()->save($ticket);
         }
 
         return $order;
+    }
+
+    public function addTickets(int $quantity) {
+        for ($i = 0; $i < $quantity; $i++) {
+            $this->tickets()->create([]);
+        }
+    }
+
+    public function ticketsRemaining() {
+        return $this->tickets()->whereNull('order_id')->count();
     }
 }

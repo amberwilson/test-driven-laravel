@@ -53,4 +53,23 @@ class ConcertTest extends TestCase {
         self::assertEquals('jane@example.com', $order->email);
         self::assertEquals(3, $order->tickets()->count());
     }
+
+    /** @test */
+    public function can_add_tickets(): void {
+        $concert = factory(Concert::class)->create();
+
+        $concert->addTickets(50);
+
+        self::assertEquals(50, $concert->ticketsRemaining());
+    }
+
+    /** @test */
+    public function tickets_remaining_does_not_include_tickets_associated_with_an_order(): void {
+        $concert = factory(Concert::class)->create();
+
+        $concert->addTickets(50);
+        $order = $concert->orderTickets('jane@example.com', 30);
+
+        self::assertEquals(20, $concert->ticketsRemaining());
+    }
 }
