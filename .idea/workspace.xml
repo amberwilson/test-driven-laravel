@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e45b24a6-fe77-419e-8387-2261bb5f09e9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ConcertOrdersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ConcertOrdersController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/Feature/PurchaseTicketsTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/PurchaseTicketsTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -157,7 +156,7 @@
       <recent name="$PROJECT_DIR$/resources/js/components" />
     </key>
   </component>
-  <component name="RunManager" selected="PHPUnit.phpunit.xml">
+  <component name="RunManager" selected="PHPUnit.PurchaseTicketsTest">
     <configuration name="PurchaseTicketsTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="Tests\Feature\PurchaseTicketsTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/PurchaseTicketsTest.php" scope="Class" />
       <method v="2" />
@@ -185,10 +184,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="PHPUnit.PurchaseTicketsTest" />
+        <item itemvalue="PHPUnit.PurchaseTicketsTest.email_is_required_to_purchase_tickets" />
         <item itemvalue="PHPUnit.PurchaseTicketsTest.ticket_quantity_be_at_least_1_to_purchase_tickets" />
         <item itemvalue="PHPUnit.PurchaseTicketsTest.ticket_quantity_is_required_to_purchase_tickets" />
         <item itemvalue="PHPUnit.PurchaseTicketsTest.email_must_be_valid_to_purchase_tickets" />
-        <item itemvalue="PHPUnit.PurchaseTicketsTest.email_is_required_to_purchase_tickets" />
       </list>
     </recent_temporary>
   </component>
@@ -229,22 +228,38 @@
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
     <state x="1018" y="493" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597508404441" />
-    <state width="2518" height="385" key="GridCell.Tab.0.bottom" timestamp="1597596777120">
+    <state width="2518" height="385" key="GridCell.Tab.0.bottom" timestamp="1597597601615">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state width="2518" height="385" key="GridCell.Tab.0.bottom/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597596777120" />
-    <state width="2518" height="385" key="GridCell.Tab.0.center" timestamp="1597596777119">
+    <state width="2518" height="385" key="GridCell.Tab.0.bottom/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597597601615" />
+    <state width="2518" height="385" key="GridCell.Tab.0.center" timestamp="1597597601614">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state width="2518" height="385" key="GridCell.Tab.0.center/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597596777119" />
-    <state width="2518" height="385" key="GridCell.Tab.0.left" timestamp="1597596777119">
+    <state width="2518" height="385" key="GridCell.Tab.0.center/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597597601614" />
+    <state width="2518" height="385" key="GridCell.Tab.0.left" timestamp="1597597601613">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state width="2518" height="385" key="GridCell.Tab.0.left/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597596777119" />
-    <state width="2518" height="385" key="GridCell.Tab.0.right" timestamp="1597596777120">
+    <state width="2518" height="385" key="GridCell.Tab.0.left/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597597601613" />
+    <state width="2518" height="385" key="GridCell.Tab.0.right" timestamp="1597597601615">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state width="2518" height="385" key="GridCell.Tab.0.right/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597596777120" />
+    <state width="2518" height="385" key="GridCell.Tab.0.right/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597597601615" />
+    <state width="2518" height="499" key="GridCell.Tab.1.bottom" timestamp="1597596883601">
+      <screen x="0" y="23" width="2560" height="1417" />
+    </state>
+    <state width="2518" height="499" key="GridCell.Tab.1.bottom/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597596883601" />
+    <state width="2518" height="499" key="GridCell.Tab.1.center" timestamp="1597596883600">
+      <screen x="0" y="23" width="2560" height="1417" />
+    </state>
+    <state width="2518" height="499" key="GridCell.Tab.1.center/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597596883600" />
+    <state width="2518" height="499" key="GridCell.Tab.1.left" timestamp="1597596883600">
+      <screen x="0" y="23" width="2560" height="1417" />
+    </state>
+    <state width="2518" height="499" key="GridCell.Tab.1.left/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597596883600" />
+    <state width="2518" height="499" key="GridCell.Tab.1.right" timestamp="1597596883601">
+      <screen x="0" y="23" width="2560" height="1417" />
+    </state>
+    <state width="2518" height="499" key="GridCell.Tab.1.right/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597596883601" />
     <state x="972" y="468" key="NewPhpClassDialog" timestamp="1597590452889">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
@@ -253,10 +268,10 @@
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
     <state x="1099" y="663" key="NewPhpFileDialog/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597589277801" />
-    <state x="1001" y="297" width="997" height="828" key="SettingsEditor" timestamp="1597596820490">
+    <state x="1001" y="297" width="997" height="828" key="SettingsEditor" timestamp="1597596993618">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state x="1001" y="297" width="997" height="828" key="SettingsEditor/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597596820490" />
+    <state x="1001" y="297" width="997" height="828" key="SettingsEditor/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597596993618" />
     <state x="1010" y="470" width="540" height="540" key="StructurePopup" timestamp="1597508874273">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
@@ -277,5 +292,8 @@
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
     <state x="945" y="348" width="670" height="676" key="search.everywhere.popup/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597594855260" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/test_driven_laravel@PurchaseTicketsTest.xml" NAME="PurchaseTicketsTest Coverage Results" MODIFIED="1597596883579" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="PhpCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

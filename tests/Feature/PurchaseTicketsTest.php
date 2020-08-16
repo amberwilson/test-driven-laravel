@@ -21,6 +21,19 @@ class PurchaseTicketsTest extends TestCase {
         $this->app->instance(PaymentGateway::class, $this->paymentGateway);
     }
 
+    private function orderTickets(Concert $concert, array $params): \Illuminate\Testing\TestResponse {
+        return $this->json(
+            'POST',
+            "/concerts/{$concert->id}/orders",
+            $params
+        );
+    }
+
+    private function assertValidationError(string $field, \Illuminate\Testing\TestResponse $response) {
+        $response->assertStatus(422);
+        self::assertArrayHasKey($field, $response->decodeResponseJson()['errors']);
+    }
+
     /** @test */
     public function customer_can_purchase_concerts_tickets(): void {
         // Arrange
@@ -29,9 +42,8 @@ class PurchaseTicketsTest extends TestCase {
 
         // Act
         // Purchase concert tickets
-        $response = $this->json(
-            'POST',
-            "/concerts/{$concert->id}/orders",
+        $response = $this->orderTickets(
+            $concert,
             [
                 'email'           => 'jane@example.com',
                 'ticket_quantity' => 3,
@@ -55,26 +67,23 @@ class PurchaseTicketsTest extends TestCase {
     public function email_is_required_to_purchase_tickets(): void {
         $concert = factory(Concert::class)->state('published')->create();
 
-        $response = $this->json(
-            'POST',
-            "/concerts/{$concert->id}/orders",
+        $response = $this->orderTickets(
+            $concert,
             [
                 'ticket_quantity' => 3,
                 'payment_token'   => $this->paymentGateway->getValidTestToken(),
             ]
         );
 
-        $response->assertStatus(422);
-        self::assertArrayHasKey('email', $response->decodeResponseJson()['errors']);
+        $this->assertValidationError('email', $response);
     }
 
     /** @test */
     public function email_must_be_valid_to_purchase_tickets() {
         $concert = factory(Concert::class)->state('published')->create();
 
-        $response = $this->json(
-            'POST',
-            "/concerts/{$concert->id}/orders",
+        $response = $this->orderTickets(
+            $concert,
             [
                 'email'           => 'not-a-valid-email-address',
                 'ticket_quantity' => 3,
@@ -82,34 +91,30 @@ class PurchaseTicketsTest extends TestCase {
             ]
         );
 
-        $response->assertStatus(422);
-        self::assertArrayHasKey('email', $response->decodeResponseJson()['errors']);
+        $this->assertValidationError('email', $response);
     }
 
     /** @test */
     public function ticket_quantity_is_required_to_purchase_tickets() {
         $concert = factory(Concert::class)->state('published')->create();
 
-        $response = $this->json(
-            'POST',
-            "/concerts/{$concert->id}/orders",
+        $response = $this->orderTickets(
+            $concert,
             [
                 'email'         => 'jane@example.com',
                 'payment_token' => $this->paymentGateway->getValidTestToken(),
             ]
         );
 
-        $response->assertStatus(422);
-        self::assertArrayHasKey('ticket_quantity', $response->decodeResponseJson()['errors']);
+        $this->assertValidationError('ticket_quantity', $response);
     }
 
     /** @test */
     public function ticket_quantity_be_at_least_1_to_purchase_tickets() {
         $concert = factory(Concert::class)->state('published')->create();
 
-        $response = $this->json(
-            'POST',
-            "/concerts/{$concert->id}/orders",
+        $response = $this->orderTickets(
+            $concert,
             [
                 'email'           => 'jane@example.com',
                 'ticket_quantity' => 0,
@@ -117,24 +122,21 @@ class PurchaseTicketsTest extends TestCase {
             ]
         );
 
-        $response->assertStatus(422);
-        self::assertArrayHasKey('ticket_quantity', $response->decodeResponseJson()['errors']);
+        $this->assertValidationError('ticket_quantity', $response);
     }
 
     /** @test */
     public function payment_token_is_required_to_purchase_tickets() {
         $concert = factory(Concert::class)->state('published')->create();
 
-        $response = $this->json(
-            'POST',
-            "/concerts/{$concert->id}/orders",
+        $response = $this->orderTickets(
+            $concert,
             [
                 'email'           => 'jane@example.com',
                 'ticket_quantity' => 1,
             ]
         );
 
-        $response->assertStatus(422);
-        self::assertArrayHasKey('payment_token', $response->decodeResponseJson()['errors']);
+        $this->assertValidationError('payment_token', $response);
     }
 }
