@@ -39,6 +39,7 @@ class PurchaseTicketsTest extends TestCase {
         // Arrange
         // Create a concert
         $concert = factory(Concert::class)->state('published')->create(['ticket_price' => 3250]);
+        $concert->addTickets(1000);
 
         // Act
         // Purchase concert tickets
@@ -66,6 +67,7 @@ class PurchaseTicketsTest extends TestCase {
     /** @test */
     public function an_order_is_not_created_if_payment_fails(): void {
         $concert = factory(Concert::class)->state('published')->create();
+        $concert->addTickets(3);
 
         $response = $this->orderTickets(
             $concert,
@@ -85,6 +87,7 @@ class PurchaseTicketsTest extends TestCase {
     /** @test */
     public function cannot_purchase_to_an_unpublished_concert(): void {
         $concert = factory(Concert::class)->state('unpublished')->create();
+        $concert->addTickets(3);
 
         $response = $this->orderTickets(
             $concert,
@@ -105,7 +108,7 @@ class PurchaseTicketsTest extends TestCase {
 
     /** @test */
     public function cannot_purchase_more_tickets_than_remain(): void {
-        $concert = factory(Concert::class)->state('unpublished')->create();
+        $concert = factory(Concert::class)->state('published')->create();
         $concert->addTickets(50);
 
         $response = $this->orderTickets(
