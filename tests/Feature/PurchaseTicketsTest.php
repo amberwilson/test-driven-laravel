@@ -64,6 +64,27 @@ class PurchaseTicketsTest extends TestCase {
     }
 
     /** @test */
+    public function an_order_is_not_created_if_payment_fails(): void {
+        $concert = factory(Concert::class)->state('published')->create();
+
+        $response = $this->orderTickets(
+            $concert,
+            [
+                'email'           => 'jane@example.com',
+                'ticket_quantity' => 3,
+                'payment_token'   => 'invalid-payment-token',
+            ]
+        );
+
+        $response->assertStatus(422);
+
+        $order = $concert->orders()->where('email', 'jane@example.com')->first();
+        self::assertNull($order);
+    }
+
+    // region Validation
+
+    /** @test */
     public function email_is_required_to_purchase_tickets(): void {
         $concert = factory(Concert::class)->state('published')->create();
 
@@ -139,4 +160,5 @@ class PurchaseTicketsTest extends TestCase {
 
         $this->assertValidationError('payment_token', $response);
     }
+    // endregion Validation
 }

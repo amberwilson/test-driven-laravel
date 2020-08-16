@@ -3,7 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="e45b24a6-fe77-419e-8387-2261bb5f09e9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Billing/FakePaymentGateway.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Billing/FakePaymentGateway.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ConcertOrdersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ConcertOrdersController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/Feature/PurchaseTicketsTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/PurchaseTicketsTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Unit/Billing/FakePaymentGatewayTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/Billing/FakePaymentGatewayTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,25 +159,25 @@
       <recent name="$PROJECT_DIR$/resources/js/components" />
     </key>
   </component>
-  <component name="RunManager" selected="PHPUnit.PurchaseTicketsTest">
+  <component name="RunManager" selected="PHPUnit.phpunit.xml">
+    <configuration name="FakePaymentGatewayTest.charges_with_an_invalid_payment_token_fail" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Unit\Billing\FakePaymentGatewayTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Unit/Billing/FakePaymentGatewayTest.php" method="charges_with_an_invalid_payment_token_fail" scope="Method" />
+      <method v="2" />
+    </configuration>
     <configuration name="PurchaseTicketsTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="Tests\Feature\PurchaseTicketsTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/PurchaseTicketsTest.php" scope="Class" />
+      <method v="2" />
+    </configuration>
+    <configuration name="PurchaseTicketsTest.an_order_is_not_created_if_payment_fails" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\PurchaseTicketsTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/PurchaseTicketsTest.php" method="an_order_is_not_created_if_payment_fails" scope="Method" />
       <method v="2" />
     </configuration>
     <configuration name="PurchaseTicketsTest.email_is_required_to_purchase_tickets" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="Tests\Feature\PurchaseTicketsTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/PurchaseTicketsTest.php" method="email_is_required_to_purchase_tickets" scope="Method" />
       <method v="2" />
     </configuration>
-    <configuration name="PurchaseTicketsTest.email_must_be_valid_to_purchase_tickets" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\PurchaseTicketsTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/PurchaseTicketsTest.php" method="email_must_be_valid_to_purchase_tickets" scope="Method" />
-      <method v="2" />
-    </configuration>
     <configuration name="PurchaseTicketsTest.ticket_quantity_be_at_least_1_to_purchase_tickets" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="Tests\Feature\PurchaseTicketsTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/PurchaseTicketsTest.php" method="ticket_quantity_be_at_least_1_to_purchase_tickets" scope="Method" />
-      <method v="2" />
-    </configuration>
-    <configuration name="PurchaseTicketsTest.ticket_quantity_is_required_to_purchase_tickets" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\PurchaseTicketsTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/PurchaseTicketsTest.php" method="ticket_quantity_is_required_to_purchase_tickets" scope="Method" />
       <method v="2" />
     </configuration>
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -183,11 +186,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="PHPUnit.PurchaseTicketsTest.an_order_is_not_created_if_payment_fails" />
+        <item itemvalue="PHPUnit.FakePaymentGatewayTest.charges_with_an_invalid_payment_token_fail" />
         <item itemvalue="PHPUnit.PurchaseTicketsTest" />
         <item itemvalue="PHPUnit.PurchaseTicketsTest.email_is_required_to_purchase_tickets" />
         <item itemvalue="PHPUnit.PurchaseTicketsTest.ticket_quantity_be_at_least_1_to_purchase_tickets" />
-        <item itemvalue="PHPUnit.PurchaseTicketsTest.ticket_quantity_is_required_to_purchase_tickets" />
-        <item itemvalue="PHPUnit.PurchaseTicketsTest.email_must_be_valid_to_purchase_tickets" />
       </list>
     </recent_temporary>
   </component>
@@ -228,22 +231,22 @@
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
     <state x="1018" y="493" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597508404441" />
-    <state width="2518" height="385" key="GridCell.Tab.0.bottom" timestamp="1597597601615">
+    <state width="2518" height="385" key="GridCell.Tab.0.bottom" timestamp="1597598529549">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state width="2518" height="385" key="GridCell.Tab.0.bottom/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597597601615" />
-    <state width="2518" height="385" key="GridCell.Tab.0.center" timestamp="1597597601614">
+    <state width="2518" height="385" key="GridCell.Tab.0.bottom/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597598529549" />
+    <state width="2518" height="385" key="GridCell.Tab.0.center" timestamp="1597598529548">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state width="2518" height="385" key="GridCell.Tab.0.center/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597597601614" />
-    <state width="2518" height="385" key="GridCell.Tab.0.left" timestamp="1597597601613">
+    <state width="2518" height="385" key="GridCell.Tab.0.center/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597598529548" />
+    <state width="2518" height="385" key="GridCell.Tab.0.left" timestamp="1597598529547">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state width="2518" height="385" key="GridCell.Tab.0.left/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597597601613" />
-    <state width="2518" height="385" key="GridCell.Tab.0.right" timestamp="1597597601615">
+    <state width="2518" height="385" key="GridCell.Tab.0.left/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597598529547" />
+    <state width="2518" height="385" key="GridCell.Tab.0.right" timestamp="1597598529548">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state width="2518" height="385" key="GridCell.Tab.0.right/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597597601615" />
+    <state width="2518" height="385" key="GridCell.Tab.0.right/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597598529548" />
     <state width="2518" height="499" key="GridCell.Tab.1.bottom" timestamp="1597596883601">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
@@ -260,10 +263,10 @@
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
     <state width="2518" height="499" key="GridCell.Tab.1.right/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597596883601" />
-    <state x="972" y="468" key="NewPhpClassDialog" timestamp="1597590452889">
+    <state x="972" y="468" key="NewPhpClassDialog" timestamp="1597598307494">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state x="972" y="468" key="NewPhpClassDialog/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597590452889" />
+    <state x="972" y="468" key="NewPhpClassDialog/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597598307494" />
     <state x="1099" y="663" key="NewPhpFileDialog" timestamp="1597589277801">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
@@ -288,10 +291,10 @@
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
     <state x="763" y="351" width="990" height="668" key="find.popup/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597589794269" />
-    <state x="945" y="348" width="670" height="676" key="search.everywhere.popup" timestamp="1597594855260">
+    <state x="945" y="348" width="670" height="676" key="search.everywhere.popup" timestamp="1597598177108">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state x="945" y="348" width="670" height="676" key="search.everywhere.popup/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597594855260" />
+    <state x="945" y="348" width="670" height="676" key="search.everywhere.popup/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597598177108" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/test_driven_laravel@PurchaseTicketsTest.xml" NAME="PurchaseTicketsTest Coverage Results" MODIFIED="1597596883579" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="PhpCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
