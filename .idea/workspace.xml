@@ -2,8 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e45b24a6-fe77-419e-8387-2261bb5f09e9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/tests/Feature/PurchaseTicketsTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/ConcertOrdersController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Order.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Ticket.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2020_08_16_145807_create_orders_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2020_08_16_150800_create_tickets_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Concert.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Concert.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/PurchaseTicketsTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/PurchaseTicketsTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/TestCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/TestCase.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,13 +164,21 @@
       <recent name="$PROJECT_DIR$/resources/js/components" />
     </key>
   </component>
-  <component name="RunManager" selected="PHPUnit.phpunit.xml">
+  <component name="RunManager" selected="PHPUnit.PurchaseTicketsTest.customer_can_purchase_concerts_tickets">
     <configuration name="ConcertTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="Tests\Unit\ConcertTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Unit/ConcertTest.php" scope="Class" />
       <method v="2" />
     </configuration>
     <configuration name="ConcertTest.can_get_formatted_start_time" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="Tests\Unit\ConcertTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Unit/ConcertTest.php" method="can_get_formatted_start_time" scope="Method" />
+      <method v="2" />
+    </configuration>
+    <configuration name="FakePaymentGatewayTest.charges_with_a_valid_payment_token_are_successful" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Unit\Billing\FakePaymentGatewayTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Unit/Billing/FakePaymentGatewayTest.php" method="charges_with_a_valid_payment_token_are_successful" scope="Method" />
+      <method v="2" />
+    </configuration>
+    <configuration name="PurchaseTicketsTest.customer_can_purchase_concerts_tickets" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\PurchaseTicketsTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/PurchaseTicketsTest.php" method="customer_can_purchase_concerts_tickets" scope="Method" />
       <method v="2" />
     </configuration>
     <configuration name="ViewConcertListingTest.user_cannot_view_unpublished_concert_listings" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
@@ -175,6 +191,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="PHPUnit.PurchaseTicketsTest.customer_can_purchase_concerts_tickets" />
+        <item itemvalue="PHPUnit.FakePaymentGatewayTest.charges_with_a_valid_payment_token_are_successful" />
         <item itemvalue="PHPUnit.ViewConcertListingTest.user_cannot_view_unpublished_concert_listings" />
         <item itemvalue="PHPUnit.ConcertTest" />
         <item itemvalue="PHPUnit.ConcertTest.can_get_formatted_start_time" />
@@ -218,26 +236,30 @@
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
     <state x="1018" y="493" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597508404441" />
-    <state width="2518" height="385" key="GridCell.Tab.0.bottom" timestamp="1597587637340">
+    <state width="2518" height="385" key="GridCell.Tab.0.bottom" timestamp="1597590998005">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state width="2518" height="385" key="GridCell.Tab.0.bottom/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597587637340" />
-    <state width="2518" height="385" key="GridCell.Tab.0.center" timestamp="1597587637339">
+    <state width="2518" height="385" key="GridCell.Tab.0.bottom/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597590998005" />
+    <state width="2518" height="385" key="GridCell.Tab.0.center" timestamp="1597590998004">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state width="2518" height="385" key="GridCell.Tab.0.center/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597587637339" />
-    <state width="2518" height="385" key="GridCell.Tab.0.left" timestamp="1597587637338">
+    <state width="2518" height="385" key="GridCell.Tab.0.center/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597590998004" />
+    <state width="2518" height="385" key="GridCell.Tab.0.left" timestamp="1597590998003">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state width="2518" height="385" key="GridCell.Tab.0.left/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597587637338" />
-    <state width="2518" height="385" key="GridCell.Tab.0.right" timestamp="1597587637339">
+    <state width="2518" height="385" key="GridCell.Tab.0.left/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597590998003" />
+    <state width="2518" height="385" key="GridCell.Tab.0.right" timestamp="1597590998004">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state width="2518" height="385" key="GridCell.Tab.0.right/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597587637339" />
-    <state x="1099" y="663" key="NewPhpFileDialog" timestamp="1597505501843">
+    <state width="2518" height="385" key="GridCell.Tab.0.right/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597590998004" />
+    <state x="972" y="468" key="NewPhpClassDialog" timestamp="1597590452889">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state x="1099" y="663" key="NewPhpFileDialog/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597505501843" />
+    <state x="972" y="468" key="NewPhpClassDialog/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597590452889" />
+    <state x="1099" y="663" key="NewPhpFileDialog" timestamp="1597589277801">
+      <screen x="0" y="23" width="2560" height="1417" />
+    </state>
+    <state x="1099" y="663" key="NewPhpFileDialog/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597589277801" />
     <state x="1001" y="297" width="997" height="828" key="SettingsEditor" timestamp="1597516436727">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
@@ -246,17 +268,21 @@
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
     <state x="1010" y="470" width="540" height="540" key="StructurePopup/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597508874273" />
+    <state x="100" y="123" width="2360" height="1217" key="VCS.FileHistoryDialog" timestamp="1597590069053">
+      <screen x="0" y="23" width="2560" height="1417" />
+    </state>
+    <state x="100" y="123" width="2360" height="1217" key="VCS.FileHistoryDialog/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597590069053" />
     <state x="958" y="488" key="com.jetbrains.php.test.PhpNewTestDialog" timestamp="1597507876149">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
     <state x="958" y="488" key="com.jetbrains.php.test.PhpNewTestDialog/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597507876149" />
-    <state x="763" y="351" width="990" height="668" key="find.popup" timestamp="1597535091831">
+    <state x="763" y="351" width="990" height="668" key="find.popup" timestamp="1597589794269">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state x="763" y="351" width="990" height="668" key="find.popup/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597535091831" />
-    <state x="945" y="348" width="670" height="676" key="search.everywhere.popup" timestamp="1597586540741">
+    <state x="763" y="351" width="990" height="668" key="find.popup/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597589794269" />
+    <state x="945" y="348" width="670" height="676" key="search.everywhere.popup" timestamp="1597591611518">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state x="945" y="348" width="670" height="676" key="search.everywhere.popup/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597586540741" />
+    <state x="945" y="348" width="670" height="676" key="search.everywhere.popup/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597591611518" />
   </component>
 </project>

@@ -28,6 +28,12 @@ class Concert extends Model {
     }
     // endregion Accessors & Mutators
 
+    // region Relationships
+    public function orders() {
+        return $this->hasMany(Order::class);
+    }
+    // endregion Relationships
+
     // region Scopes
     public function scopePublished($query) {
         return $query->whereNotNull('published_at');

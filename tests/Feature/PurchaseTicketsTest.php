@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Billing\FakePaymentGateway;
 use App\Billing\PaymentGateway;
+use App\Concert;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
@@ -18,7 +19,7 @@ class PurchaseTicketsTest extends TestCase {
 
         // Arrange
         // Create a concert
-        $concert = factory(Concert::class)->create(['price' => 3250]);
+        $concert = factory(Concert::class)->state('published')->create(['ticket_price' => 3250]);
 
         // Act
         // Purchase concert tickets
@@ -31,12 +32,14 @@ class PurchaseTicketsTest extends TestCase {
         );
 
         // Assert
+        $response->assertStatus(201);
+
         // Make sure the customer was charged the correct amount
         self::assertEquals(9750, $paymentGateway->totalCharges());
 
         // Make sure that an order exists for this customer
         $order = $concert->orders()->where('email', 'jane@example.com')->first();
         self::assertNotNull($order);
-        self::assertEquals(3, $order->tickets->count());
+        self::assertEquals(3, $order->tickets()->count());
     }
 }
