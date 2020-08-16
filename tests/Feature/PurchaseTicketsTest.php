@@ -35,7 +35,7 @@ class PurchaseTicketsTest extends TestCase {
     }
 
     /** @test */
-    public function customer_can_purchase_concerts_tickets(): void {
+    public function customer_can_purchase_tickets_to_a_published_concert(): void {
         // Arrange
         // Create a concert
         $concert = factory(Concert::class)->state('published')->create(['ticket_price' => 3250]);
@@ -80,6 +80,27 @@ class PurchaseTicketsTest extends TestCase {
 
         $order = $concert->orders()->where('email', 'jane@example.com')->first();
         self::assertNull($order);
+    }
+
+    /** @test */
+    public function cannot_purchase_to_an_unpublished_concert(): void {
+        $concert = factory(Concert::class)->state('unpublished')->create();
+
+        $response = $this->orderTickets(
+            $concert,
+            [
+                'email'           => 'jane@example.com',
+                'ticket_quantity' => 3,
+                'payment_token'   => $this->paymentGateway->getValidTestToken(),
+            ]
+        );
+
+        $response->assertStatus(404);
+
+        $order = $concert->orders()->where('email', 'jane@example.com')->first();
+        self::assertEquals(0, $concert->orders()->count());
+
+        self::assertEquals(0, $this->paymentGateway->totalCharges());
     }
 
     // region Validation
