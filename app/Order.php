@@ -18,4 +18,10 @@ class Order extends Model {
         return $this->hasMany(Ticket::class);
     }
     // endregion Relationships
+
+    public function cancel() {
+        $this->tickets()->update(['order_id' => null]);
+
+        $this->delete();
+    }
 }

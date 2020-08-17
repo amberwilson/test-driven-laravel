@@ -11,6 +11,8 @@ use Illuminate\Database\Query\Builder;
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
 class Ticket extends Model {
+    protected $guarded = [];
+
     // region Scopes
     public function scopeAvailable($query) {
         return $query->whereNull('order_id');
