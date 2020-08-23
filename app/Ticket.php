@@ -19,5 +19,11 @@ class Ticket extends Model
     {
         return $query->whereNull('order_id');
     }
+
     // endregion Scopes
+
+    public function release()
+    {
+        $this->update(['order_id' => null]);
+    }
 }
