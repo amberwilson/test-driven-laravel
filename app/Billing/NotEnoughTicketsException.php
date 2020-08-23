@@ -4,5 +4,8 @@
 namespace App\Billing;
 
 
-class NotEnoughTicketsException extends \RuntimeException {
+use RuntimeException;
+
+class NotEnoughTicketsException extends RuntimeException
+{
 }

@@ -13,12 +13,15 @@ class CreateTicketsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tickets', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('order_id')->nullable();
-            $table->foreignId('concert_id');
-            $table->timestamps();
-        });
+        Schema::create(
+            'tickets',
+            function (Blueprint $table) {
+                $table->id();
+                $table->foreignId('order_id')->nullable();
+                $table->foreignId('concert_id');
+                $table->timestamps();
+            }
+        );
     }
 
     /**

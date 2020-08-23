@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Concert;
 
-class ConcertsController extends Controller {
-    public function show(int $id) {
+class ConcertsController extends Controller
+{
+    public function show(int $id)
+    {
         $concert = Concert::published()->findOrFail($id);
 
         return view('concerts.show', ['concert' => $concert]);
