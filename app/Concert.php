@@ -34,10 +34,32 @@ class Concert extends Model
     // endregion Accessors & Mutators
 
     // region Relationships
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class);
+    }
+    // endregion Relationships
+
+    // region Scopes
     public function scopePublished($query)
     {
         return $query->whereNotNull('published_at');
+    }
+
+    // endregion Scopes
+
+    public function addTickets(int $quantity)
+    {
+        for ($i = 0; $i < $quantity; $i++) {
+            $this->tickets()->create([]);
+        }
+
+        return $this;
     }
 
     public function orderTickets(string $email, int $ticketQuantity)
@@ -57,30 +79,6 @@ class Concert extends Model
         }
 
         return $order;
-    }
-    // endregion Relationships
-
-    // region Scopes
-
-    public function tickets()
-    {
-        return $this->hasMany(Ticket::class);
-    }
-
-    // endregion Scopes
-
-    public function orders()
-    {
-        return $this->hasMany(Order::class);
-    }
-
-    public function addTickets(int $quantity)
-    {
-        for ($i = 0; $i < $quantity; $i++) {
-            $this->tickets()->create([]);
-        }
-
-        return $this;
     }
 
     public function ticketsRemaining()
