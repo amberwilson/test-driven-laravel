@@ -14,6 +14,20 @@ class Ticket extends Model
 {
     protected $guarded = [];
 
+    // region Accessors & Mutators
+    public function getPriceAttribute()
+    {
+        return $this->concert->ticket_price;
+    }
+    // endregion Accessors & Mutators
+
+    // region Relationships
+    public function concert()
+    {
+        return $this->belongsTo(Concert::class);
+    }
+    // endregion Relationships
+
     // region Scopes
     public function scopeAvailable($query)
     {

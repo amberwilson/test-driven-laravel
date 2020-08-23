@@ -17,7 +17,6 @@ class CreateOrdersTable extends Migration
             'orders',
             function (Blueprint $table) {
                 $table->id();
-                $table->foreignId('concert_id');
                 $table->integer('amount');
                 $table->string('email');
                 $table->timestamps();
