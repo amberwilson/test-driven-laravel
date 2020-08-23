@@ -14,7 +14,26 @@ class Order extends Model
 {
     protected $guarded = [];
 
+    public function toArray()
+    {
+        return [
+            'email' => $this->email,
+            'ticket_quantity' => $this->ticketQuantity(),
+            'amount' => $this->ticketQuantity() * $this->concert->ticket_price,
+        ];
+    }
+
     // region Relationships
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class);
+    }
+
+    public function concert(){
+        return $this->belongsTo(Concert::class);
+    }
+
+    // endregion Relationships
 
     public function cancel()
     {
@@ -24,13 +43,6 @@ class Order extends Model
 
         $this->delete();
     }
-
-    public function tickets()
-    {
-        return $this->hasMany(Ticket::class);
-    }
-
-    // endregion Relationships
 
     public function ticketQuantity()
     {

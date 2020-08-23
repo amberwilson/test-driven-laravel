@@ -48,6 +48,14 @@ class PurchaseTicketsTest extends TestCase
         // Assert
         $response->assertStatus(201);
 
+        $response->assertJson(
+            [
+                'email' => 'jane@example.com',
+                'ticket_quantity' => 3,
+                'amount' => 9750,
+            ]
+        );
+
         // Make sure the customer was charged the correct amount
         self::assertEquals(9750, $this->paymentGateway->totalCharges());
 

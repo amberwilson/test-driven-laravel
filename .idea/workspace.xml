@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e45b24a6-fe77-419e-8387-2261bb5f09e9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Concert.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Concert.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ConcertOrdersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ConcertOrdersController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Order.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Order.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/Feature/PurchaseTicketsTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/PurchaseTicketsTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Unit/ConcertTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/ConcertTest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/Unit/OrderTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/OrderTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -169,7 +167,7 @@
       <recent name="$PROJECT_DIR$/public/img" />
     </key>
   </component>
-  <component name="RunManager" selected="PHPUnit.phpunit.xml">
+  <component name="RunManager" selected="PHPUnit.OrderTest.converting_to_an_array">
     <configuration name="ConcertTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="Tests\Unit\ConcertTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Unit/ConcertTest.php" scope="Class" />
       <method v="2" />
@@ -182,12 +180,12 @@
       <TestRunner class="Tests\Unit\ConcertTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Unit/ConcertTest.php" method="cannot_order_tickets_that_have_already_been_purchased" scope="Method" />
       <method v="2" />
     </configuration>
-    <configuration name="ConcertTest.trying_to_purchase_more_tickets_than_remain_throws_an_exception" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Unit\ConcertTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Unit/ConcertTest.php" method="trying_to_purchase_more_tickets_than_remain_throws_an_exception" scope="Method" />
+    <configuration name="OrderTest.converting_to_an_array" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Unit\OrderTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Unit/OrderTest.php" method="converting_to_an_array" scope="Method" />
       <method v="2" />
     </configuration>
-    <configuration name="PurchaseTicketsTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\PurchaseTicketsTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/PurchaseTicketsTest.php" method="cannot_purchase_more_tickets_than_remain" scope="Class" />
+    <configuration name="PurchaseTicketsTest.customer_can_purchase_tickets_to_a_published_concert" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\PurchaseTicketsTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/PurchaseTicketsTest.php" method="customer_can_purchase_tickets_to_a_published_concert" scope="Method" />
       <method v="2" />
     </configuration>
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -201,19 +199,19 @@
     </configuration>
     <list>
       <item itemvalue="PHPUnit.phpunit.xml" />
-      <item itemvalue="PHPUnit.PurchaseTicketsTest" />
-      <item itemvalue="PHPUnit.ConcertTest.trying_to_purchase_more_tickets_than_remain_throws_an_exception" />
       <item itemvalue="PHPUnit.ConcertTest.cannot_order_tickets_that_have_already_been_purchased" />
       <item itemvalue="PHPUnit.ConcertTest" />
       <item itemvalue="PHPUnit.ConcertTest.can_order_concert_tickets" />
+      <item itemvalue="PHPUnit.PurchaseTicketsTest.customer_can_purchase_tickets_to_a_published_concert" />
+      <item itemvalue="PHPUnit.OrderTest.converting_to_an_array" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="PHPUnit.OrderTest.converting_to_an_array" />
+        <item itemvalue="PHPUnit.PurchaseTicketsTest.customer_can_purchase_tickets_to_a_published_concert" />
         <item itemvalue="PHPUnit.ConcertTest.can_order_concert_tickets" />
         <item itemvalue="PHPUnit.ConcertTest" />
         <item itemvalue="PHPUnit.ConcertTest.cannot_order_tickets_that_have_already_been_purchased" />
-        <item itemvalue="PHPUnit.ConcertTest.trying_to_purchase_more_tickets_than_remain_throws_an_exception" />
-        <item itemvalue="PHPUnit.PurchaseTicketsTest" />
       </list>
     </recent_temporary>
   </component>
@@ -251,6 +249,10 @@
     </state>
     <state x="744" y="393" width="1071" height="756" key="#com.intellij.execution.impl.EditConfigurationsDialog/240.1463.1680.1027/2560.568.1920.1057/0.23.2560.1417@0.23.2560.1417" timestamp="1598198705265" />
     <state x="744" y="393" width="1071" height="716" key="#com.intellij.execution.impl.EditConfigurationsDialog/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597504477835" />
+    <state x="100" y="123" width="2360" height="1217" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1598210748408">
+      <screen x="0" y="23" width="2560" height="1417" />
+    </state>
+    <state x="100" y="123" width="2360" height="1217" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/240.1463.1680.1027/2560.568.1920.1057/0.23.2560.1417@0.23.2560.1417" timestamp="1598210748408" />
     <state x="1221" y="473" width="694" height="548" key="#com.intellij.tools.ToolEditorDialog" timestamp="1597504470563">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
@@ -259,25 +261,25 @@
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
     <state x="1018" y="493" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597619444305" />
-    <state width="2518" height="385" key="GridCell.Tab.0.bottom" timestamp="1598208769183">
+    <state width="2518" height="385" key="GridCell.Tab.0.bottom" timestamp="1598210740333">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state width="2518" height="385" key="GridCell.Tab.0.bottom/240.1463.1680.1027/2560.568.1920.1057/0.23.2560.1417@0.23.2560.1417" timestamp="1598208769183" />
+    <state width="2518" height="385" key="GridCell.Tab.0.bottom/240.1463.1680.1027/2560.568.1920.1057/0.23.2560.1417@0.23.2560.1417" timestamp="1598210740333" />
     <state width="2518" height="385" key="GridCell.Tab.0.bottom/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597623039172" />
-    <state width="2518" height="385" key="GridCell.Tab.0.center" timestamp="1598208769182">
+    <state width="2518" height="385" key="GridCell.Tab.0.center" timestamp="1598210740332">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state width="2518" height="385" key="GridCell.Tab.0.center/240.1463.1680.1027/2560.568.1920.1057/0.23.2560.1417@0.23.2560.1417" timestamp="1598208769182" />
+    <state width="2518" height="385" key="GridCell.Tab.0.center/240.1463.1680.1027/2560.568.1920.1057/0.23.2560.1417@0.23.2560.1417" timestamp="1598210740332" />
     <state width="2518" height="385" key="GridCell.Tab.0.center/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597623039172" />
-    <state width="2518" height="385" key="GridCell.Tab.0.left" timestamp="1598208769181">
+    <state width="2518" height="385" key="GridCell.Tab.0.left" timestamp="1598210740332">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state width="2518" height="385" key="GridCell.Tab.0.left/240.1463.1680.1027/2560.568.1920.1057/0.23.2560.1417@0.23.2560.1417" timestamp="1598208769181" />
+    <state width="2518" height="385" key="GridCell.Tab.0.left/240.1463.1680.1027/2560.568.1920.1057/0.23.2560.1417@0.23.2560.1417" timestamp="1598210740332" />
     <state width="2518" height="385" key="GridCell.Tab.0.left/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597623039171" />
-    <state width="2518" height="385" key="GridCell.Tab.0.right" timestamp="1598208769183">
+    <state width="2518" height="385" key="GridCell.Tab.0.right" timestamp="1598210740332">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state width="2518" height="385" key="GridCell.Tab.0.right/240.1463.1680.1027/2560.568.1920.1057/0.23.2560.1417@0.23.2560.1417" timestamp="1598208769183" />
+    <state width="2518" height="385" key="GridCell.Tab.0.right/240.1463.1680.1027/2560.568.1920.1057/0.23.2560.1417@0.23.2560.1417" timestamp="1598210740332" />
     <state width="2518" height="385" key="GridCell.Tab.0.right/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597623039172" />
     <state width="2518" height="499" key="GridCell.Tab.1.bottom" timestamp="1597621860042">
       <screen x="0" y="23" width="2560" height="1417" />
@@ -309,10 +311,10 @@
     </state>
     <state x="742" y="416" key="SettingsEditor/240.1463.1680.1027/2560.568.1920.1057/0.23.2560.1417@0.23.2560.1417" timestamp="1598208123246" />
     <state x="858" y="137" width="997" height="828" key="SettingsEditor/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597623121520" />
-    <state x="1010" y="470" width="564" height="540" key="StructurePopup" timestamp="1598208432822">
+    <state x="1010" y="470" width="564" height="540" key="StructurePopup" timestamp="1598208894686">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state x="1010" y="470" width="564" height="540" key="StructurePopup/240.1463.1680.1027/2560.568.1920.1057/0.23.2560.1417@0.23.2560.1417" timestamp="1598208432822" />
+    <state x="1010" y="470" width="564" height="540" key="StructurePopup/240.1463.1680.1027/2560.568.1920.1057/0.23.2560.1417@0.23.2560.1417" timestamp="1598208894686" />
     <state x="1010" y="470" width="564" height="540" key="StructurePopup/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597621473593" />
     <state x="100" y="123" width="2360" height="1217" key="VCS.FileHistoryDialog" timestamp="1597590069053">
       <screen x="0" y="23" width="2560" height="1417" />
@@ -327,10 +329,10 @@
     </state>
     <state x="763" y="351" width="990" height="668" key="find.popup/240.1463.1680.1027/2560.568.1920.1057/0.23.2560.1417@0.23.2560.1417" timestamp="1598205007635" />
     <state x="763" y="351" width="990" height="668" key="find.popup/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597620563383" />
-    <state x="945" y="348" width="670" height="676" key="search.everywhere.popup" timestamp="1598204820810">
+    <state x="945" y="348" width="670" height="676" key="search.everywhere.popup" timestamp="1598210681433">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state x="945" y="348" width="670" height="676" key="search.everywhere.popup/240.1463.1680.1027/2560.568.1920.1057/0.23.2560.1417@0.23.2560.1417" timestamp="1598204820810" />
+    <state x="945" y="348" width="670" height="676" key="search.everywhere.popup/240.1463.1680.1027/2560.568.1920.1057/0.23.2560.1417@0.23.2560.1417" timestamp="1598210681433" />
     <state x="945" y="348" width="670" height="676" key="search.everywhere.popup/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597621971571" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
