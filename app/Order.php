@@ -25,10 +25,15 @@ class Order extends Model
         $this->delete();
     }
 
-    // endregion Relationships
-
     public function tickets()
     {
         return $this->hasMany(Ticket::class);
+    }
+
+    // endregion Relationships
+
+    public function ticketQuantity()
+    {
+        return $this->tickets()->count();
     }
 }

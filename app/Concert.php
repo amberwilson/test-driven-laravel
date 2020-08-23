@@ -79,10 +79,22 @@ class Concert extends Model
         for ($i = 0; $i < $quantity; $i++) {
             $this->tickets()->create([]);
         }
+
+        return $this;
     }
 
     public function ticketsRemaining()
     {
         return $this->tickets()->available()->count();
+    }
+
+    public function hasOrderFor(string $customersEmail): bool
+    {
+        return $this->orders()->where('email', $customersEmail)->count() > 0;
+    }
+
+    public function ordersFor(string $customersEmail)
+    {
+        return $this->orders()->where('email', $customersEmail);
     }
 }

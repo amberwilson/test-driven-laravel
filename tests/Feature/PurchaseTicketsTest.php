@@ -29,8 +29,10 @@ class PurchaseTicketsTest extends TestCase
     {
         // Arrange
         // Create a concert
-        $concert = factory(Concert::class)->state('published')->create(['ticket_price' => 3250]);
-        $concert->addTickets(1000);
+        $concert = factory(Concert::class)
+            ->state('published')
+            ->create(['ticket_price' => 3250])
+            ->addTickets(3);
 
         // Act
         // Purchase concert tickets
@@ -50,9 +52,8 @@ class PurchaseTicketsTest extends TestCase
         self::assertEquals(9750, $this->paymentGateway->totalCharges());
 
         // Make sure that an order exists for this customer
-        $order = $concert->orders()->where('email', 'jane@example.com')->first();
-        self::assertNotNull($order);
-        self::assertEquals(3, $order->tickets()->count());
+        self::assertTrue($concert->hasOrderFor('jane@example.com'));
+        self::assertEquals(3, $concert->ordersFor('jane@example.com')->first()->ticketQuantity());
     }
 
     private function orderTickets(Concert $concert, array $params): TestResponse
@@ -67,8 +68,10 @@ class PurchaseTicketsTest extends TestCase
     /** @test */
     public function an_order_is_not_created_if_payment_fails(): void
     {
-        $concert = factory(Concert::class)->state('published')->create();
-        $concert->addTickets(3);
+        $concert = factory(Concert::class)
+            ->state('published')
+            ->create()
+            ->addTickets(3);
 
         $response = $this->orderTickets(
             $concert,
@@ -80,16 +83,16 @@ class PurchaseTicketsTest extends TestCase
         );
 
         $response->assertStatus(422);
-
-        $order = $concert->orders()->where('email', 'jane@example.com')->first();
-        self::assertNull($order);
+        self::assertFalse($concert->hasOrderFor('jane@example.com'));
     }
 
     /** @test */
     public function cannot_purchase_to_an_unpublished_concert(): void
     {
-        $concert = factory(Concert::class)->state('unpublished')->create();
-        $concert->addTickets(3);
+        $concert = factory(Concert::class)
+            ->state('unpublished')
+            ->create()
+            ->addTickets(3);
 
         $response = $this->orderTickets(
             $concert,
@@ -102,17 +105,17 @@ class PurchaseTicketsTest extends TestCase
 
         $response->assertStatus(404);
 
-        $order = $concert->orders()->where('email', 'jane@example.com')->first();
-        self::assertEquals(0, $concert->orders()->count());
-
+        self::assertFalse($concert->hasOrderFor('jane@example.com'));
         self::assertEquals(0, $this->paymentGateway->totalCharges());
     }
 
     /** @test */
     public function cannot_purchase_more_tickets_than_remain(): void
     {
-        $concert = factory(Concert::class)->state('published')->create();
-        $concert->addTickets(50);
+        $concert = factory(Concert::class)
+            ->state('published')
+            ->create()
+            ->addTickets(50);
 
         $response = $this->orderTickets(
             $concert,
@@ -125,12 +128,17 @@ class PurchaseTicketsTest extends TestCase
 
         $response->assertStatus(422);
 
-        $order = $concert->orders()->where('email', 'jane@example.com')->first();
-        self::assertNull($order);
-
+        self::assertFalse($concert->hasOrderFor('jane@example.com'));
         self::assertEquals(0, $this->paymentGateway->totalCharges());
-
         self::assertEquals(50, $concert->ticketsRemaining());
+    }
+
+    // region Validation
+
+    private function assertValidationError(string $field, TestResponse $response)
+    {
+        $response->assertStatus(422);
+        self::assertArrayHasKey($field, $response->decodeResponseJson()['errors']);
     }
 
     /** @test */
@@ -147,14 +155,6 @@ class PurchaseTicketsTest extends TestCase
         );
 
         $this->assertValidationError('email', $response);
-    }
-
-    // region Validation
-
-    private function assertValidationError(string $field, TestResponse $response)
-    {
-        $response->assertStatus(422);
-        self::assertArrayHasKey($field, $response->decodeResponseJson()['errors']);
     }
 
     /** @test */
