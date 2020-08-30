@@ -4,6 +4,8 @@
 namespace App;
 
 
+use Illuminate\Support\Collection;
+
 class Reservation
 {
     private $tickets;
@@ -12,7 +14,7 @@ class Reservation
      * Reservation constructor.
      * @param $tickets
      */
-    public function __construct($tickets)
+    public function __construct(Collection $tickets)
     {
         $this->tickets = $tickets;
     }
