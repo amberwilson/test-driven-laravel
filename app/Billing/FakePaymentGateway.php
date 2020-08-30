@@ -4,10 +4,13 @@
 namespace App\Billing;
 
 
+use Closure;
+
 class FakePaymentGateway implements PaymentGateway
 {
 
     private $charges;
+    private $beforeFirstChargeCallback;
 
     public function __construct()
     {
@@ -21,6 +24,10 @@ class FakePaymentGateway implements PaymentGateway
 
     public function charge(int $amount, string $token)
     {
+        if($this->beforeFirstChargeCallback !== null) {
+            ($this->beforeFirstChargeCallback)($this);
+        }
+
         if ($token !== $this->getValidTestToken()) {
             throw new PaymentFailedException('Invalid payment token provided - ckdxcu4bf00006pvq5rxibgj8');
         }
@@ -31,5 +38,10 @@ class FakePaymentGateway implements PaymentGateway
     public function getValidTestToken(): string
     {
         return 'valid-token';
+    }
+
+    public function beforeFirstCharge(Closure $callback): void
+    {
+        $this->beforeFirstChargeCallback = $callback;
     }
 }
