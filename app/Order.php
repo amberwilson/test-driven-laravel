@@ -37,12 +37,12 @@ class Order extends Model
 
     // endregion Relationships
 
-    public static function forTickets(string $email, Collection $tickets)
+    public static function forTickets(string $email, Collection $tickets, int $amount)
     {
-        $order = self::create(
+        $order = (new self())->create(
             [
                 'email' => $email,
-                'amount' => $tickets->sum('price'),
+                'amount' => $amount,
             ]
         );
 
