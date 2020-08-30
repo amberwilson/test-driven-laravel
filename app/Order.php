@@ -3,6 +3,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
 
@@ -35,6 +36,22 @@ class Order extends Model
     }
 
     // endregion Relationships
+
+    public static function forTickets(string $email, Collection $tickets)
+    {
+        $order = self::create(
+            [
+                'email' => $email,
+                'amount' => $tickets->sum('price'),
+            ]
+        );
+
+        foreach ($tickets as $ticket) {
+            $order->tickets()->save($ticket);
+        }
+
+        return $order;
+    }
 
     public function cancel()
     {
