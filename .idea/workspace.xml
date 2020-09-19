@@ -2,10 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e45b24a6-fe77-419e-8387-2261bb5f09e9" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/database/factories/TicketFactory.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Billing/FakePaymentGateway.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Billing/FakePaymentGateway.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Concert.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Concert.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ConcertOrdersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ConcertOrdersController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Order.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Order.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Ticket.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Ticket.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_08_16_150800_create_tickets_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_08_16_150800_create_tickets_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/Feature/PurchaseTicketsTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/PurchaseTicketsTest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/Unit/Billing/FakePaymentGatewayTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/Billing/FakePaymentGatewayTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Unit/ConcertTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/ConcertTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Unit/TicketTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/TicketTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,9 +165,6 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/public/img" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/database/factories" />
       <recent name="$PROJECT_DIR$/tests/Unit" />
@@ -167,26 +172,29 @@
       <recent name="$PROJECT_DIR$/tests/Feature" />
       <recent name="$PROJECT_DIR$/resources/js/components" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public/img" />
+    </key>
   </component>
-  <component name="RunManager" selected="PHPUnit.FakePaymentGatewayTest.running_a_hook_before_the_first_charge">
-    <configuration name="FakePaymentGatewayTest.running_a_hook_before_the_first_charge" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Unit\Billing\FakePaymentGatewayTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Unit/Billing/FakePaymentGatewayTest.php" method="running_a_hook_before_the_first_charge" scope="Method" />
+  <component name="RunManager" selected="PHPUnit.PurchaseTicketsTest.cannot_purchase_tickets_another_customer_is_already_trying_to_purchase">
+    <configuration name="ConcertTest.can_reserve_available_tickets" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Unit\ConcertTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Unit/ConcertTest.php" method="can_reserve_available_tickets" scope="Method" />
       <method v="2" />
     </configuration>
-    <configuration name="OrderTest.tickets_are_released_when_an_order_is_cancelled" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Unit\OrderTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Unit/OrderTest.php" method="tickets_are_released_when_an_order_is_cancelled" scope="Method" />
+    <configuration name="ConcertTest.cannot_reserve_tickets_that_have_already_been_purchased" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Unit\ConcertTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Unit/ConcertTest.php" method="cannot_reserve_tickets_that_have_already_been_purchased" scope="Method" />
       <method v="2" />
     </configuration>
-    <configuration name="PurchaseTicketsTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\PurchaseTicketsTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/PurchaseTicketsTest.php" scope="Class" />
+    <configuration name="ConcertTest.cannot_reserve_tickets_that_have_already_been_reserved" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Unit\ConcertTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Unit/ConcertTest.php" method="cannot_reserve_tickets_that_have_already_been_reserved" scope="Method" />
       <method v="2" />
     </configuration>
-    <configuration name="PurchaseTicketsTest.customer_can_purchase_tickets_to_a_published_concert" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\PurchaseTicketsTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/PurchaseTicketsTest.php" method="customer_can_purchase_tickets_to_a_published_concert" scope="Method" />
+    <configuration name="PurchaseTicketsTest.cannot_purchase_tickets_another_customer_is_already_trying_to_purchase" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\PurchaseTicketsTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/PurchaseTicketsTest.php" method="cannot_purchase_tickets_another_customer_is_already_trying_to_purchase" scope="Method" />
       <method v="2" />
     </configuration>
-    <configuration name="ReservationTest.calculating_the_total_cost" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Unit\ReservationTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Unit/ReservationTest.php" method="calculating_the_total_cost" scope="Method" />
+    <configuration name="TicketTest.a_ticket_can_be_reserved" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Unit\TicketTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Unit/TicketTest.php" method="a_ticket_can_be_reserved" scope="Method" />
       <method v="2" />
     </configuration>
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -200,19 +208,19 @@
     </configuration>
     <list>
       <item itemvalue="PHPUnit.phpunit.xml" />
-      <item itemvalue="PHPUnit.PurchaseTicketsTest.customer_can_purchase_tickets_to_a_published_concert" />
-      <item itemvalue="PHPUnit.OrderTest.tickets_are_released_when_an_order_is_cancelled" />
-      <item itemvalue="PHPUnit.ReservationTest.calculating_the_total_cost" />
-      <item itemvalue="PHPUnit.PurchaseTicketsTest" />
-      <item itemvalue="PHPUnit.FakePaymentGatewayTest.running_a_hook_before_the_first_charge" />
+      <item itemvalue="PHPUnit.PurchaseTicketsTest.cannot_purchase_tickets_another_customer_is_already_trying_to_purchase" />
+      <item itemvalue="PHPUnit.ConcertTest.can_reserve_available_tickets" />
+      <item itemvalue="PHPUnit.TicketTest.a_ticket_can_be_reserved" />
+      <item itemvalue="PHPUnit.ConcertTest.cannot_reserve_tickets_that_have_already_been_purchased" />
+      <item itemvalue="PHPUnit.ConcertTest.cannot_reserve_tickets_that_have_already_been_reserved" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="PHPUnit.FakePaymentGatewayTest.running_a_hook_before_the_first_charge" />
-        <item itemvalue="PHPUnit.ReservationTest.calculating_the_total_cost" />
-        <item itemvalue="PHPUnit.PurchaseTicketsTest" />
-        <item itemvalue="PHPUnit.PurchaseTicketsTest.customer_can_purchase_tickets_to_a_published_concert" />
-        <item itemvalue="PHPUnit.OrderTest.tickets_are_released_when_an_order_is_cancelled" />
+        <item itemvalue="PHPUnit.PurchaseTicketsTest.cannot_purchase_tickets_another_customer_is_already_trying_to_purchase" />
+        <item itemvalue="PHPUnit.ConcertTest.cannot_reserve_tickets_that_have_already_been_reserved" />
+        <item itemvalue="PHPUnit.ConcertTest.cannot_reserve_tickets_that_have_already_been_purchased" />
+        <item itemvalue="PHPUnit.ConcertTest.can_reserve_available_tickets" />
+        <item itemvalue="PHPUnit.TicketTest.a_ticket_can_be_reserved" />
       </list>
     </recent_temporary>
   </component>
@@ -275,45 +283,49 @@
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
     <state x="1072" y="425" key="#com.jetbrains.php.refactoring.extractMethod.PhpExtractMethodDialog#method1/240.1463.1680.1027/2560.568.1920.1057/0.23.2560.1417@0.23.2560.1417" timestamp="1598214217437" />
-    <state width="2518" height="308" key="GridCell.Tab.0.bottom" timestamp="1598827280737">
+    <state width="2518" height="420" key="GridCell.Tab.0.bottom" timestamp="1600541925439">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state width="1638" height="385" key="GridCell.Tab.0.bottom/0.23.1680.1027@0.23.1680.1027" timestamp="1598267513453" />
-    <state width="2518" height="308" key="GridCell.Tab.0.bottom/240.1463.1680.1027/2560.568.1920.1057/0.23.2560.1417@0.23.2560.1417" timestamp="1598827280737" />
+    <state width="1638" height="308" key="GridCell.Tab.0.bottom/0.23.1680.1027@0.23.1680.1027" timestamp="1598832122286" />
+    <state width="2518" height="420" key="GridCell.Tab.0.bottom/240.1463.1680.1027/2560.568.1920.1057/0.23.2560.1417@0.23.2560.1417" timestamp="1600541925439" />
     <state width="2518" height="385" key="GridCell.Tab.0.bottom/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597623039172" />
-    <state width="2518" height="308" key="GridCell.Tab.0.center" timestamp="1598827280737">
+    <state width="2518" height="420" key="GridCell.Tab.0.center" timestamp="1600541925438">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state width="1638" height="385" key="GridCell.Tab.0.center/0.23.1680.1027@0.23.1680.1027" timestamp="1598267513453" />
-    <state width="2518" height="308" key="GridCell.Tab.0.center/240.1463.1680.1027/2560.568.1920.1057/0.23.2560.1417@0.23.2560.1417" timestamp="1598827280737" />
+    <state width="1638" height="308" key="GridCell.Tab.0.center/0.23.1680.1027@0.23.1680.1027" timestamp="1598832122286" />
+    <state width="2518" height="420" key="GridCell.Tab.0.center/240.1463.1680.1027/2560.568.1920.1057/0.23.2560.1417@0.23.2560.1417" timestamp="1600541925438" />
     <state width="2518" height="385" key="GridCell.Tab.0.center/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597623039172" />
-    <state width="2518" height="308" key="GridCell.Tab.0.left" timestamp="1598827280736">
+    <state width="2518" height="420" key="GridCell.Tab.0.left" timestamp="1600541925437">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state width="1638" height="385" key="GridCell.Tab.0.left/0.23.1680.1027@0.23.1680.1027" timestamp="1598267513452" />
-    <state width="2518" height="308" key="GridCell.Tab.0.left/240.1463.1680.1027/2560.568.1920.1057/0.23.2560.1417@0.23.2560.1417" timestamp="1598827280736" />
+    <state width="1638" height="308" key="GridCell.Tab.0.left/0.23.1680.1027@0.23.1680.1027" timestamp="1598832122285" />
+    <state width="2518" height="420" key="GridCell.Tab.0.left/240.1463.1680.1027/2560.568.1920.1057/0.23.2560.1417@0.23.2560.1417" timestamp="1600541925437" />
     <state width="2518" height="385" key="GridCell.Tab.0.left/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597623039171" />
-    <state width="2518" height="308" key="GridCell.Tab.0.right" timestamp="1598827280737">
+    <state width="2518" height="420" key="GridCell.Tab.0.right" timestamp="1600541925439">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state width="1638" height="385" key="GridCell.Tab.0.right/0.23.1680.1027@0.23.1680.1027" timestamp="1598267513453" />
-    <state width="2518" height="308" key="GridCell.Tab.0.right/240.1463.1680.1027/2560.568.1920.1057/0.23.2560.1417@0.23.2560.1417" timestamp="1598827280737" />
+    <state width="1638" height="308" key="GridCell.Tab.0.right/0.23.1680.1027@0.23.1680.1027" timestamp="1598832122286" />
+    <state width="2518" height="420" key="GridCell.Tab.0.right/240.1463.1680.1027/2560.568.1920.1057/0.23.2560.1417@0.23.2560.1417" timestamp="1600541925439" />
     <state width="2518" height="385" key="GridCell.Tab.0.right/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597623039172" />
-    <state width="2518" height="499" key="GridCell.Tab.1.bottom" timestamp="1597621860042">
+    <state width="2518" height="499" key="GridCell.Tab.1.bottom" timestamp="1600541734253">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
+    <state width="2518" height="499" key="GridCell.Tab.1.bottom/240.1463.1680.1027/2560.568.1920.1057/0.23.2560.1417@0.23.2560.1417" timestamp="1600541734253" />
     <state width="2518" height="499" key="GridCell.Tab.1.bottom/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597621860042" />
-    <state width="2518" height="499" key="GridCell.Tab.1.center" timestamp="1597621860041">
+    <state width="2518" height="499" key="GridCell.Tab.1.center" timestamp="1600541734246">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
+    <state width="2518" height="499" key="GridCell.Tab.1.center/240.1463.1680.1027/2560.568.1920.1057/0.23.2560.1417@0.23.2560.1417" timestamp="1600541734246" />
     <state width="2518" height="499" key="GridCell.Tab.1.center/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597621860041" />
-    <state width="2518" height="499" key="GridCell.Tab.1.left" timestamp="1597621860041">
+    <state width="2518" height="499" key="GridCell.Tab.1.left" timestamp="1600541734244">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
+    <state width="2518" height="499" key="GridCell.Tab.1.left/240.1463.1680.1027/2560.568.1920.1057/0.23.2560.1417@0.23.2560.1417" timestamp="1600541734244" />
     <state width="2518" height="499" key="GridCell.Tab.1.left/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597621860041" />
-    <state width="2518" height="499" key="GridCell.Tab.1.right" timestamp="1597621860042">
+    <state width="2518" height="499" key="GridCell.Tab.1.right" timestamp="1600541734250">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
+    <state width="2518" height="499" key="GridCell.Tab.1.right/240.1463.1680.1027/2560.568.1920.1057/0.23.2560.1417@0.23.2560.1417" timestamp="1600541734250" />
     <state width="2518" height="499" key="GridCell.Tab.1.right/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597621860042" />
     <state x="972" y="468" key="NewPhpClassDialog" timestamp="1598824842259">
       <screen x="0" y="23" width="2560" height="1417" />
@@ -325,15 +337,15 @@
     </state>
     <state x="1099" y="663" key="NewPhpFileDialog/240.1463.1680.1027/2560.568.1920.1057/0.23.2560.1417@0.23.2560.1417" timestamp="1598203152256" />
     <state x="1099" y="663" key="NewPhpFileDialog/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597589277801" />
-    <state x="742" y="416" width="997" height="828" key="SettingsEditor" timestamp="1598825301002">
+    <state x="1113" y="165" width="997" height="828" key="SettingsEditor" timestamp="1599259115333">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state x="742" y="416" key="SettingsEditor/240.1463.1680.1027/2560.568.1920.1057/0.23.2560.1417@0.23.2560.1417" timestamp="1598825301002" />
+    <state x="1113" y="165" key="SettingsEditor/240.1463.1680.1027/2560.568.1920.1057/0.23.2560.1417@0.23.2560.1417" timestamp="1599259115333" />
     <state x="858" y="137" width="997" height="828" key="SettingsEditor/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597623121520" />
-    <state x="1010" y="470" width="564" height="540" key="StructurePopup" timestamp="1598826204131">
+    <state x="1010" y="470" width="564" height="540" key="StructurePopup" timestamp="1600538782748">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state x="1010" y="470" width="564" height="540" key="StructurePopup/240.1463.1680.1027/2560.568.1920.1057/0.23.2560.1417@0.23.2560.1417" timestamp="1598826204131" />
+    <state x="1010" y="470" width="564" height="540" key="StructurePopup/240.1463.1680.1027/2560.568.1920.1057/0.23.2560.1417@0.23.2560.1417" timestamp="1600538782748" />
     <state x="1010" y="470" width="564" height="540" key="StructurePopup/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597621473593" />
     <state x="100" y="123" width="2360" height="1217" key="VCS.FileHistoryDialog" timestamp="1597590069053">
       <screen x="0" y="23" width="2560" height="1417" />
@@ -343,20 +355,38 @@
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
     <state x="958" y="488" key="com.jetbrains.php.test.PhpNewTestDialog/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597507876149" />
-    <state x="763" y="351" width="990" height="668" key="find.popup" timestamp="1598824565960">
+    <state x="763" y="351" width="990" height="668" key="find.popup" timestamp="1600539856195">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state x="763" y="351" width="990" height="668" key="find.popup/240.1463.1680.1027/2560.568.1920.1057/0.23.2560.1417@0.23.2560.1417" timestamp="1598824565960" />
+    <state x="763" y="351" width="990" height="668" key="find.popup/240.1463.1680.1027/2560.568.1920.1057/0.23.2560.1417@0.23.2560.1417" timestamp="1600539856195" />
     <state x="763" y="351" width="990" height="668" key="find.popup/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597620563383" />
     <state x="1002" y="537" key="refactoring.ChangeSignatureDialog" timestamp="1598822570507">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
     <state x="1002" y="537" key="refactoring.ChangeSignatureDialog/240.1463.1680.1027/2560.568.1920.1057/0.23.2560.1417@0.23.2560.1417" timestamp="1598822570507" />
-    <state x="945" y="348" width="670" height="676" key="search.everywhere.popup" timestamp="1598826941659">
+    <state x="945" y="348" width="672" height="676" key="search.everywhere.popup" timestamp="1600541040521">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state x="945" y="348" width="670" height="676" key="search.everywhere.popup/240.1463.1680.1027/2560.568.1920.1057/0.23.2560.1417@0.23.2560.1417" timestamp="1598826941659" />
+    <state x="945" y="348" width="672" height="676" key="search.everywhere.popup/240.1463.1680.1027/2560.568.1920.1057/0.23.2560.1417@0.23.2560.1417" timestamp="1600541040521" />
     <state x="945" y="348" width="670" height="676" key="search.everywhere.popup/420.1463.1680.1027/0.23.2560.1417@0.23.2560.1417" timestamp="1597621971571" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/app/Http/Controllers/ConcertOrdersController.php</url>
+          <line>41</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="PHPUnitRunConfigurationType">
+        <watch expression="$this-&gt;reserved_at" language="PHP" />
+        <watch expression="Ticket::all()-&gt;toArray()" language="PHP" />
+        <watch expression="request('email')" language="PHP" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/test_driven_laravel@PurchaseTicketsTest.xml" NAME="PurchaseTicketsTest Coverage Results" MODIFIED="1597596883579" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="PhpCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

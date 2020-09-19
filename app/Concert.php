@@ -54,13 +54,22 @@ class Concert extends Model
 
     // endregion Scopes
 
-    public function addTickets(int $quantity)
+    public function addTickets(int $quantity): Concert
     {
         for ($i = 0; $i < $quantity; $i++) {
             $this->tickets()->create([]);
         }
 
         return $this;
+    }
+
+    public function reserveTickets(int $ticketQuantity): Collection
+    {
+        return $this->findTickets($ticketQuantity)->each(
+            function ($ticket) {
+                $ticket->reserve();
+            }
+        );
     }
 
     public function findTickets(int $quantity): Collection

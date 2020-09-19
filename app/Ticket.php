@@ -31,7 +31,7 @@ class Ticket extends Model
     // region Scopes
     public function scopeAvailable($query)
     {
-        return $query->whereNull('order_id');
+        return $query->whereNull('order_id')->whereNull('reserved_at');
     }
 
     // endregion Scopes
@@ -39,5 +39,11 @@ class Ticket extends Model
     public function release()
     {
         $this->update(['order_id' => null]);
+    }
+
+    public function reserve()
+    {
+        $this->reserved_at = now();
+        $this->save();
     }
 }
