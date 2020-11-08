@@ -24,4 +24,12 @@ class Reservation
     {
         return $this->tickets->sum('price');
     }
+
+    public function cancel(): void
+    {
+        /** @var Ticket $ticket */
+        foreach($this->tickets as $ticket) {
+            $ticket->release();
+        }
+    }
 }
