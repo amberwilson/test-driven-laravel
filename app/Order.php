@@ -37,7 +37,7 @@ class Order extends Model
 
     // endregion Relationships
 
-    public static function  forTickets(string $email, Collection $tickets, int $amount)
+    public static function forTickets(string $email, Collection $tickets, int $amount)
     {
         $order = (new self())->create(
             [
@@ -51,15 +51,6 @@ class Order extends Model
         }
 
         return $order;
-    }
-
-    public function cancel()
-    {
-        foreach ($this->tickets as $ticket) {
-            $ticket->release();
-        }
-
-        $this->delete();
     }
 
     public function ticketQuantity()

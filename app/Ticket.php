@@ -36,12 +36,12 @@ class Ticket extends Model
 
     // endregion Scopes
 
-    public function release()
+    public function release(): void
     {
-        $this->update(['order_id' => null]);
+        $this->update(['reserved_at' => null]);
     }
 
-    public function reserve()
+    public function reserve(): void
     {
         $this->reserved_at = now();
         $this->save();
