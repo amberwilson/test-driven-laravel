@@ -84,6 +84,7 @@ class PurchaseTicketsTest extends TestCase
     /** @test */
     public function an_order_is_not_created_if_payment_fails(): void
     {
+        /** @var Concert $concert */
         $concert = factory(Concert::class)
             ->state('published')
             ->create()
@@ -100,6 +101,7 @@ class PurchaseTicketsTest extends TestCase
 
         $response->assertStatus(422);
         self::assertFalse($concert->hasOrderFor('jane@example.com'));
+        self::assertSame(3, $concert->ticketsRemaining());
     }
 
     /** @test */
