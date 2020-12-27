@@ -9,6 +9,7 @@ use Illuminate\Database\Query\Builder;
 /**
  * @mixin Builder
  * @mixin \Illuminate\Database\Eloquent\Builder
+ * @mixin IdeHelperTicket
  */
 class Ticket extends Model
 {

@@ -10,6 +10,7 @@ use Illuminate\Database\Query\Builder;
 /**
  * @mixin Builder
  * @mixin \Illuminate\Database\Eloquent\Builder
+ * @mixin IdeHelperOrder
  */
 class Order extends Model
 {
