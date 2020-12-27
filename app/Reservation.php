@@ -7,14 +7,12 @@ namespace App;
 class Reservation
 {
     private $tickets;
+    private $email;
 
-    /**
-     * Reservation constructor.
-     * @param $tickets
-     */
-    public function __construct($tickets)
+    public function __construct($tickets, string $email)
     {
         $this->tickets = $tickets;
+        $this->email = $email;
     }
 
 
@@ -26,6 +24,11 @@ class Reservation
     public function tickets()
     {
         return $this->tickets;
+    }
+
+    public function email(): string
+    {
+        return $this->email;
     }
 
     public function cancel(): void

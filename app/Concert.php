@@ -63,7 +63,7 @@ class Concert extends Model
         return $this;
     }
 
-    public function reserveTickets(int $ticketQuantity): Reservation
+    public function reserveTickets(int $ticketQuantity, string $email): Reservation
     {
         $tickets = $this->findTickets($ticketQuantity)->each(
             function (Ticket $ticket) {
@@ -71,7 +71,7 @@ class Concert extends Model
             }
         );
 
-        return new Reservation($tickets);
+        return new Reservation($tickets, $email);
     }
 
     public function findTickets(int $quantity): Collection
