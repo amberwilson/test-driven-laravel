@@ -7,7 +7,7 @@ namespace App;
 class Reservation
 {
     private $tickets;
-    private $email;
+    private string $email;
 
     public function __construct($tickets, string $email)
     {
@@ -29,6 +29,11 @@ class Reservation
     public function email(): string
     {
         return $this->email;
+    }
+
+    public function complete()
+    {
+        return Order::forTickets($this->email(), $this->tickets(), $this->totalCost());
     }
 
     public function cancel(): void
