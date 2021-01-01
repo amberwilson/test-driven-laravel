@@ -15,6 +15,10 @@ class Ticket extends Model
 {
     protected $guarded = [];
 
+    protected $casts = [
+        'concert_id' => 'integer'
+    ];
+
     // region Accessors & Mutators
     public function getPriceAttribute()
     {

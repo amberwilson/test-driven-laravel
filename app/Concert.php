@@ -16,7 +16,11 @@ class Concert extends Model
 {
     protected $guarded = [];
 
-    protected $casts = ['date' => 'datetime'];
+    protected $casts = [
+        'date' => 'datetime',
+        'published' => 'datetime',
+        'ticket_price' => 'integer'
+    ];
 
     // region Accessors & Mutators
     public function getFormattedDateAttribute(): string

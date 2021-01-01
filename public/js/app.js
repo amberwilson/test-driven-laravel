@@ -2012,11 +2012,11 @@ __webpack_require__.r(__webpack_exports__);
       });
       return handler;
     },
-    openStripe: function openStripe(callback) {
+    openStripe: function openStripe() {
       this.stripeHandler.open({
         name: 'TicketBeast',
         description: this.description,
-        currency: "usd",
+        currency: 'usd',
         allowRememberMe: false,
         panelLabel: 'Pay {{amount}}',
         amount: this.totalPrice,
@@ -2025,20 +2025,24 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     purchaseTickets: function purchaseTickets(token) {
+      var _this = this;
+
       console.log({
         email: token.email,
-        quantity: this.quantity,
+        ticket_quantity: this.quantity,
         payment_token: token.id
-      }); // this.processing = true
-      // axios.post(`/concerts/${this.concertId}/orders`, {
-      //     email: token.email,
-      //     quantity: this.quantity,
-      //     payment_token: token.id,
-      // }).then(response => {
-      //     window.location.href = response.body.url
-      // }).catch(response => {
-      //     this.processing = false
-      // })
+      });
+      this.processing = true;
+      axios.post("/concerts/".concat(this.concertId, "/orders"), {
+        email: token.email,
+        ticket_quantity: this.quantity,
+        payment_token: token.id
+      }).then(function (response) {
+        console.log('Charge succeeded!', response);
+        window.location.href = response.body.url;
+      })["catch"](function () {
+        _this.processing = false;
+      });
     }
   },
   created: function created() {
@@ -37697,9 +37701,11 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "col col-xs-6" }, [
         _c("div", { staticClass: "form-group m-xs-b-4" }, [
-          _c("label", { staticClass: "form-label" }, [
-            _vm._v("\n                    Qty\n                ")
-          ]),
+          _c(
+            "label",
+            { staticClass: "form-label", attrs: { for: "quantity" } },
+            [_vm._v("\n                    Qty\n                ")]
+          ),
           _vm._v(" "),
           _c("input", {
             directives: [
@@ -37711,6 +37717,7 @@ var render = function() {
               }
             ],
             staticClass: "form-control",
+            attrs: { id: "quantity" },
             domProps: { value: _vm.quantity },
             on: {
               input: function($event) {

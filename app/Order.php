@@ -15,8 +15,11 @@ use Illuminate\Database\Query\Builder;
 class Order extends Model
 {
     protected $guarded = [];
+    protected $casts = [
+        'amount' => 'integer'
+    ];
 
-    public function toArray()
+    public function toArray(): array
     {
         return [
             'email' => $this->email,
@@ -54,7 +57,7 @@ class Order extends Model
         return $order;
     }
 
-    public function ticketQuantity()
+    public function ticketQuantity(): int
     {
         return $this->tickets()->count();
     }

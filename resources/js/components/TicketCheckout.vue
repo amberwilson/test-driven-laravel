@@ -13,10 +13,10 @@
             </div>
             <div class="col col-xs-6">
                 <div class="form-group m-xs-b-4">
-                    <label class="form-label">
+                    <label class="form-label" for="quantity">
                         Qty
                     </label>
-                    <input v-model="quantity" class="form-control">
+                    <input v-model="quantity" class="form-control" id="quantity">
                 </div>
             </div>
         </div>
@@ -44,71 +44,72 @@ export default {
             quantity: 1,
             stripeHandler: null,
             processing: false,
-        }
+        };
     },
     computed: {
         description() {
             if (this.quantity > 1) {
-                return `${this.quantity} tickets to ${this.concertTitle}`
+                return `${this.quantity} tickets to ${this.concertTitle}`;
             }
-            return `One ticket to ${this.concertTitle}`
+            return `One ticket to ${this.concertTitle}`;
         },
         totalPrice() {
-            return this.quantity * this.price
+            return this.quantity * this.price;
         },
         priceInDollars() {
-            return (this.price / 100).toFixed(2)
+            return (this.price / 100).toFixed(2);
         },
         totalPriceInDollars() {
-            return (this.totalPrice / 100).toFixed(2)
+            return (this.totalPrice / 100).toFixed(2);
         },
     },
     methods: {
         initStripe() {
             const handler = StripeCheckout.configure({
-                key: App.stripePublicKey
-            })
+                key: App.stripePublicKey,
+            });
 
             window.addEventListener('popstate', () => {
-                handler.close()
-            })
+                handler.close();
+            });
 
-            return handler
+            return handler;
         },
-        openStripe(callback) {
+        openStripe() {
             this.stripeHandler.open({
                 name: 'TicketBeast',
                 description: this.description,
-                currency: "usd",
+                currency: 'usd',
                 allowRememberMe: false,
                 panelLabel: 'Pay {{amount}}',
                 amount: this.totalPrice,
                 image: '/img/shopping-cart-solid.svg',
                 token: this.purchaseTickets,
-            })
+            });
         },
         purchaseTickets(token) {
             console.log({
                 email: token.email,
-                quantity: this.quantity,
+                ticket_quantity: this.quantity,
                 payment_token: token.id,
-            })
+            });
 
-            // this.processing = true
+            this.processing = true;
 
-            // axios.post(`/concerts/${this.concertId}/orders`, {
-            //     email: token.email,
-            //     quantity: this.quantity,
-            //     payment_token: token.id,
-            // }).then(response => {
-            //     window.location.href = response.body.url
-            // }).catch(response => {
-            //     this.processing = false
-            // })
-        }
+            axios.post(`/concerts/${this.concertId}/orders`, {
+                email: token.email,
+                ticket_quantity: this.quantity,
+                payment_token: token.id,
+            }).then(response => {
+                console.log('Charge succeeded!', response);
+                window.location.href = response.body.url;
+            }).catch(() => {
+                this.processing = false;
+            });
+        },
     },
     created() {
-        this.stripeHandler = this.initStripe()
-    }
-}
+        this.stripeHandler = this.initStripe();
+    },
+};
 </script>
