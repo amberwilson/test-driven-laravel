@@ -5,6 +5,7 @@ namespace App\Billing;
 
 
 use Closure;
+use Illuminate\Support\Collection;
 
 class FakePaymentGateway implements PaymentGateway
 {
@@ -22,9 +23,9 @@ class FakePaymentGateway implements PaymentGateway
         return $this->charges->sum();
     }
 
-    public function charge(int $amount, string $token)
+    public function charge(int $amount, string $token): void
     {
-        if($this->beforeFirstChargeCallback !== null) {
+        if ($this->beforeFirstChargeCallback !== null) {
             $callback = $this->beforeFirstChargeCallback;
             $this->beforeFirstChargeCallback = null;
             $callback($this);
@@ -45,5 +46,14 @@ class FakePaymentGateway implements PaymentGateway
     public function beforeFirstCharge(Closure $callback): void
     {
         $this->beforeFirstChargeCallback = $callback;
+    }
+
+    public function newChargesDuring(Closure $callback): Collection
+    {
+        $chargesFrom = $this->charges->count();
+
+        $callback($this);
+
+        return $this->charges->slice($chargesFrom)->values();
     }
 }
