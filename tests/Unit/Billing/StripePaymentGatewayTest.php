@@ -5,12 +5,13 @@ namespace Tests\Unit\Billing;
 
 
 use App\Billing\StripePaymentGateway;
-use Carbon\Carbon;
 use Illuminate\Support\Arr;
 use Stripe\Charge;
-use Stripe\Token;
 use Tests\TestCase;
 
+/**
+ * @group integration
+ */
 class StripePaymentGatewayTest extends TestCase
 {
     private ?Charge $lastCharge;
