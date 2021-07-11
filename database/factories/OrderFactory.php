@@ -1,0 +1,23 @@
+<?php
+
+/** @var Factory $factory */
+
+use App\Concert;
+use App\Order;
+use Carbon\Carbon;
+use Faker\Generator as Faker;
+use Illuminate\Database\Eloquent\Factory;
+
+$factory->define(
+    Order::class,
+    static function (Faker $faker) {
+        return [
+            'amount' => $faker->numberBetween(1500, 10000),
+            'email' => $faker->email,
+        ];
+    }
+);
+
+$factory->state(Concert::class, 'published', ['published_at' => Carbon::parse('-1 day')]);
+
+$factory->state(Concert::class, 'unpublished', ['published_at' => null]);
