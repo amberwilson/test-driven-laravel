@@ -46,7 +46,6 @@ class Order extends Model
     {
         $order = (new self())->create(
             [
-                'confirmation_number' => Str::random(),
                 'email' => $email,
                 'amount' => $amount,
             ]
