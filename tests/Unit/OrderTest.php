@@ -4,6 +4,7 @@ namespace Tests\Unit;
 
 use App\Concert;
 use App\Order;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
@@ -20,6 +21,25 @@ class OrderTest extends TestCase
         $result = $order->toArray();
 
         self::assertEquals(['email' => 'jane@example.com', 'ticket_quantity' => 5, 'amount' => 6000], $result);
+    }
+
+    /** @test */
+    public function retrieving_an_order_by_confirmation_number(): void
+    {
+        /** @var Order $order */
+        $order = factory(Order::class)->create(['confirmation_number' => 'ORDERCONFIRMATION1234']);
+
+        $foundOrder = Order::findByConfirmationNumber('ORDERCONFIRMATION1234');
+
+        self::assertEquals($order->id, $foundOrder->id);
+    }
+
+    /** @test */
+    public function retrieving_a_nonexistent_order_by_confirmation_number_throws_an_exception(): void
+    {
+        $this->expectException(ModelNotFoundException::class);
+
+        Order::findByConfirmationNumber('NOTANORDERCONFIRMATION1234');
     }
 
     /** @test */
