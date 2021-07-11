@@ -6,6 +6,7 @@ use App\Billing\NotEnoughTicketsException;
 use App\Billing\PaymentFailedException;
 use App\Billing\PaymentGateway;
 use App\Concert;
+use App\Order;
 
 class ConcertOrdersController extends Controller
 {
@@ -42,5 +43,12 @@ class ConcertOrdersController extends Controller
         } catch (NotEnoughTicketsException $e) {
             return response()->json([], 422);
         }
+    }
+
+    public function show($confirmationNumber)
+    {
+        $order = Order::where('confirmation_number', $confirmationNumber)->first();
+
+        return view('orders.show', ['order' => $order]);
     }
 }
