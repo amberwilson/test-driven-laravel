@@ -7,13 +7,16 @@ use App\Order;
 use Carbon\Carbon;
 use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Factory;
+use Illuminate\Support\Str;
 
 $factory->define(
     Order::class,
     static function (Faker $faker) {
         return [
+            'confirmation_number' => Str::random(),
             'amount' => $faker->numberBetween(1500, 10000),
             'email' => $faker->email,
+            'card_last_four' => '4242',
         ];
     }
 );

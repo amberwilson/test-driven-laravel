@@ -6,6 +6,7 @@ use App\Billing\NotEnoughTicketsException;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
+use Illuminate\Support\Str;
 
 /**
  * @mixin Builder
@@ -62,7 +63,7 @@ class Concert extends Model
     public function addTickets(int $quantity): Concert
     {
         for ($i = 0; $i < $quantity; $i++) {
-            $this->tickets()->create([]);
+            $this->tickets()->create(['code' => Str::random()]);
         }
 
         return $this;

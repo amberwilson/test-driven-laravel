@@ -3,6 +3,9 @@
     <H2CodeStyleSettings version="5">
       <option name="USE_GENERAL_STYLE" value="false" />
     </H2CodeStyleSettings>
+    <H2CodeStyleSettings version="5">
+      <option name="USE_GENERAL_STYLE" value="false" />
+    </H2CodeStyleSettings>
     <JSCodeStyleSettings version="0">
       <option name="FORCE_SEMICOLON_STYLE" value="true" />
       <option name="USE_DOUBLE_QUOTES" value="false" />
