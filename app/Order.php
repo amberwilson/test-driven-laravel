@@ -3,6 +3,7 @@
 
 namespace App;
 
+use App\Facades\OrderConfirmationNumber;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
@@ -23,6 +24,7 @@ class Order extends Model
     public function toArray(): array
     {
         return [
+            'confirmation_number' => $this->confirmation_number,
             'email' => $this->email,
             'ticket_quantity' => $this->ticketQuantity(),
             'amount' => $this->amount,
@@ -44,8 +46,9 @@ class Order extends Model
 
     public static function forTickets(string $email, Collection $tickets, int $amount): self
     {
-        $order = (new self())->create(
+        $order = (new self())::create(
             [
+                'confirmation_number' => OrderConfirmationNumber::generate(),
                 'email' => $email,
                 'amount' => $amount,
             ]
