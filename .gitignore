@@ -15,3 +15,4 @@ _ide_helper.php
 .idea/workspace.xml
 /_ide_helper_models.php
 /.idea/laravel-tinker-plugin.xml
+/.idea/sonarlint/
