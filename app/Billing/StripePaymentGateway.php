@@ -8,12 +8,13 @@ use Carbon\Carbon;
 use Closure;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
-use Stripe\Charge;
 use Stripe\Exception\InvalidRequestException;
 use Stripe\Token;
 
 class StripePaymentGateway implements PaymentGateway
 {
+    public const TEST_CARD_NUMBER = '4242424242424242';
+
     private string $apiKey;
 
     public function __construct(string $apiKey)
@@ -21,10 +22,10 @@ class StripePaymentGateway implements PaymentGateway
         $this->apiKey = $apiKey;
     }
 
-    public function charge(int $amount, string $token): void
+    public function charge(int $amount, string $token): Charge
     {
         try {
-            Charge::create(
+            $stripeCharge = \Stripe\Charge::create(
                 [
                     'amount' => $amount,
                     'currency' => 'cad',
@@ -32,17 +33,24 @@ class StripePaymentGateway implements PaymentGateway
                 ],
                 $this->apiKey
             );
+
+            return new Charge(
+                [
+                    'amount' => $stripeCharge['amount'],
+                    'card_last_four' => $stripeCharge['source']['last4']
+                ]
+            );
         } catch (InvalidRequestException $exception) {
             throw new PaymentFailedException('Invalid payment token provided - ckjee3lg600009tvqbjhx8xx0');
         }
     }
 
-    public function getValidTestToken(): string
+    public function getValidTestToken(string $cardNumber = self::TEST_CARD_NUMBER): string
     {
         return Token::create(
             [
                 'card' => [
-                    'number' => '4242424242424242',
+                    'number' => $cardNumber,
                     'exp_month' => 1,
                     'exp_year' => Carbon::now()->addYear()->year,
                     'cvc' => '123',
@@ -58,22 +66,30 @@ class StripePaymentGateway implements PaymentGateway
 
         $callback($this);
 
-        return $this->chargesSince($lastCharge)->pluck('amount');
+        return $this->chargesSince($lastCharge)
+            ->map(static function ($stripeCharge) {
+                return new Charge(
+                    [
+                        'amount' => $stripeCharge['amount'],
+                        'card_last_four' => $stripeCharge['source']['last4']
+                    ]
+                );
+            });
     }
 
-    private function lastCharge(): ?Charge
+    private function lastCharge(): ?\Stripe\Charge
     {
         return Arr::first(
-            Charge::all(
+            \Stripe\Charge::all(
                 ['limit' => 1],
                 ['api_key' => $this->apiKey]
             )['data']
         );
     }
 
-    private function chargesSince(?Charge $charge): Collection
+    private function chargesSince(?\Stripe\Charge $charge): Collection
     {
-        $newCharges = Charge::all(
+        $newCharges = \Stripe\Charge::all(
             [
                 'ending_before' => $charge
             ],

@@ -32,9 +32,9 @@ trait PaymentGatewayContractTests
     {
         $paymentGateway = $this->getPaymentGateway();
 
-       $charge = $paymentGateway->charge(2500, $paymentGateway->getValidTestToken());
+        $charge = $paymentGateway->charge(2500, $paymentGateway->getValidTestToken($paymentGateway::TEST_CARD_NUMBER));
 
-        self::assertEquals('4242', $charge->cardLastFour());
+        self::assertEquals(substr($paymentGateway::TEST_CARD_NUMBER, -4), $charge->cardLastFour());
         self::assertEquals(2500, $charge->amount());
     }
 

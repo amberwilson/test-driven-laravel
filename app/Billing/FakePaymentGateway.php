@@ -11,6 +11,8 @@ use Illuminate\Support\Str;
 class FakePaymentGateway implements PaymentGateway
 {
 
+    public const TEST_CARD_NUMBER = '4242424242424242';
+
     private $charges;
     private $tokens;
     private $beforeFirstChargeCallback;
@@ -46,7 +48,7 @@ class FakePaymentGateway implements PaymentGateway
         );
     }
 
-    public function getValidTestToken($cardNumber = '4242424242424242'): string
+    public function getValidTestToken(string $cardNumber = self::TEST_CARD_NUMBER): string
     {
         $token = 'fake_token' . Str::random(24);
         $this->tokens[$token] = $cardNumber;
