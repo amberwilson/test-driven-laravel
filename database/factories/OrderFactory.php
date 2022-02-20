@@ -16,6 +16,7 @@ $factory->define(
             'amount' => $faker->numberBetween(1500, 10000),
             'email' => $faker->email,
             'card_last_four' => '4242',
+            'confirmation_number' => 'ORDERCONFIRMATION1234',
         ];
     }
 );

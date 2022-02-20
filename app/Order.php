@@ -3,6 +3,7 @@
 
 namespace App;
 
+use App\Billing\Charge;
 use App\Facades\OrderConfirmationNumber;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -44,13 +45,14 @@ class Order extends Model
 
     // endregion Relationships
 
-    public static function forTickets(string $email, Collection $tickets, int $amount): self
+    public static function forTickets(string $email, Collection $tickets, Charge $charge): self
     {
         $order = (new self())::create(
             [
                 'confirmation_number' => OrderConfirmationNumber::generate(),
                 'email' => $email,
-                'amount' => $amount,
+                'amount' => $charge->amount(),
+                'card_last_four' => $charge->cardLastFour(),
             ]
         );
 
