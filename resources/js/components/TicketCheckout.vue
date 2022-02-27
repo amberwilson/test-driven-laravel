@@ -102,7 +102,7 @@ export default {
                 payment_token: token.id,
             }).then(response => {
                 console.log('Charge succeeded!', response);
-                window.location.href = response.body.url;
+                window.location.href = `/orders/${response.data.confirmation_number}`;
             }).catch(() => {
                 this.processing = false;
             });

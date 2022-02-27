@@ -5,10 +5,9 @@ namespace App;
 
 use App\Billing\Charge;
 use App\Facades\OrderConfirmationNumber;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
-use Illuminate\Support\Str;
+use Illuminate\Support\Collection;
 
 /**
  * @mixin Builder
@@ -27,8 +26,10 @@ class Order extends Model
         return [
             'confirmation_number' => $this->confirmation_number,
             'email' => $this->email,
-            'ticket_quantity' => $this->ticketQuantity(),
             'amount' => $this->amount,
+            'tickets' => $this->tickets->map(function ($ticket) {
+                return ['code' => $ticket->code];
+            })->all(),
         ];
     }
 
@@ -56,9 +57,7 @@ class Order extends Model
             ]
         );
 
-        foreach ($tickets as $ticket) {
-            $order->tickets()->save($ticket);
-        }
+        $tickets->each->claimFor($order);
 
         return $order;
     }

@@ -7,6 +7,7 @@ use App\Order;
 use App\Ticket;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Mockery;
 use Tests\TestCase;
 
 class OrderTest extends TestCase
@@ -23,15 +24,25 @@ class OrderTest extends TestCase
                 'amount' => 6000,
             ]
         );
-        $order->tickets()->saveMany(factory(Ticket::class)->times(5)->create());
+        $order->tickets()->saveMany(
+            [
+                factory(Ticket::class)->create(['code' => 'TICKETCODE1']),
+                factory(Ticket::class)->create(['code' => 'TICKETCODE2']),
+                factory(Ticket::class)->create(['code' => 'TICKETCODE3']),
+            ]
+        );
         $result = $order->toArray();
 
         self::assertEquals(
             [
                 'confirmation_number' => 'ORDERCONFIRMATION1234',
                 'email' => 'jane@example.com',
-                'ticket_quantity' => 5,
-                'amount' => 6000
+                'amount' => 6000,
+                'tickets' => [
+                    ['code' => 'TICKETCODE1'],
+                    ['code' => 'TICKETCODE2'],
+                    ['code' => 'TICKETCODE3'],
+                ],
             ],
             $result
         );
@@ -59,13 +70,22 @@ class OrderTest extends TestCase
     /** @test */
     public function creating_an_order_from_email_tickets_and_charge(): void
     {
-        $tickets = factory(Ticket::class, 3)->create();
+//        $tickets = factory(Ticket::class, 3)->create();
         $charge = new Charge(['amount' => 3600, 'card_last_four' => '1234']);
+
+        $tickets = collect(
+            [
+                Mockery::spy(Ticket::class),
+                Mockery::spy(Ticket::class),
+                Mockery::spy(Ticket::class),
+            ]
+        );
+
         $order = Order::forTickets('john@example.com', $tickets, $charge);
 
         self::assertEquals('john@example.com', $order->email);
-        self::assertEquals(3, $order->ticketQuantity());
         self::assertEquals(3600, $order->amount);
         self::assertEquals('1234', $order->card_last_four);
+        $tickets->each->shouldHaveReceived('claimFor', [$order]);
     }
 }

@@ -3,6 +3,7 @@
 
 namespace App;
 
+use App\Facades\TicketCode;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
 
@@ -44,6 +45,12 @@ class Ticket extends Model
     public function release(): void
     {
         $this->update(['reserved_at' => null]);
+    }
+
+    public function claimFor(Order $order): void
+    {
+        $this->code = TicketCode::generateFor($this);
+        $order->tickets()->save($this);
     }
 
     public function reserve(): void

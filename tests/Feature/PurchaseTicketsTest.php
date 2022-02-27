@@ -5,11 +5,10 @@ namespace Tests\Feature;
 use App\Billing\FakePaymentGateway;
 use App\Billing\PaymentGateway;
 use App\Concert;
-use App\OrderConfirmationNumberGenerator;
+use App\Facades\OrderConfirmationNumber;
+use App\Facades\TicketCode;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Testing\TestResponse;
-use Mockery;
-use Mockery\Mock;
 use Tests\TestCase;
 
 class PurchaseTicketsTest extends TestCase
@@ -33,9 +32,8 @@ class PurchaseTicketsTest extends TestCase
         $this->withoutExceptionHandling();
 
         // Arrange
-        $orderConfirmationNumberGenerator = Mockery::mock(OrderConfirmationNumberGenerator::class, ['generate' => 'ORDERCONFIRMATION1234']);
-
-        $this->app->instance(OrderConfirmationNumberGenerator::class, $orderConfirmationNumberGenerator);
+        OrderConfirmationNumber::shouldReceive('generate')->andReturn('ORDERCONFIRMATION1234');
+        TicketCode::shouldReceive('generateFor')->andReturn('TICKETCODE1', 'TICKETCODE2', 'TICKETCODE3');
 
         // Create a concert
         $concert = factory(Concert::class)
@@ -61,8 +59,12 @@ class PurchaseTicketsTest extends TestCase
             [
                 'confirmation_number' => 'ORDERCONFIRMATION1234',
                 'email' => 'jane@example.com',
-                'ticket_quantity' => 3,
                 'amount' => 9750,
+                'tickets' => [
+                    ['code' => 'TICKETCODE1'],
+                    ['code' => 'TICKETCODE2'],
+                    ['code' => 'TICKETCODE3'],
+                ],
             ]
         );
 

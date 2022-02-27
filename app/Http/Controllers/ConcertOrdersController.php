@@ -7,6 +7,7 @@ use App\Billing\PaymentFailedException;
 use App\Billing\PaymentGateway;
 use App\Concert;
 use App\Order;
+use Illuminate\Support\Facades\Log;
 
 class ConcertOrdersController extends Controller
 {
@@ -38,9 +39,11 @@ class ConcertOrdersController extends Controller
 
             return response()->json($order, 201);
         } catch (PaymentFailedException $e) {
+            Log::error($e);
             $reservation->cancel();
             return response()->json([], 422);
         } catch (NotEnoughTicketsException $e) {
+            Log::error($e);
             return response()->json([], 422);
         }
     }
