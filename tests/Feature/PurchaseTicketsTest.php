@@ -7,7 +7,9 @@ use App\Billing\PaymentGateway;
 use App\Concert;
 use App\Facades\OrderConfirmationNumber;
 use App\Facades\TicketCode;
+use App\Mail\OrderConfirmationEmail;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Testing\TestResponse;
 use Tests\TestCase;
 
@@ -16,7 +18,7 @@ class PurchaseTicketsTest extends TestCase
 
     use DatabaseMigrations;
 
-    private $paymentGateway;
+    private FakePaymentGateway $paymentGateway;
 
     public function setUp(): void
     {
@@ -24,6 +26,8 @@ class PurchaseTicketsTest extends TestCase
 
         $this->paymentGateway = new FakePaymentGateway();
         $this->app->instance(PaymentGateway::class, $this->paymentGateway);
+
+        Mail::fake();
     }
 
     /** @test */
@@ -68,12 +72,20 @@ class PurchaseTicketsTest extends TestCase
             ]
         );
 
+        $order = $concert->ordersFor('jane@example.com')->first();
+
         // Make sure the customer was charged the correct amount
         self::assertEquals(9750, $this->paymentGateway->totalCharges());
 
         // Make sure that an order exists for this customer
         self::assertTrue($concert->hasOrderFor('jane@example.com'));
-        self::assertEquals(3, $concert->ordersFor('jane@example.com')->first()->ticketQuantity());
+        self::assertEquals(3, $order->ticketQuantity());
+
+        // Make sure the user gets a confirmation email
+        Mail::assertSent(OrderConfirmationEmail::class, static function (OrderConfirmationEmail $mail) use ($order) {
+            return $mail->hasTo('jane@example.com')
+                && $mail->order->id === $order->id;
+        });
     }
 
     private function orderTickets(Concert $concert, array $params): TestResponse
