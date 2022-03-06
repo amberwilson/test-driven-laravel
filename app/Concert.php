@@ -50,6 +50,11 @@ class Concert extends Model
     {
         return $this->hasMany(Ticket::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
     // endregion Relationships
 
     // region Scopes
@@ -59,6 +64,18 @@ class Concert extends Model
     }
 
     // endregion Scopes
+
+    public function isPublished(): bool
+    {
+        return $this->published_at !== null;
+    }
+
+    public function publish(): self
+    {
+        $this->update(['published_at' => $this->freshTimestamp()]);
+
+        return $this;
+    }
 
     public function addTickets(int $quantity): Concert
     {

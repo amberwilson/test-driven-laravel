@@ -16,9 +16,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/concerts/{id}', [ConcertsController::class, 'show']);
+Route::get('/concerts/{id}', [ConcertsController::class, 'show'])->name('concerts.show');
 Route::post('/concerts/{id}/orders', [ConcertOrdersController::class, 'store']);
 Route::get('/orders/{confirmationNumber}', [ConcertOrdersController::class, 'show']);
 
-Route::get('/login', [LoginController::class, 'showLoginForm']);
-Route::post('/login', [LoginController::class, 'login']);
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('auth.show-login');
+Route::post('/login', [LoginController::class, 'login'])->name('auth.login');
+Route::post('/logout', [LoginController::class, 'logout'])->name('auth.logout');
+
+Route::group(['middleware' => 'auth', 'prefix' => 'backstage'], static function () {
+    Route::get('/concerts/new', [ConcertsController::class, 'create']);
+    Route::post('/concerts', [ConcertsController::class, 'store']);
+});
+
