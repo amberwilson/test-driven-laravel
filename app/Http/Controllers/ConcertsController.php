@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Auth;
 
 class ConcertsController extends Controller
 {
+    public function index()
+    {
+        return view('backstage.concerts.index', ['concerts' => Auth::user()->concerts]);
+    }
+
     public function show(int $id)
     {
         $concert = Concert::published()->findOrFail($id);

@@ -33,8 +33,6 @@ class PurchaseTicketsTest extends TestCase
     /** @test */
     public function customer_can_purchase_tickets_to_a_published_concert(): void
     {
-        $this->withoutExceptionHandling();
-
         // Arrange
         OrderConfirmationNumber::shouldReceive('generate')->andReturn('ORDERCONFIRMATION1234');
         TicketCode::shouldReceive('generateFor')->andReturn('TICKETCODE1', 'TICKETCODE2', 'TICKETCODE3');
@@ -178,7 +176,6 @@ class PurchaseTicketsTest extends TestCase
     /** @test */
     public function cannot_purchase_tickets_another_customer_is_already_trying_to_purchase(): void
     {
-        $this->withoutExceptionHandling();
         $concert = factory(Concert::class)
             ->state('published')
             ->create(
