@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Concert;
 use App\Http\Requests\StoreConcertRequest;
+use App\Http\Requests\UpdateConcertRequest;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -46,5 +47,45 @@ class ConcertsController extends Controller
             ->publish();
 
         return redirect()->route('concerts.show', $concert);
+    }
+
+    public function edit($id)
+    {
+        /** @var Concert $concert */
+        $concert = Auth::user()->concerts()->findOrFail($id);
+
+        abort_if($concert->isPublished(), 403);
+
+        return view(
+            'backstage.concerts.edit',
+            [
+                'concert' => $concert,
+            ]
+        );
+    }
+
+    public function update(UpdateConcertRequest $request, int $id)
+    {
+        /** @var Concert $concert */
+        $concert = Auth::user()->concerts()->findOrFail($id);
+
+        abort_if($concert->isPublished(), 403);
+
+        $concert->update(
+            [
+                'title' => $request->title,
+                'subtitle' => $request->subtitle,
+                'date' => Carbon::parse(vsprintf('%s %s', [$request->date, $request->time])),
+                'ticket_price' => $request->ticket_price,
+                'venue' => $request->venue,
+                'venue_address' => $request->venue_address,
+                'city' => $request->city,
+                'state' => $request->state,
+                'zip' => $request->zip,
+                'additional_information' => $request->additional_information,
+            ]
+        );
+
+        return redirect()->route('backstage.concerts.index');
     }
 }
