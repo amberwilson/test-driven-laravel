@@ -33,18 +33,19 @@ class ConcertsController extends Controller
             [
                 'title' => $request->title,
                 'subtitle' => $request->subtitle,
+                'additional_information' => $request->additional_information,
                 'date' => Carbon::parse(vsprintf('%s %s', [$request->date, $request->time])),
-                'ticket_price' => $request->ticket_price * 100,
                 'venue' => $request->venue,
                 'venue_address' => $request->venue_address,
                 'city' => $request->city,
                 'state' => $request->state,
                 'zip' => $request->zip,
-                'additional_information' => $request->additional_information,
+                'ticket_price' => $request->ticket_price * 100,
+                'ticket_quantity' => (int)$request->ticket_quantity,
             ]
-        )
-            ->addTickets($request->ticket_quantity)
-            ->publish();
+        );
+
+        $concert->publish();
 
         return redirect()->route('concerts.show', $concert);
     }
@@ -75,14 +76,15 @@ class ConcertsController extends Controller
             [
                 'title' => $request->title,
                 'subtitle' => $request->subtitle,
+                'additional_information' => $request->additional_information,
                 'date' => Carbon::parse(vsprintf('%s %s', [$request->date, $request->time])),
-                'ticket_price' => $request->ticket_price,
                 'venue' => $request->venue,
                 'venue_address' => $request->venue_address,
                 'city' => $request->city,
                 'state' => $request->state,
                 'zip' => $request->zip,
-                'additional_information' => $request->additional_information,
+                'ticket_price' => $request->ticket_price * 100,
+                'ticket_quantity' => (int)$request->ticket_quantity,
             ]
         );
 

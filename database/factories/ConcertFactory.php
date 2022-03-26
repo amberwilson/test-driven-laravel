@@ -14,15 +14,16 @@ $factory->define(
         return [
             'user_id' => factory(User::class),
             'title' => "{$faker->firstName}'s Band",
+            'additional_information' => "For tickets, call {$faker->phoneNumber}.",
             'subtitle' => "with {$faker->firstName}'s Fake Openers",
             'date' => Carbon::parse('+2 weeks'),
-            'ticket_price' => $faker->numberBetween(1500, 10000),
             'venue' => "{$faker->firstName}'s Bar",
             'venue_address' => $faker->streetAddress,
             'city' => $faker->city,
             'state' => $faker->state,
             'zip' => $faker->postcode,
-            'additional_information' => "For tickets, call {$faker->phoneNumber}."
+            'ticket_price' => $faker->numberBetween(1500, 10000),
+            'ticket_quantity' => $faker->numberBetween(20, 100),
         ];
     }
 );

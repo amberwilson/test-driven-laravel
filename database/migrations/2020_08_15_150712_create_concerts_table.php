@@ -13,19 +13,6 @@ class CreateConcertsTable extends Migration
      */
     public function up()
     {
-        /**
-         *   ['title'                  => 'The Red Chord',
-         * 'subtitle'               => 'with Animosity and Lethargy',
-         * 'date'                   => Carbon::parse('August 15, 2020 8:00pm'),
-         * 'ticket_price'           => 3250,
-         * 'venue'                  => 'The Mosh Pit',
-         * 'venue_address'          => '123 Example Lane',
-         * 'city'                   => 'Laraville',
-         * 'state'                  => 'NS',
-         * 'zip'                    => '17916',
-         * 'additional_information' => 'For tickets, call (555) 555-5555.',]
-         */
-
         Schema::create(
             'concerts',
             static function (Blueprint $table) {
@@ -35,6 +22,7 @@ class CreateConcertsTable extends Migration
                 $table->string('subtitle')->nullable();
                 $table->dateTime('date');
                 $table->integer('ticket_price');
+                $table->integer('ticket_quantity');
                 $table->string('venue');
                 $table->string('venue_address');
                 $table->string('city');

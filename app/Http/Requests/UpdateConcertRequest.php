@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Auth;
  * @property string $state
  * @property string $zip
  * @property string $ticket_price
+ * @property string $ticket_quantity
  */
 class UpdateConcertRequest extends FormRequest
 {
@@ -47,6 +48,7 @@ class UpdateConcertRequest extends FormRequest
             'state' => ['required'],
             'zip' => ['required'],
             'ticket_price' => ['required', 'numeric', 'min:5'],
+            'ticket_quantity' => ['required', 'integer', 'min:1'],
         ];
     }
 }
