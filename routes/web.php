@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Backstage\ConcertsController;
+use App\Http\Controllers\Backstage\PublishedConcertsController;
 use App\Http\Controllers\ConcertOrdersController;
-use App\Http\Controllers\ConcertsController;
+use App\Http\Controllers\ConcertsController as PublicConcertsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/concerts/{id}', [ConcertsController::class, 'show'])->name('concerts.show');
+Route::get('/concerts/{id}', [PublicConcertsController::class, 'show'])->name('concerts.show');
 Route::post('/concerts/{id}/orders', [ConcertOrdersController::class, 'store']);
 Route::get('/orders/{confirmationNumber}', [ConcertOrdersController::class, 'show']);
 
@@ -30,5 +32,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'backstage'], static function 
     Route::post('/concerts', [ConcertsController::class, 'store']);
     Route::get('/concerts/{id}/edit', [ConcertsController::class, 'edit'])->name('backstage.concerts.edit');
     Route::patch('/concerts/{id}', [ConcertsController::class, 'update'])->name('backstage.concerts.update');
+    Route::post('/published-concerts', [PublishedConcertsController::class, 'store'])->name(
+        'backstage.published-concerts.store'
+    );
 });
 

@@ -23,7 +23,7 @@ class LoginController
                 ->withInput(request()->only('email'));
         }
 
-        return redirect('/backstage/concerts/new');
+        return redirect('/backstage/concerts');
     }
 
     public function logout()
