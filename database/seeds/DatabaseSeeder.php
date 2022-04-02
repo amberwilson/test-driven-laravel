@@ -1,8 +1,8 @@
 <?php
 
-use App\Concert;
-use App\User;
+use App\Billing\FakePaymentGateway;
 use Carbon\Carbon;
+use Faker\Factory;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,43 +14,51 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        /** @var User $user */
-        $user = factory(User::class)->create();
+        $faker = Factory::create();
+        $gateway = new FakePaymentGateway();
 
-        /** @var Concert $concert */
-        $concert = factory(Concert::class)->state('published')->create(
-            [
-                'user_id' => $user->id,
-                'title' => 'The Red Chord',
-                'subtitle' => 'with Animosity and Lethargy',
-                'date' => Carbon::parse('August 15, 2020 8:00pm'),
-                'ticket_price' => 3250,
-                'venue' => 'The Mosh Pit',
-                'venue_address' => '123 Example Lane',
-                'city' => 'Laraville',
-                'state' => 'NS',
-                'zip' => '17916',
-                'additional_information' => 'For tickets, call (555) 555-5555.',
-            ]
-        );
-        $concert->addTickets(10);
+        $user = factory(App\User::class)->create([
+                                                     'email' => "a@b.com",
+                                                     'password' => bcrypt('secret'),
+                                                 ]);
 
-        /** @var Concert $concert */
-        $concert = factory(Concert::class)->state('unpublished')->create(
-            [
-                'user_id' => $user->id,
-                'title' => 'The Red Chord 2',
-                'subtitle' => 'with Animosity and Lethargy',
-                'date' => Carbon::parse('August 15, 2020 8:00pm'),
-                'ticket_price' => 3250,
-                'venue' => 'The Mosh Pit',
-                'venue_address' => '123 Example Lane',
-                'city' => 'Laraville',
-                'state' => 'NS',
-                'zip' => '17916',
-                'additional_information' => 'For tickets, call (555) 555-5555.',
-            ]
-        );
-        $concert->addTickets(30);
+        $concert = \ConcertFactory::createPublished([
+                                                        'user_id' => $user->id,
+                                                        'title' => "The Red Chord",
+                                                        'subtitle' => "with Animosity and Lethargy",
+                                                        'additional_information' => "This concert is 19+.",
+                                                        'venue' => "The Mosh Pit",
+                                                        'venue_address' => "123 Example Lane",
+                                                        'city' => "Laraville",
+                                                        'state' => "ON",
+                                                        'zip' => "17916",
+                                                        'date' => Carbon::today()->addMonths(3)->hour(20),
+                                                        'ticket_price' => 3250,
+                                                        'ticket_quantity' => 250,
+                                                    ]);
+
+        foreach (range(1, 50) as $ignored) {
+            Carbon::setTestNow(Carbon::instance($faker->dateTimeBetween('-2 months')));
+
+            $concert->reserveTickets(random_int(1, 4), $faker->safeEmail)
+                ->complete($gateway, $gateway->getValidTestToken($faker->creditCardNumber));
+        }
+
+        Carbon::setTestNow();
+
+        factory(App\Concert::class)->create([
+                                                'user_id' => $user->id,
+                                                'title' => "Slayer",
+                                                'subtitle' => "with Forbidden and Testament",
+                                                'additional_information' => null,
+                                                'venue' => "The Rock Pile",
+                                                'venue_address' => "55 Sample Blvd",
+                                                'city' => "Laraville",
+                                                'state' => "ON",
+                                                'zip' => "19276",
+                                                'date' => Carbon::today()->addMonths(6)->hour(19),
+                                                'ticket_price' => 5500,
+                                                'ticket_quantity' => 10,
+                                            ]);
     }
 }

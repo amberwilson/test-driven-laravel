@@ -1,3 +1,10 @@
+<?php
+
+use App\Concert;
+
+/** @var $concert Concert */
+
+?>
 @extends('layouts.backstage')
 
 @section('backstageContent')
@@ -26,15 +33,17 @@
                 <h2 class="m-xs-b-2 text-lg">Overview</h2>
                 <div class="card">
                     <div class="card-section border-b">
-                        <p class="m-xs-b-4">This show is 60% sold out.</p>
-                        <progress class="progress" value="357" max="600">60%</progress>
+                        <p class="m-xs-b-4">This show is {{ $concert->percentSoldOut()  }}% sold out.</p>
+                        <progress class="progress" value="{{ $concert->ticketsSold() }}"
+                                  max="{{ $concert->totalTickets() }}">{{ $concert->percentSoldOut()  }}%
+                        </progress>
                     </div>
                     <div class="row">
                         <div class="col col-md-4 border-md-r">
                             <div class="card-section p-md-r-2 text-center text-md-left">
                                 <h3 class="text-base wt-normal m-xs-b-1">Total Tickets Remaining</h3>
                                 <div class="text-jumbo wt-bold">
-                                    243
+                                    {{ $concert->ticketsRemaining() }}
                                 </div>
                             </div>
                         </div>
@@ -42,7 +51,7 @@
                             <div class="card-section p-md-x-2 text-center text-md-left">
                                 <h3 class="text-base wt-normal m-xs-b-1">Total Tickets Sold</h3>
                                 <div class="text-jumbo wt-bold">
-                                    357
+                                    {{ $concert->ticketsSold() }}
                                 </div>
                             </div>
                         </div>
@@ -51,6 +60,7 @@
                                 <h3 class="text-base wt-normal m-xs-b-1">Total Revenue</h3>
                                 <div class="text-jumbo wt-bold">
                                     $10,353
+                                    ${{ $concert->revenueInDollars() }}
                                 </div>
                             </div>
                         </div>
