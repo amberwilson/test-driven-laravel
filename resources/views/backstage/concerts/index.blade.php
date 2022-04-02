@@ -51,8 +51,10 @@
                                         </p>
                                     </div>
                                     <div>
+                                        <a href="{{ route('backstage.published-concert-orders.index', $concert) }}"
+                                           class="btn btn-sm btn-secondary m-xs-r-2">Manage</a>
                                         <a href="{{ route('concerts.show', $concert) }}"
-                                           class="btn btn-sm btn-secondary">Get Ticket Link</a>
+                                           class="link-brand text-sm wt-medium">Public Link</a>
                                     </div>
                                 </div>
                             </div>

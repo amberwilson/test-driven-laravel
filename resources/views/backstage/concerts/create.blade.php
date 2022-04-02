@@ -1,24 +1,6 @@
-@extends('layouts.master')
+@extends('layouts.backstage')
 
-@section('body')
-    <header>
-        <nav class="navbar p-xs-y-3">
-            <div class="container">
-                <div class="navbar-content">
-                    <div>
-                        <img src="/img/logo.svg" alt="TicketBeast" style="height: 2.5rem;">
-                    </div>
-                    <div>
-                        <form class="inline-block" action="{{ route('auth.logout') }}" method="POST">
-                            {{ csrf_field() }}
-                            <button type="submit" class="link link-light">Log out</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </header>
-
+@section('backstageContent')
     <div class="bg-light p-xs-y-4 border-b">
         <div class="container">
             <h1 class="text-lg">Add a concert</h1>
@@ -186,9 +168,9 @@
                                         <div class="form-group {{ $errors->first('ticket_price', 'has-error') }}">
                                             <label class="form-label">Price</label>
                                             <div class="input-group">
-                                            <span class="input-group-addon text-dark-muted">
-                                                $
-                                            </span>
+                                        <span class="input-group-addon text-dark-muted">
+                                            $
+                                        </span>
                                                 <input name="ticket_price" class="form-control" placeholder="0.00"
                                                        value="{{ old('ticket_price') }}">
                                             </div>
@@ -212,11 +194,4 @@
             <button type="submit" class="btn btn-primary">Add Concert</button>
         </div>
     </form>
-
-
-    <footer class="p-xs-y-6 text-light-muted">
-        <div class="container">
-            <p class="text-center">&copy; TicketBeast {{ date('Y') }}</p>
-        </div>
-    </footer>
 @endsection
