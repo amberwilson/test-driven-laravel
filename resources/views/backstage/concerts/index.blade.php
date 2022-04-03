@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('body')
+    <?php /** @var \App\Concert $concert */ ?>
     <header>
         <nav class="navbar p-xs-y-3">
             <div class="container">

@@ -5,11 +5,9 @@ namespace Tests\Feature\Backstage;
 use App\Concert;
 use App\User;
 use ConcertFactory;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Http\Response;
 use Illuminate\Testing\TestResponse;
-use PHPUnit\Framework\Assert;
 use Tests\TestCase;
 
 class ViewConcertListTest extends TestCase
@@ -23,31 +21,6 @@ class ViewConcertListTest extends TestCase
         TestResponse::macro('data', function ($key) {
             /** @var Response $this */
             return $this->original->getData()[$key];
-        });
-
-        Collection::macro('assertContains', function ($value) {
-            /** @var Collection $this */
-            Assert::assertTrue(
-                $this->contains($value),
-                'Failed asserting that the collection contained the specified value.'
-            );
-        });
-
-        Collection::macro('assertNotContains', function ($value) {
-            /** @var Collection $this */
-            Assert::assertFalse(
-                $this->contains($value),
-                'Failed asserting that the collection did not contain the specified value.'
-            );
-        });
-
-        Collection::macro('assertEquals', function ($items) {
-            Assert::assertSameSize($this, $items);
-            /** @var Collection $this */
-            $this->zip($items)->each(function ($pair) {
-                [$a, $b] = $pair;
-                Assert::assertTrue($a->is($b));
-            });
         });
     }
 

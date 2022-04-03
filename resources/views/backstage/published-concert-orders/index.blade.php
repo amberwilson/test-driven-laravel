@@ -29,7 +29,7 @@ use App\Concert;
     </div>
     <div class="bg-soft p-xs-y-5">
         <div class="container m-xs-b-4">
-            <div>
+            <div class="m-xs-b-6">
                 <h2 class="m-xs-b-2 text-lg">Overview</h2>
                 <div class="card">
                     <div class="card-section border-b">
@@ -59,11 +59,40 @@ use App\Concert;
                             <div class="card-section p-md-l-2 text-center text-md-left">
                                 <h3 class="text-base wt-normal m-xs-b-1">Total Revenue</h3>
                                 <div class="text-jumbo wt-bold">
-                                    $10,353
                                     ${{ $concert->revenueInDollars() }}
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h2 class="m-xs-b-2 text-lg">Recent Orders</h2>
+                <div class="card">
+                    <div class="card-section">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th class="text-left">Email</th>
+                                <th class="text-left">Tickets</th>
+                                <th class="text-left">Amount</th>
+                                <th class="text-left">Card</th>
+                                <th class="text-left">Purchased</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($orders as $order)
+                                <?php /** @var \App\Order $order */ ?>
+                                <tr>
+                                    <td>{{ $order->email }}</td>
+                                    <td>{{ $order->ticketQuantity() }}</td>
+                                    <td>${{ number_format($order->amount / 100, 2) }}</td>
+                                    <td><span class="text-dark-soft">****</span> {{ $order->card_last_four }}</td>
+                                    <td class="text-dark-soft">{{ $order->created_at->format('M j, Y @ g:ia') }}</td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
