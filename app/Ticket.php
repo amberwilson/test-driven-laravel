@@ -4,6 +4,7 @@
 namespace App;
 
 use App\Facades\TicketCode;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
 
@@ -14,6 +15,8 @@ use Illuminate\Database\Query\Builder;
  */
 class Ticket extends Model
 {
+    use HasFactory;
+
     protected $guarded = [];
 
     protected $casts = [

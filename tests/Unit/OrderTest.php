@@ -17,7 +17,7 @@ class OrderTest extends TestCase
     /** @test */
     public function converting_to_an_array(): void
     {
-        $order = factory(Order::class)->create(
+        $order = Order::factory()->create(
             [
                 'confirmation_number' => 'ORDERCONFIRMATION1234',
                 'email' => 'jane@example.com',
@@ -26,9 +26,9 @@ class OrderTest extends TestCase
         );
         $order->tickets()->saveMany(
             [
-                factory(Ticket::class)->create(['code' => 'TICKETCODE1']),
-                factory(Ticket::class)->create(['code' => 'TICKETCODE2']),
-                factory(Ticket::class)->create(['code' => 'TICKETCODE3']),
+                Ticket::factory()->create(['code' => 'TICKETCODE1']),
+                Ticket::factory()->create(['code' => 'TICKETCODE2']),
+                Ticket::factory()->create(['code' => 'TICKETCODE3']),
             ]
         );
         $result = $order->toArray();
@@ -52,7 +52,7 @@ class OrderTest extends TestCase
     public function retrieving_an_order_by_confirmation_number(): void
     {
         /** @var Order $order */
-        $order = factory(Order::class)->create(['confirmation_number' => 'ORDERCONFIRMATION1234']);
+        $order = Order::factory()->create(['confirmation_number' => 'ORDERCONFIRMATION1234']);
 
         $foundOrder = Order::findByConfirmationNumber('ORDERCONFIRMATION1234');
 

@@ -1,29 +1,29 @@
 <?php
 
-/** @var Factory $factory */
+namespace Database\Factories;
 
 use App\Concert;
-use App\Ticket;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Factory;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
-$factory->define(
-    Ticket::class,
-    static function () {
+class TicketFactory extends Factory
+{
+    public function definition(): array
+    {
         return [
-            'concert_id' => factory(Concert::class),
+            'concert_id' => Concert::factory(),
             'code' => Str::random(),
         ];
     }
-);
 
-$factory->state(
-    Ticket::class,
-    'reserved',
-    function () {
-        return [
-            'reserved_at' => Carbon::now(),
-        ];
+
+    public function reserved(): TicketFactory
+    {
+        return $this->state(function () {
+            return [
+                'reserved_at' => Carbon::now(),
+            ];
+        });
     }
-);
+}

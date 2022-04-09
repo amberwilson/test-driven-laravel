@@ -17,7 +17,7 @@ class ViewOrderTest extends TestCase
     public function user_can_view_their_order_confirmation(): void
     {
         /** @var Concert $concert */
-        $concert = factory(Concert::class)->create(
+        $concert = Concert::factory()->create(
             [
                 'title' => 'The Red Chord',
                 'subtitle' => 'with Animosity and Lethargy',
@@ -31,7 +31,7 @@ class ViewOrderTest extends TestCase
             ]
         );
         /** @var Order $order */
-        $order = factory(Order::class)->create(
+        $order = Order::factory()->create(
             [
                 'confirmation_number' => 'ORDERCONFIRMATION1234',
                 'card_last_four' => '1881',
@@ -39,14 +39,14 @@ class ViewOrderTest extends TestCase
                 'email' => 'jane@example.com',
             ]
         );
-        $ticket1 = factory(Ticket::class)->create(
+        $ticket1 = Ticket::factory()->create(
             [
                 'concert_id' => $concert->id,
                 'order_id' => $order->id,
                 'code' => 'TICKETCODE123',
             ]
         );
-        $ticket2 = factory(Ticket::class)->create(
+        $ticket2 = Ticket::factory()->create(
             [
                 'concert_id' => $concert->id,
                 'order_id' => $order->id,

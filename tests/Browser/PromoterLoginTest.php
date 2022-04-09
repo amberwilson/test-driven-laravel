@@ -13,7 +13,7 @@ class PromoterLoginTest extends DuskTestCase
     /** @test */
     public function logging_in_with_valid_credentials()
     {
-        $user = factory(User::class)->create(
+        $user = User::factory()->create(
             [
                 'email' => 'jane@example.com',
                 'password' => bcrypt('super-secret-password'),
@@ -32,7 +32,7 @@ class PromoterLoginTest extends DuskTestCase
     /** @test */
     public function logging_in_with_invalid_credentials()
     {
-        $user = factory(User::class)->create(
+        $user = User::factory()->create(
             [
                 'email' => 'jane@example.com',
                 'password' => bcrypt('super-secret-password'),

@@ -6,7 +6,7 @@ use App\AttendeeMessage;
 use App\Concert;
 use App\Jobs\SendAttendeeMessage;
 use App\User;
-use ConcertFactory;
+use Database\Factories\ConcertFactory;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Queue;
 use Tests\TestCase;
@@ -19,7 +19,7 @@ class MessageAttendeesTest extends TestCase
     function a_promoter_can_view_the_message_form_for_their_own_concert()
     {
         /** @var User $user */
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         /** @var Concert $concert */
         $concert = ConcertFactory::createPublished(
             [
@@ -38,11 +38,11 @@ class MessageAttendeesTest extends TestCase
     function a_promoter_cannot_view_the_message_form_for_another_concert()
     {
         /** @var User $user */
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         /** @var Concert $concert */
         $concert = ConcertFactory::createPublished(
             [
-                'user_id' => factory(User::class)->create(),
+                'user_id' => User::factory()->create(),
             ]
         );
 
@@ -68,7 +68,7 @@ class MessageAttendeesTest extends TestCase
         Queue::fake();
 
         /** @var User $user */
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         /** @var Concert $concert */
         $concert = ConcertFactory::createPublished(
             [
@@ -106,11 +106,11 @@ class MessageAttendeesTest extends TestCase
         Queue::fake();
 
         /** @var User $user */
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         /** @var Concert $concert */
         $concert = ConcertFactory::createPublished(
             [
-                'user_id' => factory(User::class)->create(),
+                'user_id' => User::factory()->create(),
             ]
         );
 
@@ -158,7 +158,7 @@ class MessageAttendeesTest extends TestCase
         Queue::fake();
 
         /** @var User $user */
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         /** @var Concert $concert */
         $concert = ConcertFactory::createPublished(
             [
@@ -188,7 +188,7 @@ class MessageAttendeesTest extends TestCase
         Queue::fake();
 
         /** @var User $user */
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         /** @var Concert $concert */
         $concert = ConcertFactory::createPublished(
             [

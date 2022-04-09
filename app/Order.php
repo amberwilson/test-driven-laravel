@@ -5,6 +5,7 @@ namespace App;
 
 use App\Billing\Charge;
 use App\Facades\OrderConfirmationNumber;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Collection;
@@ -16,6 +17,8 @@ use Illuminate\Support\Collection;
  */
 class Order extends Model
 {
+    use HasFactory;
+
     protected $guarded = [];
     protected $casts = [
         'amount' => 'integer'

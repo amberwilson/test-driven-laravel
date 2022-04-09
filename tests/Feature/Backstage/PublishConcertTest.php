@@ -4,7 +4,7 @@ namespace Tests\Feature\Backstage;
 
 use App\Concert;
 use App\User;
-use ConcertFactory;
+use Database\Factories\ConcertFactory;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
@@ -16,9 +16,9 @@ class PublishConcertTest extends TestCase
     public function a_promoter_can_publish_their_own_concert(): void
     {
         /** @var User $user */
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         /** @var Concert $concert */
-        $concert = factory(Concert::class)->state('unpublished')->create(
+        $concert = Concert::factory()->unpublished()->create(
             ['user_id' => $user->id, 'ticket_quantity' => 3]
         );
 
@@ -37,7 +37,7 @@ class PublishConcertTest extends TestCase
     public function a_concert_can_only_be_published_once(): void
     {
         /** @var User $user */
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         /** @var Concert $concert */
         $concert = ConcertFactory::createPublished(
             ['user_id' => $user->id, 'ticket_quantity' => 3]
@@ -55,9 +55,9 @@ class PublishConcertTest extends TestCase
     /** @test */
     function a_promoter_cannot_publish_other_concerts()
     {
-        $user = factory(User::class)->create();
-        $otherUser = factory(User::class)->create();
-        $concert = factory(Concert::class)->states('unpublished')->create([
+        $user = User::factory()->create();
+        $otherUser = User::factory()->create();
+        $concert = Concert::factory()->unpublished()->create([
                                                                               'user_id' => $otherUser->id,
                                                                               'ticket_quantity' => 3,
                                                                           ]);
@@ -75,8 +75,8 @@ class PublishConcertTest extends TestCase
     /** @test */
     function a_guest_cannot_publish_concerts()
     {
-        $concert = factory(Concert::class)
-            ->states('unpublished')
+        $concert = Concert::factory()
+            ->unpublished()
             ->create(
                 [
                     'ticket_quantity' => 3,
@@ -96,7 +96,7 @@ class PublishConcertTest extends TestCase
     /** @test */
     function concerts_that_do_not_exist_cannot_be_published()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $response = $this->actingAs($user)->post(
             '/backstage/published-concerts',

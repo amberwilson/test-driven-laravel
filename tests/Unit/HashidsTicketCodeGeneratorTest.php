@@ -25,7 +25,7 @@ class HashidsTicketCodeGeneratorTest extends TestCase
 
         $code = $ticketCodeGenerator->generateFor(new Ticket(['id' => 1]));
 
-        self::assertRegExp('/^[A-Z]+$/', $code);
+        self::assertMatchesRegularExpression('/^[A-Z]+$/', $code);
     }
 
     /** @test */

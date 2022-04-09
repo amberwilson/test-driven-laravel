@@ -11,7 +11,7 @@ class OrderConfirmationEmailTest extends TestCase
     /** @test */
     public function email_contains_a_link_to_the_order_confirmation_page(): void
     {
-        $order = factory(Order::class)->make(
+        $order = Order::factory()->make(
             [
                 'confirmation_number' => 'ORDERCONFIRMATION1234',
             ]
@@ -26,7 +26,7 @@ class OrderConfirmationEmailTest extends TestCase
     /** @test */
     public function email_has_a_subject(): void
     {
-        $order = factory(Order::class)->make();
+        $order = Order::factory()->make();
 
         $orderConfirmationEmail = new OrderConfirmationEmail($order);
 

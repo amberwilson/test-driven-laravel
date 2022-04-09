@@ -16,7 +16,7 @@ class RandomOrderConfirmationNumberGeneratorTest extends TestCase
         $generator = new RandomOrderConfirmationNumberGenerator();
         $confirmationNumber = $generator->generate();
 
-        self::assertRegExp('/^[A-Z0-9]+$/', strlen($confirmationNumber));
+        self::assertMatchesRegularExpression('/^[A-Z0-9]+$/', strlen($confirmationNumber));
     }
 
     /** @test */

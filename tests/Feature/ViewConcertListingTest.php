@@ -15,7 +15,7 @@ class ViewConcertListingTest extends TestCase
     /** @test */
     public function user_can_view_a_published_concert_listing(): void
     {
-        $concert = factory(Concert::class)->state('published')->create(
+        $concert = Concert::factory()->published()->create(
             [
                 'title' => 'The Red Chord',
                 'subtitle' => 'with Animosity and Lethargy',
@@ -48,7 +48,7 @@ class ViewConcertListingTest extends TestCase
     /** @test */
     public function user_cannot_view_unpublished_concert_listings(): void
     {
-        $concert = factory(Concert::class)->states('unpublished')->create();
+        $concert = Concert::factory()->unpublished()->create();
 
         $this->withExceptionHandling();
         $response = $this->get("/concerts/{$concert->id}");

@@ -1,26 +1,36 @@
 <?php
 
-/** @var Factory $factory */
+namespace Database\Factories;
 
-use App\Concert;
 use App\Order;
-use Carbon\Carbon;
-use Faker\Generator as Faker;
-use Illuminate\Database\Eloquent\Factory;
-use Illuminate\Support\Str;
+use App\Ticket;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->define(
-    Order::class,
-    static function (Faker $faker) {
+class OrderFactory extends Factory
+{
+    public function definition(): array
+    {
         return [
-            'amount' => $faker->numberBetween(1500, 10000),
-            'email' => $faker->email,
+            'amount' => $this->faker->numberBetween(1500, 10000),
+            'email' => $this->faker->email,
             'card_last_four' => '4242',
             'confirmation_number' => 'ORDERCONFIRMATION1234',
         ];
     }
-);
 
-$factory->state(Concert::class, 'published', ['published_at' => Carbon::parse('-1 day')]);
+    public static function createForConcert($concert, $overrides = [], $ticketQuantity = 1): Order
+    {
+        /** @var Order $order */
+        $order = Order::factory()->create($overrides);
+        /** @var array{Ticket} $tickets */
+        $tickets = Ticket::factory($ticketQuantity)
+            ->create(
+                [
+                    'concert_id' => $concert->id,
+                ]
+            );
+        $order->tickets()->saveMany($tickets);
 
-$factory->state(Concert::class, 'unpublished', ['published_at' => null]);
+        return $order;
+    }
+}

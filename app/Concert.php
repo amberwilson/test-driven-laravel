@@ -4,6 +4,7 @@ namespace App;
 
 use App\Billing\NotEnoughTicketsException;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Str;
@@ -15,6 +16,8 @@ use Illuminate\Support\Str;
  */
 class Concert extends Model
 {
+    use HasFactory;
+
     protected $guarded = [];
 
     protected $casts = [

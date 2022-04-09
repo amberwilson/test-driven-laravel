@@ -4,7 +4,7 @@ namespace Tests\Feature\Backstage;
 
 use App\Concert;
 use App\User;
-use ConcertFactory;
+use Database\Factories\ConcertFactory;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Http\Response;
 use Illuminate\Testing\TestResponse;
@@ -37,9 +37,9 @@ class ViewConcertListTest extends TestCase
     public function promoters_can_only_view_a_list_of_their_own_concerts(): void
     {
         /** @var User $user */
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         /** @var User $otherUser */
-        $otherUser = factory(User::class)->create();
+        $otherUser = User::factory()->create();
 
         // Create concerts in jumbled order to be sure we're really only pulling current user's concerts if we only pull 3
         /** @var array{Concert} $concerts */

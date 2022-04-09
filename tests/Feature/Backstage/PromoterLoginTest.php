@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;
 
 use function bcrypt;
-use function factory;
 
 class PromoterLoginTest extends TestCase
 {
@@ -17,7 +16,7 @@ class PromoterLoginTest extends TestCase
     /** @test */
     public function logging_in_with_valid_credentials(): void
     {
-        $user = factory(User::class)->create(
+        $user = User::factory()->create(
             [
                 'email' => 'jane@example.com',
                 'password' => bcrypt('super-secret-password')
@@ -40,7 +39,7 @@ class PromoterLoginTest extends TestCase
     /** @test */
     public function logging_in_with_invalid_credentials(): void
     {
-        $user = factory(User::class)->create(
+        $user = User::factory()->create(
             [
                 'email' => 'jane@example.com',
                 'password' => bcrypt('super-secret-password')
@@ -81,7 +80,7 @@ class PromoterLoginTest extends TestCase
     /** @test */
     public function logging_out_the_current_user(): void
     {
-        Auth::login(factory(User::class)->create());
+        Auth::login(User::factory()->create());
 
         $response = $this->post('/logout');
 

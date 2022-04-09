@@ -6,7 +6,8 @@ use App\AttendeeMessage;
 use App\Concert;
 use App\Jobs\SendAttendeeMessage;
 use App\Mail\AttendeeMessageEmail;
-use ConcertFactory;
+use Database\Factories\ConcertFactory;
+use Database\Factories\OrderFactory;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;
@@ -33,20 +34,20 @@ class SendAttendeeMessageTest extends TestCase
             ]
         );
 
-        $orderA = \OrderFactory::createForConcert(
+        $orderA = OrderFactory::createForConcert(
             $concert,
             ['email' => 'alex@example.com']
         );
-        $orderB = \OrderFactory::createForConcert(
+        $orderB = OrderFactory::createForConcert(
             $concert,
             ['email' => 'barb@example.com']
         );
-        $orderC = \OrderFactory::createForConcert(
+        $orderC = OrderFactory::createForConcert(
             $concert,
             ['email' => 'claire@example.com']
         );
 
-        $orderOrder = \OrderFactory::createForConcert(
+        $orderOrder = OrderFactory::createForConcert(
             $otherConcert,
             ['email' => 'ortho@example.com']
         );

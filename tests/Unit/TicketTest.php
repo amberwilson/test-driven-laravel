@@ -16,7 +16,7 @@ class TicketTest extends TestCase
     public function a_ticket_can_be_reserved(): void
     {
         /** @var Ticket $ticket */
-        $ticket = factory(Ticket::class)->create();
+        $ticket = Ticket::factory()->create();
         self::assertNull($ticket->reserved_at);
 
         $ticket->reserve();
@@ -28,7 +28,7 @@ class TicketTest extends TestCase
     public function a_ticket_can_be_released(): void
     {
         /** @var Ticket $ticket */
-        $ticket = factory(Ticket::class)->states('reserved')->create();
+        $ticket = Ticket::factory()->reserved()->create();
         self::assertNotNull($ticket->reserved_at);
 
         $ticket->release();
@@ -40,9 +40,9 @@ class TicketTest extends TestCase
     public function a_ticket_can_be_claimed_for_an_order(): void
     {
         /** @var Order $order */
-        $order = factory(Order::class)->create();
+        $order = Order::factory()->create();
         /** @var Ticket $ticket */
-        $ticket = factory(Ticket::class)->create(['code' => null]);
+        $ticket = Ticket::factory()->create(['code' => null]);
         TicketCode::shouldReceive('generateFor')->with($ticket)->andReturn('TICKETCODE1');
 
         $ticket->claimFor($order);

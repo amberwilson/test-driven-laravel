@@ -81,8 +81,8 @@ class ReservationTest extends TestCase
     public function completing_a_reservation(): void
     {
         /** @var Concert $concert */
-        $concert = factory(Concert::class)->create(['ticket_price' => 1200]);
-        $tickets = factory(Ticket::class, 3)->create(['concert_id' => $concert->id]);
+        $concert = Concert::factory()->create(['ticket_price' => 1200]);
+        $tickets = Ticket::factory(3)->create(['concert_id' => $concert->id]);
         $reservation = new Reservation($tickets, 'jane@example.com');
         $paymentGateway = new FakePaymentGateway();
 

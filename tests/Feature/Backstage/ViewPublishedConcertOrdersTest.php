@@ -5,9 +5,9 @@ namespace Tests\Feature\Backstage;
 use App\Concert;
 use App\User;
 use Carbon\Carbon;
-use ConcertFactory;
+use Database\Factories\ConcertFactory;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use OrderFactory;
+use Database\Factories\OrderFactory;
 use Tests\TestCase;
 
 class ViewPublishedConcertOrdersTest extends TestCase
@@ -18,7 +18,7 @@ class ViewPublishedConcertOrdersTest extends TestCase
     function a_promoter_can_view_the_orders_of_their_own_published_concert()
     {
         /** @var User $user */
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         /** @var Concert $concert */
         $concert = ConcertFactory::createPublished(['user_id' => $user->id]);
 
@@ -33,7 +33,7 @@ class ViewPublishedConcertOrdersTest extends TestCase
     function a_promoter_can_view_the_10_most_recent_orders_for_their_concert()
     {
         /** @var User $user */
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         /** @var Concert $concert */
         $concert = ConcertFactory::createPublished(['user_id' => $user->id]);
 
@@ -73,7 +73,7 @@ class ViewPublishedConcertOrdersTest extends TestCase
     /** @test */
     function a_promoter_cannot_view_the_orders_of_unpublished_concerts()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $concert = ConcertFactory::createUnpublished(['user_id' => $user->id]);
 
         $response = $this->actingAs($user)->get("/backstage/published-concerts/{$concert->id}/orders");
@@ -84,8 +84,8 @@ class ViewPublishedConcertOrdersTest extends TestCase
     /** @test */
     function a_promoter_cannot_view_the_orders_of_another_published_concert()
     {
-        $user = factory(User::class)->create();
-        $otherUser = factory(User::class)->create();
+        $user = User::factory()->create();
+        $otherUser = User::factory()->create();
         $concert = ConcertFactory::createPublished(['user_id' => $otherUser->id]);
 
         $response = $this->actingAs($user)->get("/backstage/published-concerts/{$concert->id}/orders");

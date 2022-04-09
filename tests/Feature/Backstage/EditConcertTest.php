@@ -56,8 +56,8 @@ class EditConcertTest extends TestCase
     /** @test */
     function promoters_can_view_the_edit_form_for_their_own_unpublished_concerts()
     {
-        $user = factory(User::class)->create();
-        $concert = factory(Concert::class)->create(['user_id' => $user->id]);
+        $user = User::factory()->create();
+        $concert = Concert::factory()->create(['user_id' => $user->id]);
         $this->assertFalse($concert->isPublished());
 
         $response = $this->actingAs($user)->get("/backstage/concerts/{$concert->id}/edit");
@@ -69,8 +69,8 @@ class EditConcertTest extends TestCase
     /** @test */
     function promoters_cannot_view_the_edit_form_for_their_own_published_concerts()
     {
-        $user = factory(User::class)->create();
-        $concert = factory(Concert::class)->states('published')->create(['user_id' => $user->id]);
+        $user = User::factory()->create();
+        $concert = Concert::factory()->published()->create(['user_id' => $user->id]);
         $this->assertTrue($concert->isPublished());
 
         $response = $this->actingAs($user)->get("/backstage/concerts/{$concert->id}/edit");
@@ -81,9 +81,9 @@ class EditConcertTest extends TestCase
     /** @test */
     function promoters_cannot_view_the_edit_form_for_other_concerts()
     {
-        $user = factory(User::class)->create();
-        $otherUser = factory(User::class)->create();
-        $concert = factory(Concert::class)->create(['user_id' => $otherUser->id]);
+        $user = User::factory()->create();
+        $otherUser = User::factory()->create();
+        $concert = Concert::factory()->create(['user_id' => $otherUser->id]);
 
         $response = $this->actingAs($user)->get("/backstage/concerts/{$concert->id}/edit");
 
@@ -93,7 +93,7 @@ class EditConcertTest extends TestCase
     /** @test */
     function promoters_see_a_404_when_attempting_to_view_the_edit_form_for_a_concert_that_does_not_exist()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $response = $this->actingAs($user)->get("/backstage/concerts/999/edit");
 
@@ -103,8 +103,8 @@ class EditConcertTest extends TestCase
     /** @test */
     function guests_are_asked_to_login_when_attempting_to_view_the_edit_form_for_any_concert()
     {
-        $otherUser = factory(User::class)->create();
-        $concert = factory(Concert::class)->create(['user_id' => $otherUser->id]);
+        $otherUser = User::factory()->create();
+        $concert = Concert::factory()->create(['user_id' => $otherUser->id]);
 
         $response = $this->get("/backstage/concerts/{$concert->id}/edit");
 
@@ -124,8 +124,8 @@ class EditConcertTest extends TestCase
     /** @test */
     public function promoters_can_edit_their_own_unpublished_concerts(): void
     {
-        $user = factory(User::class)->create();
-        $concert = factory(Concert::class)->create(
+        $user = User::factory()->create();
+        $concert = Concert::factory()->create(
             [
                 'user_id' => $user->id,
                 'title' => 'Old title',
@@ -182,9 +182,9 @@ class EditConcertTest extends TestCase
     /** @test */
     public function promoters_cannot_edit_other_unpublished_concerts(): void
     {
-        $user = factory(User::class)->create();
-        $otherUser = factory(User::class)->create();
-        $concert = factory(Concert::class)->create($this->oldAttributes(['user_id' => $otherUser->id]));
+        $user = User::factory()->create();
+        $otherUser = User::factory()->create();
+        $concert = Concert::factory()->create($this->oldAttributes(['user_id' => $otherUser->id]));
         $this->assertFalse($concert->isPublished());
 
         $response = $this->actingAs($user)->patch(
@@ -203,8 +203,8 @@ class EditConcertTest extends TestCase
     /** @test */
     public function promoters_cannot_edit_published_concerts(): void
     {
-        $user = factory(User::class)->create();
-        $concert = factory(Concert::class)->state('published')->create($this->oldAttributes(['user_id' => $user->id]));
+        $user = User::factory()->create();
+        $concert = Concert::factory()->published()->create($this->oldAttributes(['user_id' => $user->id]));
         $this->assertTrue($concert->isPublished());
 
         $response = $this->actingAs($user)->patch(
@@ -223,8 +223,8 @@ class EditConcertTest extends TestCase
     /** @test */
     public function guests_cannot_edit_concerts(): void
     {
-        $user = factory(User::class)->create();
-        $concert = factory(Concert::class)->create($this->oldAttributes(['user_id' => $user->id]));
+        $user = User::factory()->create();
+        $concert = Concert::factory()->create($this->oldAttributes(['user_id' => $user->id]));
         $this->assertFalse($concert->isPublished());
 
         $response = $this->patch(
@@ -244,8 +244,8 @@ class EditConcertTest extends TestCase
     /** @test */
     function title_is_required()
     {
-        $user = factory(User::class)->create();
-        $concert = factory(Concert::class)->create([
+        $user = User::factory()->create();
+        $concert = Concert::factory()->create([
                                                        'user_id' => $user->id,
                                                        'title' => 'Old title',
                                                    ]);
@@ -268,8 +268,8 @@ class EditConcertTest extends TestCase
     /** @test */
     function subtitle_is_optional()
     {
-        $user = factory(User::class)->create();
-        $concert = factory(Concert::class)->create([
+        $user = User::factory()->create();
+        $concert = Concert::factory()->create([
                                                        'user_id' => $user->id,
                                                        'subtitle' => 'Old subtitle',
                                                    ]);
@@ -291,8 +291,8 @@ class EditConcertTest extends TestCase
     /** @test */
     function additional_information_is_optional()
     {
-        $user = factory(User::class)->create();
-        $concert = factory(Concert::class)->create([
+        $user = User::factory()->create();
+        $concert = Concert::factory()->create([
                                                        'user_id' => $user->id,
                                                        'additional_information' => 'Old additional information',
                                                    ]);
@@ -314,8 +314,8 @@ class EditConcertTest extends TestCase
     /** @test */
     function date_is_required()
     {
-        $user = factory(User::class)->create();
-        $concert = factory(Concert::class)->create([
+        $user = User::factory()->create();
+        $concert = Concert::factory()->create([
                                                        'user_id' => $user->id,
                                                        'date' => Carbon::parse('2018-01-01 8:00pm'),
                                                    ]);
@@ -338,8 +338,8 @@ class EditConcertTest extends TestCase
     /** @test */
     function date_must_be_a_valid_date()
     {
-        $user = factory(User::class)->create();
-        $concert = factory(Concert::class)->create([
+        $user = User::factory()->create();
+        $concert = Concert::factory()->create([
                                                        'user_id' => $user->id,
                                                        'date' => Carbon::parse('2018-01-01 8:00pm'),
                                                    ]);
@@ -362,8 +362,8 @@ class EditConcertTest extends TestCase
     /** @test */
     function time_is_required()
     {
-        $user = factory(User::class)->create();
-        $concert = factory(Concert::class)->create([
+        $user = User::factory()->create();
+        $concert = Concert::factory()->create([
                                                        'user_id' => $user->id,
                                                        'date' => Carbon::parse('2018-01-01 8:00pm'),
                                                    ]);
@@ -386,8 +386,8 @@ class EditConcertTest extends TestCase
     /** @test */
     function time_must_be_a_valid_time()
     {
-        $user = factory(User::class)->create();
-        $concert = factory(Concert::class)->create([
+        $user = User::factory()->create();
+        $concert = Concert::factory()->create([
                                                        'user_id' => $user->id,
                                                        'date' => Carbon::parse('2018-01-01 8:00pm'),
                                                    ]);
@@ -410,8 +410,8 @@ class EditConcertTest extends TestCase
     /** @test */
     function venue_is_required()
     {
-        $user = factory(User::class)->create();
-        $concert = factory(Concert::class)->create([
+        $user = User::factory()->create();
+        $concert = Concert::factory()->create([
                                                        'user_id' => $user->id,
                                                        'venue' => 'Old venue',
                                                    ]);
@@ -434,8 +434,8 @@ class EditConcertTest extends TestCase
     /** @test */
     function venue_address_is_required()
     {
-        $user = factory(User::class)->create();
-        $concert = factory(Concert::class)->create([
+        $user = User::factory()->create();
+        $concert = Concert::factory()->create([
                                                        'user_id' => $user->id,
                                                        'venue_address' => 'Old address',
                                                    ]);
@@ -458,8 +458,8 @@ class EditConcertTest extends TestCase
     /** @test */
     function city_is_required()
     {
-        $user = factory(User::class)->create();
-        $concert = factory(Concert::class)->create([
+        $user = User::factory()->create();
+        $concert = Concert::factory()->create([
                                                        'user_id' => $user->id,
                                                        'city' => 'Old city',
                                                    ]);
@@ -482,8 +482,8 @@ class EditConcertTest extends TestCase
     /** @test */
     function state_is_required()
     {
-        $user = factory(User::class)->create();
-        $concert = factory(Concert::class)->create([
+        $user = User::factory()->create();
+        $concert = Concert::factory()->create([
                                                        'user_id' => $user->id,
                                                        'state' => 'Old state',
                                                    ]);
@@ -506,8 +506,8 @@ class EditConcertTest extends TestCase
     /** @test */
     function zip_is_required()
     {
-        $user = factory(User::class)->create();
-        $concert = factory(Concert::class)->create([
+        $user = User::factory()->create();
+        $concert = Concert::factory()->create([
                                                        'user_id' => $user->id,
                                                        'zip' => 'Old zip',
                                                    ]);
@@ -530,8 +530,8 @@ class EditConcertTest extends TestCase
     /** @test */
     function ticket_price_is_required()
     {
-        $user = factory(User::class)->create();
-        $concert = factory(Concert::class)->create([
+        $user = User::factory()->create();
+        $concert = Concert::factory()->create([
                                                        'user_id' => $user->id,
                                                        'ticket_price' => 5250,
                                                    ]);
@@ -554,8 +554,8 @@ class EditConcertTest extends TestCase
     /** @test */
     function ticket_price_must_be_numeric()
     {
-        $user = factory(User::class)->create();
-        $concert = factory(Concert::class)->create([
+        $user = User::factory()->create();
+        $concert = Concert::factory()->create([
                                                        'user_id' => $user->id,
                                                        'ticket_price' => 5250,
                                                    ]);
@@ -578,8 +578,8 @@ class EditConcertTest extends TestCase
     /** @test */
     function ticket_price_must_be_at_least_5()
     {
-        $user = factory(User::class)->create();
-        $concert = factory(Concert::class)->create([
+        $user = User::factory()->create();
+        $concert = Concert::factory()->create([
                                                        'user_id' => $user->id,
                                                        'ticket_price' => 5250,
                                                    ]);
@@ -602,8 +602,8 @@ class EditConcertTest extends TestCase
     /** @test */
     function ticket_quantity_is_required()
     {
-        $user = factory(User::class)->create();
-        $concert = factory(Concert::class)->create([
+        $user = User::factory()->create();
+        $concert = Concert::factory()->create([
                                                        'user_id' => $user->id,
                                                        'ticket_quantity' => 5,
                                                    ]);
@@ -628,8 +628,8 @@ class EditConcertTest extends TestCase
     /** @test */
     function ticket_quantity_must_be_an_integer()
     {
-        $user = factory(User::class)->create();
-        $concert = factory(Concert::class)->create([
+        $user = User::factory()->create();
+        $concert = Concert::factory()->create([
                                                        'user_id' => $user->id,
                                                        'ticket_quantity' => 5,
                                                    ]);
@@ -654,8 +654,9 @@ class EditConcertTest extends TestCase
     /** @test */
     function ticket_quantity_must_be_at_least_one()
     {
-        $user = factory(User::class)->create();
-        $concert = factory(Concert::class)->create([
+        /** @var User $user */
+        $user = User::factory()->create();
+        $concert = Concert::factory()->create([
                                                        'user_id' => $user->id,
                                                        'ticket_quantity' => 5,
                                                    ]);
