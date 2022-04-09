@@ -50,6 +50,5 @@ class TicketTest extends TestCase
         self::assertContains($ticket->id, $order->tickets->pluck('id'));
         // assert ticket had expected ticket code generated
         self::assertEquals('TICKETCODE1', $ticket->code);
-
     }
 }

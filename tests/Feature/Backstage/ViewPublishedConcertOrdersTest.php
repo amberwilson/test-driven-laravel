@@ -32,7 +32,6 @@ class ViewPublishedConcertOrdersTest extends TestCase
     /** @test */
     function a_promoter_can_view_the_10_most_recent_orders_for_their_concert()
     {
-        $this->withoutExceptionHandling();
         /** @var User $user */
         $user = factory(User::class)->create();
         /** @var Concert $concert */

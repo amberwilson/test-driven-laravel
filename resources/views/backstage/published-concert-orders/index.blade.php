@@ -20,8 +20,11 @@ use App\Concert;
                 </h1>
                 <div class="text-base">
                     <a href="{{ route('backstage.published-concert-orders.index', $concert) }}"
-                       class="wt-bold inline-block">
+                       class="wt-bold inline-block m-xs-r-4">
                         Orders
+                    </a>
+                    <a href="{{ route('backstage.concert-messages.new', $concert) }}" class="inline-block">
+                        Message Attendees
                     </a>
                 </div>
             </div>

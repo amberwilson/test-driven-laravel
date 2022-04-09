@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Backstage\ConcertMessagesController;
 use App\Http\Controllers\Backstage\ConcertsController;
 use App\Http\Controllers\Backstage\PublishedConcertOrdersController;
 use App\Http\Controllers\Backstage\PublishedConcertsController;
@@ -18,6 +19,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/', static function () {
+    if (Auth::user()) {
+        return redirect()->route('backstage.concerts.index');
+    }
+    return redirect()->route('auth.show-login');
+});
 
 Route::get('/concerts/{id}', [PublicConcertsController::class, 'show'])->name('concerts.show');
 Route::post('/concerts/{id}/orders', [ConcertOrdersController::class, 'store']);
@@ -39,6 +47,13 @@ Route::group(['middleware' => 'auth', 'prefix' => 'backstage'], static function 
     );
     Route::get('/published-concerts/{id}/orders', [PublishedConcertOrdersController::class, 'index'])->name(
         'backstage.published-concert-orders.index'
+    );
+
+    Route::get('/concerts/{id}/messages/new', [ConcertMessagesController::class, 'create'])->name(
+        'backstage.concert-messages.new'
+    );
+    Route::post('/concerts/{id}/messages', [ConcertMessagesController::class, 'store'])->name(
+        'backstage.concert-messages.store'
     );
 });
 

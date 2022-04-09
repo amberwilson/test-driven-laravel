@@ -9,6 +9,7 @@ declare(strict_types=1);
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Tests;
 
 use PHPUnit\Framework\Constraint\Constraint;
@@ -61,7 +62,7 @@ final class CustomArraySubset extends Constraint
     {
         //type cast $other & $this->subset as an array to allow
         //support in standard array functions.
-        $other        = $this->toArray($other);
+        $other = $this->toArray($other);
         $this->subset = $this->toArray($this->subset);
 
         $patched = \array_replace_recursive($other, $this->subset);
@@ -128,6 +129,6 @@ final class CustomArraySubset extends Constraint
         }
 
         // Keep BC even if we know that array would not be the expected one
-        return (array) $other;
+        return (array)$other;
     }
 }

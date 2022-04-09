@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
             }
         );
 
-        $this->app->bind(HashidsTicketCodeGenerator::class, function(){
+        $this->app->bind(HashidsTicketCodeGenerator::class, function () {
             return new HashidsTicketCodeGenerator(config('app.ticket_code_salt'));
         });
 
