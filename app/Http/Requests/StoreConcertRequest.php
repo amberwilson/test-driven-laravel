@@ -3,7 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 /**
  * @property string $title
@@ -18,6 +20,7 @@ use Illuminate\Support\Facades\Auth;
  * @property string $zip
  * @property string $ticket_price
  * @property string $ticket_quantity
+ * @property UploadedFile $poster_image
  */
 class StoreConcertRequest extends FormRequest
 {
@@ -49,6 +52,7 @@ class StoreConcertRequest extends FormRequest
             'zip' => ['required'],
             'ticket_price' => ['required', 'numeric', 'min:5'],
             'ticket_quantity' => ['required', 'numeric', 'min:1'],
+            'poster_image' => ['nullable', 'image', Rule::dimensions()->minWidth(400)->ratio(8.5 / 11)],
         ];
     }
 }

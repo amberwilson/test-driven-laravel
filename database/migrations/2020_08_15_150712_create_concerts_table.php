@@ -29,6 +29,7 @@ class CreateConcertsTable extends Migration
                 $table->string('state');
                 $table->string('zip');
                 $table->string('additional_information')->nullable();
+                $table->string('poster_image_path')->nullable();
                 $table->dateTime('published_at')->nullable();
                 $table->timestamps();
             }

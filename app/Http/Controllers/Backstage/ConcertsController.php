@@ -36,7 +36,7 @@ class ConcertsController extends Controller
 
     public function store(StoreConcertRequest $request)
     {
-        Auth::user()->concerts()->create(
+        Auth::user()?->concerts()->create(
             [
                 'title' => $request->title,
                 'subtitle' => $request->subtitle,
@@ -49,6 +49,7 @@ class ConcertsController extends Controller
                 'zip' => $request->zip,
                 'ticket_price' => $request->ticket_price * 100,
                 'ticket_quantity' => (int)$request->ticket_quantity,
+                'poster_image_path' => $request->poster_image?->store('posters', 's3'),
             ]
         );
 
@@ -58,7 +59,7 @@ class ConcertsController extends Controller
     public function edit($id)
     {
         /** @var Concert $concert */
-        $concert = Auth::user()->concerts()->findOrFail($id);
+        $concert = Auth::user()?->concerts()->findOrFail($id);
 
         abort_if($concert->isPublished(), 403);
 
@@ -73,7 +74,7 @@ class ConcertsController extends Controller
     public function update(UpdateConcertRequest $request, int $id)
     {
         /** @var Concert $concert */
-        $concert = Auth::user()->concerts()->findOrFail($id);
+        $concert = Auth::user()?->concerts()->findOrFail($id);
 
         abort_if($concert->isPublished(), 403);
 
