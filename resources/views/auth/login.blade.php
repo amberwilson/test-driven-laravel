@@ -11,7 +11,7 @@
                         <label class="form-label pseudo-hidden">Email address</label>
                         <div class="input-group">
                         <span class="input-group-addon">
-                            <x-icon-user/>
+                            <x-heroicon-o-user/>
                         </span>
                             <input type="email" name="email" class="form-control" placeholder="Email address"
                                    value="{{ old('email') }}">
@@ -21,7 +21,7 @@
                         <label class="form-label pseudo-hidden">Password</label>
                         <div class="input-group">
                         <span class="input-group-addon">
-                            <x-icon-lock-closed/>
+                            <x-heroicon-o-lock-closed/>
                         </span>
                             <input type="password" name="password" class="form-control" placeholder="Password">
                         </div>

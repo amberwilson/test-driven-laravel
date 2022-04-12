@@ -1037,7 +1037,7 @@ img {
 .media-object {
   display: flex;
 }
-.media-left > .zondicon {
+.media-left > .bladeicon {
   vertical-align: sub;
 }
 .media-body {
@@ -1500,11 +1500,10 @@ select.form-control {
 .card-section {
   padding: 1rem 1.5rem;
 }
-.zondicon {
+.bladeicon {
   display: inline-block;
   height: 1.25em;
   width: 1.25em;
-  fill: currentColor;
   color: hsl(202, 20%, 20%);
   vertical-align: text-bottom;
 }
@@ -1525,6 +1524,22 @@ select.form-control {
 }
 .table td {
   border-top: 1px solid #e8eaeb;
+}
+.alert {
+  padding: 1rem 1.5rem;
+  background-color: #fff;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 0.25rem;
+}
+.alert-danger {
+  background-color: hsl(2, 100%, 99%);
+  border-color: #d95550;
+}
+.alert-success {
+  background-color: #edf8ff;
+  border-color: #a8d9f5;
+  color: #2b729e;
 }
 [v-cloak] .v-cloak-block {
   display: block;

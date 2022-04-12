@@ -47,7 +47,7 @@ use App\Ticket;
                                     <div class="col-sm">
                                         <div class="media-object">
                                             <div class="media-left">
-                                                <x-icon-calendar/>
+                                                <x-heroicon-o-calendar/>
                                             </div>
                                             <div class="media-body p-xs-l-4">
                                                 <p class="wt-bold">
@@ -55,14 +55,15 @@ use App\Ticket;
                                                         {{ $ticket->concert->date->format('l, F jS, Y') }}
                                                     </time>
                                                 </p>
-                                                <p class="text-dark-soft">Doors at {{ $ticket->concert->date->format('g:ia') }}</p>
+                                                <p class="text-dark-soft">Doors
+                                                    at {{ $ticket->concert->date->format('g:ia') }}</p>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-sm">
                                         <div class="media-object">
                                             <div class="media-left">
-                                                <x-icon-location-marker/>
+                                                <x-heroicon-o-location-marker/>
                                             </div>
                                             <div class="media-body p-xs-l-4">
                                                 <p class="wt-bold">{{ $ticket->concert->venue }}</p>
