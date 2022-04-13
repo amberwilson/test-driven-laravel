@@ -6,7 +6,7 @@
             <h1 class="text-lg">Add a concert</h1>
         </div>
     </div>
-    <form class="bg-soft p-xs-y-5" action="/backstage/concerts" method="POST">
+    <form class="bg-soft p-xs-y-5" action="/backstage/concerts" method="POST" enctype="multipart/form-data">
         {{ csrf_field() }}
 
         @if ($errors->any())
@@ -168,9 +168,9 @@
                                         <div class="form-group {{ $errors->first('ticket_price', 'has-error') }}">
                                             <label class="form-label">Price</label>
                                             <div class="input-group">
-                                        <span class="input-group-addon text-dark-muted">
-                                            $
-                                        </span>
+                                            <span class="input-group-addon text-dark-muted">
+                                                $
+                                            </span>
                                                 <input name="ticket_price" class="form-control" placeholder="0.00"
                                                        value="{{ old('ticket_price') }}">
                                             </div>
@@ -183,6 +183,31 @@
                                                    value="{{ old('ticket_quantity') }}">
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="border-b p-xs-b-4 m-xs-b-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col col-lg-4">
+                        <div class="p-xs-y-4">
+                            <h2 class="text-base wt-medium m-xs-b-4">Concert Poster</h2>
+                            <p class="text-dark-soft text-sm">
+                                Have a sweet poster for this concert? Upload it here and it'll be included on the
+                                checkout page.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col col-lg-8">
+                        <div class="card">
+                            <div class="card-section">
+                                <div class="form-group {{ $errors->first('poster_image', 'has-error') }}">
+                                    <label class="form-label m-xs-b-2">Poster Image</label>
+                                    <input type="file" name="poster_image" class="form-control-file">
                                 </div>
                             </div>
                         </div>

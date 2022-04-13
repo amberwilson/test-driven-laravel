@@ -7,7 +7,7 @@ use App\Billing\FakePaymentGateway;
 use App\Concert;
 use App\Reservation;
 use App\Ticket;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Mockery;
 use Mockery\Mock;
 use Tests\TestCase;
@@ -15,7 +15,7 @@ use Tests\TestCase;
 
 class ReservationTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /** @test */
     public function calculating_the_total_cost(): void

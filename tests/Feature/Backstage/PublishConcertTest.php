@@ -5,12 +5,12 @@ namespace Tests\Feature\Backstage;
 use App\Concert;
 use App\User;
 use Database\Factories\ConcertFactory;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class PublishConcertTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /** @test */
     public function a_promoter_can_publish_their_own_concert(): void
@@ -58,9 +58,9 @@ class PublishConcertTest extends TestCase
         $user = User::factory()->create();
         $otherUser = User::factory()->create();
         $concert = Concert::factory()->unpublished()->create([
-                                                                              'user_id' => $otherUser->id,
-                                                                              'ticket_quantity' => 3,
-                                                                          ]);
+                                                                 'user_id' => $otherUser->id,
+                                                                 'ticket_quantity' => 3,
+                                                             ]);
 
         $response = $this->actingAs($user)->post('/backstage/published-concerts', [
             'concert_id' => $concert->id,

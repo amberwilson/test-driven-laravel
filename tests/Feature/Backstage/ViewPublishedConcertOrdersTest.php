@@ -6,13 +6,13 @@ use App\Concert;
 use App\User;
 use Carbon\Carbon;
 use Database\Factories\ConcertFactory;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Database\Factories\OrderFactory;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class ViewPublishedConcertOrdersTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /** @test */
     function a_promoter_can_view_the_orders_of_their_own_published_concert()

@@ -3,7 +3,7 @@
 namespace Tests\Feature\Backstage;
 
 use App\User;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;
 
@@ -11,7 +11,7 @@ use function bcrypt;
 
 class PromoterLoginTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /** @test */
     public function logging_in_with_valid_credentials(): void

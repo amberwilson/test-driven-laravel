@@ -8,13 +8,13 @@ use App\Jobs\SendAttendeeMessage;
 use App\Mail\AttendeeMessageEmail;
 use Database\Factories\ConcertFactory;
 use Database\Factories\OrderFactory;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;
 
 class SendAttendeeMessageTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /** @test */
     public function it_sends_the_message_to_all_concert_attendees(): void

@@ -5,12 +5,12 @@ namespace Tests\Feature\Backstage;
 use App\Concert;
 use App\User;
 use Carbon\Carbon;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class EditConcertTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     private function validParams($overrides = [])
     {
@@ -246,9 +246,9 @@ class EditConcertTest extends TestCase
     {
         $user = User::factory()->create();
         $concert = Concert::factory()->create([
-                                                       'user_id' => $user->id,
-                                                       'title' => 'Old title',
-                                                   ]);
+                                                  'user_id' => $user->id,
+                                                  'title' => 'Old title',
+                                              ]);
         $this->assertFalse($concert->isPublished());
 
         $response = $this->actingAs($user)->from("/backstage/concerts/{$concert->id}/edit")->patch(
@@ -270,9 +270,9 @@ class EditConcertTest extends TestCase
     {
         $user = User::factory()->create();
         $concert = Concert::factory()->create([
-                                                       'user_id' => $user->id,
-                                                       'subtitle' => 'Old subtitle',
-                                                   ]);
+                                                  'user_id' => $user->id,
+                                                  'subtitle' => 'Old subtitle',
+                                              ]);
         $this->assertFalse($concert->isPublished());
 
         $response = $this->actingAs($user)->from("/backstage/concerts/{$concert->id}/edit")->patch(
@@ -293,9 +293,9 @@ class EditConcertTest extends TestCase
     {
         $user = User::factory()->create();
         $concert = Concert::factory()->create([
-                                                       'user_id' => $user->id,
-                                                       'additional_information' => 'Old additional information',
-                                                   ]);
+                                                  'user_id' => $user->id,
+                                                  'additional_information' => 'Old additional information',
+                                              ]);
         $this->assertFalse($concert->isPublished());
 
         $response = $this->actingAs($user)->from("/backstage/concerts/{$concert->id}/edit")->patch(
@@ -316,9 +316,9 @@ class EditConcertTest extends TestCase
     {
         $user = User::factory()->create();
         $concert = Concert::factory()->create([
-                                                       'user_id' => $user->id,
-                                                       'date' => Carbon::parse('2018-01-01 8:00pm'),
-                                                   ]);
+                                                  'user_id' => $user->id,
+                                                  'date' => Carbon::parse('2018-01-01 8:00pm'),
+                                              ]);
         $this->assertFalse($concert->isPublished());
 
         $response = $this->actingAs($user)->from("/backstage/concerts/{$concert->id}/edit")->patch(
@@ -340,9 +340,9 @@ class EditConcertTest extends TestCase
     {
         $user = User::factory()->create();
         $concert = Concert::factory()->create([
-                                                       'user_id' => $user->id,
-                                                       'date' => Carbon::parse('2018-01-01 8:00pm'),
-                                                   ]);
+                                                  'user_id' => $user->id,
+                                                  'date' => Carbon::parse('2018-01-01 8:00pm'),
+                                              ]);
         $this->assertFalse($concert->isPublished());
 
         $response = $this->actingAs($user)->from("/backstage/concerts/{$concert->id}/edit")->patch(
@@ -364,9 +364,9 @@ class EditConcertTest extends TestCase
     {
         $user = User::factory()->create();
         $concert = Concert::factory()->create([
-                                                       'user_id' => $user->id,
-                                                       'date' => Carbon::parse('2018-01-01 8:00pm'),
-                                                   ]);
+                                                  'user_id' => $user->id,
+                                                  'date' => Carbon::parse('2018-01-01 8:00pm'),
+                                              ]);
         $this->assertFalse($concert->isPublished());
 
         $response = $this->actingAs($user)->from("/backstage/concerts/{$concert->id}/edit")->patch(
@@ -388,9 +388,9 @@ class EditConcertTest extends TestCase
     {
         $user = User::factory()->create();
         $concert = Concert::factory()->create([
-                                                       'user_id' => $user->id,
-                                                       'date' => Carbon::parse('2018-01-01 8:00pm'),
-                                                   ]);
+                                                  'user_id' => $user->id,
+                                                  'date' => Carbon::parse('2018-01-01 8:00pm'),
+                                              ]);
         $this->assertFalse($concert->isPublished());
 
         $response = $this->actingAs($user)->from("/backstage/concerts/{$concert->id}/edit")->patch(
@@ -412,9 +412,9 @@ class EditConcertTest extends TestCase
     {
         $user = User::factory()->create();
         $concert = Concert::factory()->create([
-                                                       'user_id' => $user->id,
-                                                       'venue' => 'Old venue',
-                                                   ]);
+                                                  'user_id' => $user->id,
+                                                  'venue' => 'Old venue',
+                                              ]);
         $this->assertFalse($concert->isPublished());
 
         $response = $this->actingAs($user)->from("/backstage/concerts/{$concert->id}/edit")->patch(
@@ -436,9 +436,9 @@ class EditConcertTest extends TestCase
     {
         $user = User::factory()->create();
         $concert = Concert::factory()->create([
-                                                       'user_id' => $user->id,
-                                                       'venue_address' => 'Old address',
-                                                   ]);
+                                                  'user_id' => $user->id,
+                                                  'venue_address' => 'Old address',
+                                              ]);
         $this->assertFalse($concert->isPublished());
 
         $response = $this->actingAs($user)->from("/backstage/concerts/{$concert->id}/edit")->patch(
@@ -460,9 +460,9 @@ class EditConcertTest extends TestCase
     {
         $user = User::factory()->create();
         $concert = Concert::factory()->create([
-                                                       'user_id' => $user->id,
-                                                       'city' => 'Old city',
-                                                   ]);
+                                                  'user_id' => $user->id,
+                                                  'city' => 'Old city',
+                                              ]);
         $this->assertFalse($concert->isPublished());
 
         $response = $this->actingAs($user)->from("/backstage/concerts/{$concert->id}/edit")->patch(
@@ -484,9 +484,9 @@ class EditConcertTest extends TestCase
     {
         $user = User::factory()->create();
         $concert = Concert::factory()->create([
-                                                       'user_id' => $user->id,
-                                                       'state' => 'Old state',
-                                                   ]);
+                                                  'user_id' => $user->id,
+                                                  'state' => 'Old state',
+                                              ]);
         $this->assertFalse($concert->isPublished());
 
         $response = $this->actingAs($user)->from("/backstage/concerts/{$concert->id}/edit")->patch(
@@ -508,9 +508,9 @@ class EditConcertTest extends TestCase
     {
         $user = User::factory()->create();
         $concert = Concert::factory()->create([
-                                                       'user_id' => $user->id,
-                                                       'zip' => 'Old zip',
-                                                   ]);
+                                                  'user_id' => $user->id,
+                                                  'zip' => 'Old zip',
+                                              ]);
         $this->assertFalse($concert->isPublished());
 
         $response = $this->actingAs($user)->from("/backstage/concerts/{$concert->id}/edit")->patch(
@@ -532,9 +532,9 @@ class EditConcertTest extends TestCase
     {
         $user = User::factory()->create();
         $concert = Concert::factory()->create([
-                                                       'user_id' => $user->id,
-                                                       'ticket_price' => 5250,
-                                                   ]);
+                                                  'user_id' => $user->id,
+                                                  'ticket_price' => 5250,
+                                              ]);
         $this->assertFalse($concert->isPublished());
 
         $response = $this->actingAs($user)->from("/backstage/concerts/{$concert->id}/edit")->patch(
@@ -556,9 +556,9 @@ class EditConcertTest extends TestCase
     {
         $user = User::factory()->create();
         $concert = Concert::factory()->create([
-                                                       'user_id' => $user->id,
-                                                       'ticket_price' => 5250,
-                                                   ]);
+                                                  'user_id' => $user->id,
+                                                  'ticket_price' => 5250,
+                                              ]);
         $this->assertFalse($concert->isPublished());
 
         $response = $this->actingAs($user)->from("/backstage/concerts/{$concert->id}/edit")->patch(
@@ -580,9 +580,9 @@ class EditConcertTest extends TestCase
     {
         $user = User::factory()->create();
         $concert = Concert::factory()->create([
-                                                       'user_id' => $user->id,
-                                                       'ticket_price' => 5250,
-                                                   ]);
+                                                  'user_id' => $user->id,
+                                                  'ticket_price' => 5250,
+                                              ]);
         $this->assertFalse($concert->isPublished());
 
         $response = $this->actingAs($user)->from("/backstage/concerts/{$concert->id}/edit")->patch(
@@ -604,9 +604,9 @@ class EditConcertTest extends TestCase
     {
         $user = User::factory()->create();
         $concert = Concert::factory()->create([
-                                                       'user_id' => $user->id,
-                                                       'ticket_quantity' => 5,
-                                                   ]);
+                                                  'user_id' => $user->id,
+                                                  'ticket_quantity' => 5,
+                                              ]);
         $this->assertFalse($concert->isPublished());
 
         $response = $this->actingAs($user)->from("/backstage/concerts/{$concert->id}/edit")->patch(
@@ -630,9 +630,9 @@ class EditConcertTest extends TestCase
     {
         $user = User::factory()->create();
         $concert = Concert::factory()->create([
-                                                       'user_id' => $user->id,
-                                                       'ticket_quantity' => 5,
-                                                   ]);
+                                                  'user_id' => $user->id,
+                                                  'ticket_quantity' => 5,
+                                              ]);
         $this->assertFalse($concert->isPublished());
 
         $response = $this->actingAs($user)->from("/backstage/concerts/{$concert->id}/edit")->patch(
@@ -657,9 +657,9 @@ class EditConcertTest extends TestCase
         /** @var User $user */
         $user = User::factory()->create();
         $concert = Concert::factory()->create([
-                                                       'user_id' => $user->id,
-                                                       'ticket_quantity' => 5,
-                                                   ]);
+                                                  'user_id' => $user->id,
+                                                  'ticket_quantity' => 5,
+                                              ]);
         $this->assertFalse($concert->isPublished());
 
         $response = $this->actingAs($user)->from("/backstage/concerts/{$concert->id}/edit")->patch(

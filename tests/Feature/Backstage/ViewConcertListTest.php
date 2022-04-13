@@ -5,14 +5,14 @@ namespace Tests\Feature\Backstage;
 use App\Concert;
 use App\User;
 use Database\Factories\ConcertFactory;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Response;
 use Illuminate\Testing\TestResponse;
 use Tests\TestCase;
 
 class ViewConcertListTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     public function setUp(): void
     {

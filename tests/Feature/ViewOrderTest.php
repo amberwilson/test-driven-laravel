@@ -5,13 +5,13 @@ namespace Tests\Feature;
 use App\Concert;
 use App\Order;
 use App\Ticket;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Carbon;
 use Tests\TestCase;
 
 class ViewOrderTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /** @test */
     public function user_can_view_their_order_confirmation(): void

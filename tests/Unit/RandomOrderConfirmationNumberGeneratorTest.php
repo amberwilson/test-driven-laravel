@@ -3,12 +3,12 @@
 namespace Tests\Unit;
 
 use App\RandomOrderConfirmationNumberGenerator;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class RandomOrderConfirmationNumberGeneratorTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /** @test */
     public function can_only_contain_uppercase_letters_and_numbers(): void

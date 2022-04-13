@@ -5,12 +5,12 @@ namespace Tests\Unit;
 use App\Facades\TicketCode;
 use App\Order;
 use App\Ticket;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class TicketTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /** @test */
     public function a_ticket_can_be_reserved(): void

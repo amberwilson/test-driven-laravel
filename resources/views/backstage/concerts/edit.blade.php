@@ -171,9 +171,9 @@
                                         <div class="form-group {{ $errors->first('ticket_price', 'has-error') }}">
                                             <label class="form-label">Price</label>
                                             <div class="input-group">
-                                        <span class="input-group-addon text-dark-muted">
-                                            $
-                                        </span>
+                                            <span class="input-group-addon text-dark-muted">
+                                                $
+                                            </span>
                                                 <input name="ticket_price" class="form-control" placeholder="0.00"
                                                        value="{{ old('ticket_price', $concert->ticket_price_in_dollars) }}">
                                             </div>

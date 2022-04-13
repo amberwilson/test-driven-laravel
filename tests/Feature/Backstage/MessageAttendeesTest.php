@@ -7,13 +7,13 @@ use App\Concert;
 use App\Jobs\SendAttendeeMessage;
 use App\User;
 use Database\Factories\ConcertFactory;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Queue;
 use Tests\TestCase;
 
 class MessageAttendeesTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /** @test */
     function a_promoter_can_view_the_message_form_for_their_own_concert()

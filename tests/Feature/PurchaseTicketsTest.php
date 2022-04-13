@@ -9,7 +9,7 @@ use App\Facades\OrderConfirmationNumber;
 use App\Facades\TicketCode;
 use App\Mail\OrderConfirmationEmail;
 use Database\Factories\ConcertFactory;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Testing\TestResponse;
 use Tests\TestCase;
@@ -17,7 +17,7 @@ use Tests\TestCase;
 class PurchaseTicketsTest extends TestCase
 {
 
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     private FakePaymentGateway $paymentGateway;
 
