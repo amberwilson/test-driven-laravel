@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backstage;
 
 use App\Concert;
+use App\Events\ConcertAdded;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreConcertRequest;
 use App\Http\Requests\UpdateConcertRequest;
@@ -36,7 +37,7 @@ class ConcertsController extends Controller
 
     public function store(StoreConcertRequest $request)
     {
-        Auth::user()?->concerts()->create(
+        $concert = Auth::user()?->concerts()->create(
             [
                 'title' => $request->title,
                 'subtitle' => $request->subtitle,
@@ -52,6 +53,8 @@ class ConcertsController extends Controller
                 'poster_image_path' => $request->poster_image?->store('posters', 'public'),
             ]
         );
+
+        ConcertAdded::dispatch($concert);
 
         return redirect()->route('backstage.concerts.index');
     }

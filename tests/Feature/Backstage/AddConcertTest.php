@@ -504,6 +504,7 @@ class AddConcertTest extends TestCase
     /** @test */
     public function poster_image_is_uploaded_if_included(): void
     {
+        Event::fake([ConcertAdded::class]);
         Storage::fake('public');
 
         $user = User::factory()->create();
@@ -530,24 +531,24 @@ class AddConcertTest extends TestCase
         );
     }
 
-    private function validParams($overrides = []): array
+    /** @test */
+    public function an_event_is_fired_when_a_concert_is_added(): void
     {
-        return array_merge(
-            [
-                'title' => 'No Warning',
-                'subtitle' => 'with Cruel Hand and Backtrack',
-                'additional_information' => "You must be 19 years of age to attend this concert.",
-                'date' => '2017-11-18',
-                'time' => '8:00pm',
-                'venue' => 'The Mosh Pit',
-                'venue_address' => '123 Fake St.',
-                'city' => 'Laraville',
-                'state' => 'ON',
-                'zip' => '12345',
-                'ticket_price' => '32.50',
-                'ticket_quantity' => '75',
-            ],
-            $overrides
-        );
+        $this->withoutExceptionHandling();
+
+        Event::fake([ConcertAdded::class]);
+        Storage::fake('public');
+
+        $user = User::factory()->create();
+        $file = File::image('concert-poster.png', 850, 1100);
+
+        $response = $this->actingAs($user)
+            ->post('/backstage/concerts', $this->validParams());
+
+        $concert = Concert::firstOrFail();
+
+        Event::assertDispatched(ConcertAdded::class, function (ConcertAdded $event) use ($concert) {
+            return $event->concert->is($concert);
+        });
     }
 }
