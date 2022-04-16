@@ -1,12 +1,14 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Backstage\ConcertMessagesController;
 use App\Http\Controllers\Backstage\ConcertsController;
 use App\Http\Controllers\Backstage\PublishedConcertOrdersController;
 use App\Http\Controllers\Backstage\PublishedConcertsController;
 use App\Http\Controllers\ConcertOrdersController;
 use App\Http\Controllers\ConcertsController as PublicConcertsController;
+use App\Http\Controllers\InvitationsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,6 +36,10 @@ Route::get('/orders/{confirmationNumber}', [ConcertOrdersController::class, 'sho
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('auth.show-login');
 Route::post('/login', [LoginController::class, 'login'])->name('auth.login');
 Route::post('/logout', [LoginController::class, 'logout'])->name('auth.logout');
+
+Route::post('/register', [RegisterController::class, 'register'])->name('auth.register');
+
+Route::get('/invitations/{code}', [InvitationsController::class, 'show'])->name('invitations.show');
 
 Route::group(['middleware' => 'auth', 'prefix' => 'backstage'], static function () {
     Route::get('/concerts/new', [ConcertsController::class, 'create'])->name('backstage.concerts.new');
