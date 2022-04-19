@@ -9,6 +9,11 @@ use Stripe\Stripe;
 
 class StripeConnectController extends Controller
 {
+    public function connect()
+    {
+        return view('backstage.stripe-connect.connect');
+    }
+
     public function authorizeRedirect()
     {
         $params = [

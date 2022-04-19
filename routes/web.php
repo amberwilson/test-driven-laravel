@@ -63,7 +63,14 @@ Route::group(['middleware' => 'auth', 'prefix' => 'backstage'], static function 
         'backstage.concert-messages.store'
     );
 
-    Route::get('/stripe-connect/authorize', [StripeConnectController::class, 'authorizeRedirect']);
-    Route::get('/stripe-connect/redirect', [StripeConnectController::class, 'redirect']);
+    Route::get('/stripe-connect/connect', [StripeConnectController::class, 'connect'])->name(
+        'backstage.stripe-connect.connect'
+    );
+    Route::get('/stripe-connect/authorize', [StripeConnectController::class, 'authorizeRedirect'])->name(
+        'backstage.stripe-connect.authorize'
+    );
+    Route::get('/stripe-connect/redirect', [StripeConnectController::class, 'redirect'])->name(
+        'backstage.stripe-connect.redirect'
+    );
 });
 
