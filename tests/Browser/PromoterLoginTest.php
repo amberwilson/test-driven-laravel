@@ -3,12 +3,13 @@
 namespace Tests\Browser;
 
 use App\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
 class PromoterLoginTest extends DuskTestCase
 {
-    use RefreshDatabase;
+    use DatabaseMigrations;
 
     /** @test */
     public function logging_in_with_valid_credentials()
@@ -20,10 +21,10 @@ class PromoterLoginTest extends DuskTestCase
             ]
         );
 
-        $this->browse(function ($browser) use ($user) {
+        $this->browse(function (Browser $browser) use ($user) {
             $browser->visit('/login')
-                ->type('email', $user->email)
-                ->type('password', 'super-secret-password')
+                ->typeSlowly('email', $user->email)
+                ->typeSlowly('password', 'super-secret-password')
                 ->press('Log in')
                 ->assertPathIs('/backstage/concerts');
         });
@@ -39,12 +40,13 @@ class PromoterLoginTest extends DuskTestCase
             ]
         );
 
-        $this->browse(function ($browser) use ($user) {
+        $this->browse(function (Browser $browser) use ($user) {
             $browser->visit('/login')
                 ->type('email', $user->email)
                 ->type('password', 'bad-password')
                 ->press('Log in')
                 ->assertPathIs('/login')
+                ->screenshot('logging_in_with_invalid_credentials')
                 ->assertSee('credentials do not match');
         });
     }

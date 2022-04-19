@@ -20,15 +20,16 @@
         "stripe/stripe-php": "^7.67"
     },
     "require-dev": {
-        "roave/security-advisories": "dev-latest",
         "barryvdh/laravel-ide-helper": "^2.12",
         "dms/phpunit-arraysubset-asserts": "^0.4.0",
         "fakerphp/faker": "^1.9.1",
         "hashids/hashids": "^4.1",
+        "laravel/dusk": "^6.23",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^6.1",
         "phpunit/phpunit": "^9.5.10",
+        "roave/security-advisories": "dev-latest",
         "spatie/laravel-ignition": "^1.0"
     },
     "config": {

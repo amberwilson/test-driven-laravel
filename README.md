@@ -43,3 +43,9 @@ This will need to be run after each table change.
 ## PHPDocs for Laravel Facades
 
 `php artisan ide-helper:generate`
+
+# Running Dusk Browser Tests
+
+Note: Create .env.dusk.local first with a separate DB to avoid the main DB being wiped on each run.
+
+`artisan dusk`

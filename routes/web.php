@@ -6,6 +6,7 @@ use App\Http\Controllers\Backstage\ConcertMessagesController;
 use App\Http\Controllers\Backstage\ConcertsController;
 use App\Http\Controllers\Backstage\PublishedConcertOrdersController;
 use App\Http\Controllers\Backstage\PublishedConcertsController;
+use App\Http\Controllers\Backstage\StripeConnectController;
 use App\Http\Controllers\ConcertOrdersController;
 use App\Http\Controllers\ConcertsController as PublicConcertsController;
 use App\Http\Controllers\InvitationsController;
@@ -61,5 +62,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'backstage'], static function 
     Route::post('/concerts/{id}/messages', [ConcertMessagesController::class, 'store'])->name(
         'backstage.concert-messages.store'
     );
+
+    Route::get('/stripe-connect/authorize', [StripeConnectController::class, 'authorizeRedirect']);
+    Route::get('/stripe-connect/redirect', [StripeConnectController::class, 'redirect']);
 });
 
