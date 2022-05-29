@@ -13,9 +13,9 @@ class FakePaymentGateway implements PaymentGateway
 
     public const TEST_CARD_NUMBER = '4242424242424242';
 
-    private $charges;
-    private $tokens;
-    private $beforeFirstChargeCallback;
+    private Collection $charges;
+    private Collection $tokens;
+    private Closure|null $beforeFirstChargeCallback;
 
     public function __construct()
     {
@@ -28,9 +28,18 @@ class FakePaymentGateway implements PaymentGateway
         return $this->charges->map->amount()->sum();
     }
 
-    public function charge(int $amount, string $token): Charge
+    public function totalChargesFor(string $accountId): int
     {
-        if ($this->beforeFirstChargeCallback !== null) {
+        return $this->charges
+            ->filter(fn(Charge $charge) => $charge->destination() === $accountId)
+            ->map
+            ->amount()
+            ->sum();
+    }
+
+    public function charge(int $amount, string $token, string $destinationAccountId): Charge
+    {
+        if (isset($this->beforeFirstChargeCallback)) {
             $callback = $this->beforeFirstChargeCallback;
             $this->beforeFirstChargeCallback = null;
             $callback($this);
@@ -44,6 +53,7 @@ class FakePaymentGateway implements PaymentGateway
             [
                 'amount' => $amount,
                 'card_last_four' => substr($this->tokens[$token], -4),
+                'destination' => $destinationAccountId,
             ]
         );
     }

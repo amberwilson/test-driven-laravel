@@ -8,6 +8,7 @@ use App\Concert;
 use App\Facades\OrderConfirmationNumber;
 use App\Facades\TicketCode;
 use App\Mail\OrderConfirmationEmail;
+use App\User;
 use Database\Factories\ConcertFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Mail;
@@ -34,12 +35,19 @@ class PurchaseTicketsTest extends TestCase
     /** @test */
     public function customer_can_purchase_tickets_to_a_published_concert(): void
     {
+        $this->withoutExceptionHandling();
         // Arrange
         OrderConfirmationNumber::shouldReceive('generate')->andReturn('ORDERCONFIRMATION1234');
         TicketCode::shouldReceive('generateFor')->andReturn('TICKETCODE1', 'TICKETCODE2', 'TICKETCODE3');
 
-        // Create a concert
-        $concert = ConcertFactory::createPublished(['ticket_price' => 3250, 'ticket_quantity' => 3]);
+        $user = User::factory()->create(['stripe_account_id' => 'test_acct_1234']);
+        $concert = ConcertFactory::createPublished(
+            [
+                'ticket_price' => 3250,
+                'ticket_quantity' => 3,
+                'user_id' => $user->id
+            ]
+        );
 
         // Act
         // Purchase concert tickets
@@ -71,7 +79,7 @@ class PurchaseTicketsTest extends TestCase
         $order = $concert->ordersFor('jane@example.com')->first();
 
         // Make sure the customer was charged the correct amount
-        self::assertEquals(9750, $this->paymentGateway->totalCharges());
+        self::assertEquals(9750, $this->paymentGateway->totalChargesFor('test_acct_1234'));
 
         // Make sure that an order exists for this customer
         self::assertTrue($concert->hasOrderFor('jane@example.com'));

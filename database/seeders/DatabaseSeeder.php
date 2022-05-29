@@ -48,7 +48,7 @@ class DatabaseSeeder extends Seeder
             Carbon::setTestNow(Carbon::instance($faker->dateTimeBetween('-2 months')));
 
             $concert->reserveTickets(random_int(1, 4), $faker->safeEmail)
-                ->complete($gateway, $gateway->getValidTestToken($faker->creditCardNumber));
+                ->complete($gateway, $gateway->getValidTestToken($faker->creditCardNumber), 'test_acct_1234');
         }
 
         Carbon::setTestNow();

@@ -7,6 +7,7 @@ use App\Billing\FakePaymentGateway;
 use App\Concert;
 use App\Reservation;
 use App\Ticket;
+use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Mockery;
 use Mockery\Mock;
@@ -80,17 +81,22 @@ class ReservationTest extends TestCase
     /** @test */
     public function completing_a_reservation(): void
     {
+        $user = User::factory()->create(['stripe_account_id' => 'test_acct_1234']);
         /** @var Concert $concert */
         $concert = Concert::factory()->create(['ticket_price' => 1200]);
         $tickets = Ticket::factory(3)->create(['concert_id' => $concert->id]);
         $reservation = new Reservation($tickets, 'jane@example.com');
         $paymentGateway = new FakePaymentGateway();
 
-        $order = $reservation->complete($paymentGateway, $paymentGateway->getValidTestToken());
+        $order = $reservation->complete(
+            $paymentGateway,
+            $paymentGateway->getValidTestToken(),
+            $user->stripe_account_id
+        );
 
         self::assertSame('jane@example.com', $order->email);
         self::assertSame(3, $order->ticketQuantity());
         self::assertSame(3600, $order->amount);
-        self::assertSame(3600, $paymentGateway->totalCharges());
+        self::assertSame(3600, $paymentGateway->totalChargesFor('test_acct_1234'));
     }
 }

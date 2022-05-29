@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Closure;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Log;
 use Stripe\Exception\InvalidRequestException;
 use Stripe\Token;
 
@@ -22,7 +23,7 @@ class StripePaymentGateway implements PaymentGateway
         $this->apiKey = $apiKey;
     }
 
-    public function charge(int $amount, string $token): Charge
+    public function charge(int $amount, string $token, string $destinationAccountId): Charge
     {
         try {
             $stripeCharge = \Stripe\Charge::create(
@@ -30,6 +31,10 @@ class StripePaymentGateway implements PaymentGateway
                     'amount' => $amount,
                     'currency' => 'cad',
                     'source' => $token,
+                    'destination' => [
+                        'account' => $destinationAccountId,
+                        'amount' => $amount * 0.9,
+                    ]
                 ],
                 $this->apiKey
             );
@@ -37,10 +42,12 @@ class StripePaymentGateway implements PaymentGateway
             return new Charge(
                 [
                     'amount' => $stripeCharge['amount'],
-                    'card_last_four' => $stripeCharge['source']['last4']
+                    'card_last_four' => $stripeCharge['source']['last4'],
+                    'destination' => $destinationAccountId
                 ]
             );
         } catch (InvalidRequestException $exception) {
+            Log::info('InvalidRequestException when trying to charge', ['exception' => $exception]);
             throw new PaymentFailedException('Invalid payment token provided - ckjee3lg600009tvqbjhx8xx0');
         }
     }

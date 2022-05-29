@@ -7,7 +7,7 @@ use Illuminate\Support\Collection;
 
 interface PaymentGateway
 {
-    public function charge(int $amount, string $token);
+    public function charge(int $amount, string $token, string $destinationAccountId);
 
     public function getValidTestToken(): string;
 
