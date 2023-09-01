@@ -17,10 +17,12 @@ jobs:
       - run:
           name: "Say hello"
           command: "echo Hello, World!"
+      - run: echo $PRACTICE_VARIABLE
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
 workflows:
   say-hello-workflow:
     jobs:
-      - say-hello
+      - say-hello:
+          context: practice_context
